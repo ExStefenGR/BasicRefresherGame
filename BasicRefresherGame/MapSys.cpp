@@ -2,44 +2,60 @@
 
 MapSys::MapSys()
 {
-	player_m = {};
-	playerPos_m = GAMESTART;
-	getLocation_m = 0;
-	setLocation_m = 0;
+	m_player = {};
+	m_locations = GAMESTART;
+	m_getLocation = 0;
+	m_setLocation = 0;
 }
 
-MapSys::~MapSys(){} //Gets Destroyed when the game closes
+MapSys::~MapSys() {} //Gets Destroyed when the game closes
 
 void MapSys::GetMapLoc()
 {
-	getLocation_m = playerPos_m;
+	m_getLocation = m_locations;
 }
 
-void MapSys::SetMapLoc()
+int MapSys::SetMapLoc(int location)
 {
-	setLocation_m = playerPos_m;
+	location = m_setLocation;
+	m_setLocation = m_getLocation;
+	return  m_setLocation;
 }
 
 void MapSys::LocController()
 {
-	std::cout << "Player name: " << player_m.getName() << std::endl;
-	std::cout << "Player damage: " << player_m.getDamage() << std::endl;
-	std::cout << "Player health points: " << player_m.getHealthPoints() << std::endl;
-	std::cout << "Player mana points: " << player_m.getManaPoints() << std::endl;
-
-	switch (playerPos_m)
+	std::cout << "Player name? " << m_player.GetName() << std::endl;
+	m_player.SetName();
+	switch (m_locations)
 	{
 	case GAMESTART:
 		std::cout << "Greetings Traveler, welcome to <DungeonLikeWithCombatAndStuff>. Made by Stefanos , David and Isaac" << std::endl;
 		SpeechText();
+		SetMapLoc(BEGINNING);
 		//CharacterSysHere
 
 	case BEGINNING:
 		std::cout << "You find yourself in the middle of nowhere" << std::endl;
 		SpeechText();
+		m_player.SetCharacterClass();
+		if (m_player.GetCharacterClass() == 1)
+		{
+			std::cout << "You have unlocked the sword" << std::endl;
+			SpeechText();
+			m_player.SetDamage(+7);
+			std::cout << "Damage Increased" << std::endl;
+			m_player.PlayerInfo();
+			SpeechText();
+			SetMapLoc(DEEPFOREST);
+		}
 	case FOREST:
-	case DEEPFOREST: //Secret Boss?
-	case NEARSEA:
+	case DEEPFOREST:
+		std::cout << "???: h3ll0 My Est33mED [[ONEDOLLAR]] CUSTom er!1" << std::endl;//Secret Boss?
+		SpeechText();
+		//TODO:Include fight here with spamton from Deltarune
+
+	case PORT:
+
 	case SHORE: //Secret item?
 	case TOWN: //SafeArea
 	case DARKPORTAL:

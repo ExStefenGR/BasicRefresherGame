@@ -5,49 +5,75 @@
 
 CharacterSys::CharacterSys()
 {
-	std::cout << "Type player name" << std::endl;
-	std::cin >> m_name;
-
 	m_healthPoints = 150;
 	m_manaPoints = 50;
 	m_damagePoints = 10;
 }
 
-CharacterSys::~CharacterSys()
-{
-}
+CharacterSys::~CharacterSys(){}
 
-std::string CharacterSys::getName()
+std::string CharacterSys::GetName()
 {
 	return m_name;
 }
 
-void CharacterSys::setDamage(int damagePoints)
+void CharacterSys::SetName()
+{
+	std::string name;
+	std::cin >> name;
+	m_name = name;
+}
+
+void CharacterSys::SetDamage(int damagePoints)
 {
 	m_damagePoints += damagePoints;
 }
 
-int CharacterSys::getDamage()
+int CharacterSys::GetDamage()
 {
 	return m_damagePoints;
 }
 
-void CharacterSys::setHealthPoints(int healthPoints)
+void CharacterSys::SetHealthPoints(int healthPoints)
 {
 	m_healthPoints += healthPoints;
 }
 
-int CharacterSys::getHealthPoints()
+int CharacterSys::GetHealthPoints()
 {
 	return m_healthPoints;
 }
 
-void CharacterSys::setManaPoints(int manaPoints)
+void CharacterSys::SetManaPoints(int manaPoints)
 {
 	m_manaPoints += manaPoints;
 }
 
-int CharacterSys::getManaPoints()
+int CharacterSys::GetManaPoints()
 {
 	return m_manaPoints;
+}
+
+void CharacterSys::SetCharacterClass()
+{
+	std::cout << "You come accross three different weapons, which will you choose?" << std::endl;
+	std::cout << "1. Sword" << std::endl;
+	std::cout << "2. Staff" << std::endl;
+	std::cout << "3. Door" << std::endl;
+
+	std::cin >> m_class;
+}
+
+int CharacterSys::GetCharacterClass()
+{
+	return m_class;
+}
+
+void CharacterSys::PlayerInfo()
+{
+	std::cout << "Mana can now be used for skills" << std::endl;
+	std::cout << "Player Name: " << GetName() << std::endl;
+	std::cout << "Player Attack: " << GetDamage() << std::endl;
+	std::cout << "Player Health points: " << GetHealthPoints() << std::endl;
+	std::cout << "Player Mana points: " << GetManaPoints() << std::endl;
 }

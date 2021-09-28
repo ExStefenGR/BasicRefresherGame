@@ -6,8 +6,8 @@
   -multiple paths, some harder and more rewarding, others easier with less rewards
   */
 
-#include "iostream";
-#include "string";
+#include <iostream>
+#include <string>
 #include "CharacterSys.h"
 #include "CombatSys.h"
 #include "MapSys.h"

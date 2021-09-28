@@ -4,22 +4,34 @@
 
 class CharacterSys
 {
-	public:
-		CharacterSys();
-		~CharacterSys();
+	enum JOB
+	{
+		SWORD = 1,
+		STAFF,
+		SHIELD
+	};
+public:
+	CharacterSys();
+	~CharacterSys();
 
-		std::string getName();
+	std::string GetName();
+	void SetName();
 
-		void setDamage(int damagePoints);
-		int getDamage();
-		void setHealthPoints(int healthPoints);
-		int getHealthPoints();
-		void setManaPoints(int manaPoints);
-		int getManaPoints();
+	void SetDamage(int damagePoints);
+	int GetDamage();
+	void SetHealthPoints(int healthPoints);
+	int GetHealthPoints();
+	void SetManaPoints(int manaPoints);
+	int GetManaPoints();
+	void SetCharacterClass();
+	int GetCharacterClass();
+	void PlayerInfo();
 
-		std::string m_name;
-		int m_damagePoints;
-		int m_healthPoints;
-		int m_manaPoints;
+	std::string m_name;
+	int m_damagePoints;
+	int m_healthPoints;
+	int m_manaPoints;
+	int m_class;
+	JOB m_job;
 };
 

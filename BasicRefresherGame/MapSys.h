@@ -9,11 +9,11 @@ class MapSys
 {
 	enum MAP
 	{
-		GAMESTART, //Gamestart Should redirect to CharacterCreation
+		GAMESTART, 
 		BEGINNING,
 		FOREST,
 		DEEPFOREST=3, //Secret Boss?
-		NEARSEA,
+		PORT,
 		SHORE, //Secret item?
 		TOWN, //SafeArea
 		DARKPORTAL,
@@ -26,13 +26,13 @@ public:
 	MapSys();
 	~MapSys();
 	void GetMapLoc();
-	void SetMapLoc();
+	int SetMapLoc(int location);
 	void LocController();
 	void SpeechText();
 private:
-	int setLocation_m;
-	int getLocation_m;
-	MAP playerPos_m;
-	CharacterSys player_m;
+	int m_setLocation;
+	int m_getLocation;
+	MAP m_locations;
+	CharacterSys m_player;
 };
 
