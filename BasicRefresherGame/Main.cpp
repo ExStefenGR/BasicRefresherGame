@@ -8,9 +8,17 @@
 
 #include "iostream";
 #include "string";
+#include "CharacterSys.h"
+#include "CombatSys.h"
+#include "MapSys.h"
 
 int main()
 {
+	CharacterSys player;
 
+	std::cout << "Player name: " << player.getName() << std::endl;
+	std::cout << "Player damage: " << player.getDamage() << std::endl;
+	std::cout << "Player health points: " << player.getHealthPoints() << std::endl;
+	std::cout << "Player mana points: " << player.getManaPoints()  << std::endl;
 	return 0;
 }

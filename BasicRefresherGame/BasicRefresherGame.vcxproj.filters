@@ -27,6 +27,9 @@
     <ClCompile Include="CharacterSys.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MonsterSys.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MapSys.h">
@@ -36,6 +39,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CharacterSys.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MonsterSys.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
