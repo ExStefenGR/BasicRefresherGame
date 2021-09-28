@@ -16,7 +16,6 @@ public:
 
 	std::string GetName();
 	void SetName();
-
 	void SetDamage(int damagePoints);
 	int GetDamage();
 	void SetHealthPoints(int healthPoints);
