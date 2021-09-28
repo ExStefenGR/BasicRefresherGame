@@ -5,5 +5,15 @@
 
 class CombatSys
 {
-};
 
+
+
+public:
+	class getEquipment;
+
+
+
+private:
+
+
+};
