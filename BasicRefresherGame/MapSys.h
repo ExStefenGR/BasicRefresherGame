@@ -3,6 +3,8 @@
 #include "iostream"
 #include "string"
 
+#include "CharacterSys.h"
+
 class MapSys
 {
 	enum MAP
@@ -21,12 +23,16 @@ class MapSys
 		BEACH //Good ending
 	};
 public:
+	MapSys();
+	~MapSys();
 	void GetMapLoc();
 	void SetMapLoc();
 	void LocController();
+	void SpeechText();
 private:
 	int setLocation_m;
 	int getLocation_m;
 	MAP playerPos_m;
+	CharacterSys player_m;
 };
 
