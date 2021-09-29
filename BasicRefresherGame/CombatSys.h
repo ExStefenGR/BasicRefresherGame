@@ -8,6 +8,9 @@
 #include <iostream>
 #include <string>
 
+#include "CharacterSys.h"
+#include "MonsterSys.h"
+
 class CombatSys
 {
 
@@ -15,8 +18,12 @@ class CombatSys
 
 public:
 	class getEquipment;
-
-
+	bool isHPzero;
+	bool isityourturn;
+	bool isittheirturn;
+	void swordSkills;
+	void staffSkills;
+	void shieldSkills;
 
 private:
 
