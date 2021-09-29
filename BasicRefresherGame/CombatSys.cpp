@@ -40,6 +40,11 @@ void CombatSys::setSpells(int manaCost)
 
 }
 
+int CombatSys::getSpells()
+{
+	return 0;
+}
+
 void CombatSys::setSwordSkills()
 {
 
@@ -70,7 +75,3 @@ int CombatSys::getSheildSkills()
 	return 0;
 }
 
-int CombatSys::getSpells()
-{
-	return 0;
-}
