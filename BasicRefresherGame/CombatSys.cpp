@@ -16,12 +16,18 @@ CombatSys::~CombatSys()
 
 bool CombatSys::isityourturn()
 {
-	return false;
+	if (!isittheirturn)
+	{
+		return true;
+	}
 }
 
 bool CombatSys::isittheirturn()
 {
-	return false;
+	if (!isityourturn)
+	{
+		return true;
+	}
 }
 
 void CombatSys::CombatOptions()
@@ -32,6 +38,11 @@ void CombatSys::CombatOptions()
 void CombatSys::setSpells(int manaCost)
 {
 
+}
+
+int CombatSys::getSpells()
+{
+	return 0;
 }
 
 void CombatSys::setSwordSkills()
@@ -64,7 +75,3 @@ int CombatSys::getSheildSkills()
 	return 0;
 }
 
-int CombatSys::getSpells()
-{
-	return 0;
-}
