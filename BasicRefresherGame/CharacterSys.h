@@ -4,11 +4,11 @@
 
 class CharacterSys
 {
-	enum JOB
+	enum class Job
 	{
-		SWORD = 1,
-		STAFF,
-		SHIELD
+		Sword = 1,
+		Staff,
+		Shield
 	}; //maybe move this in mapsys as well for easier navigation?
 public:
 	CharacterSys();
@@ -31,6 +31,6 @@ public:
 	int m_healthPoints;
 	int m_manaPoints;
 	int m_class;
-	JOB m_job;
+	Job m_job;
 };
 

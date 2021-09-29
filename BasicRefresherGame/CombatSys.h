@@ -41,6 +41,7 @@ public:
 	int getSpells();
 
 	int m_manaCost;
+	int m_healthPoints;
 
 
 

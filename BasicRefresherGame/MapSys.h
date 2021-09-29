@@ -7,33 +7,39 @@
 
 class MapSys
 {
-	enum MAP
+	enum class Map
 	{
-		GAMESTART, 
-		BEGINNING,
-		FOREST,
-		DEEPFOREST=3, //Secret Boss?
-		PORT,
-		SHORE, //Secret item?
-		TOWN, //SafeArea
-		DARKPORTAL,
-		CASTLEOFFIRE, //BOSS
-		CASTLEOFICE,  //BOSS
-		DARKSHORE,	//Bad ending
-		BEACH //Good ending
+		GameStart, 
+		Beginning,
+		Forest,
+		DeepForest, //Secret Boss?
+		Port,
+		Shore, //Secret item?
+		Town, //SafeArea
+		DarkPortal,
+		CastleOfFire, //BOSS
+		DarkShore,	//Bad ending
+		Beach //Good ending
+	};
+	enum class Job
+	{
+		Sword = 1,
+		Staff,
+		Shield
 	};
 public:
 	MapSys();
 	~MapSys();
 	void GetMapLoc();
-	int SetMapLoc(int location);
+	MapSys::Map SetMapLoc(Map NewLoc);
 	void LocController();
 	void SpeechText();
+
 private:
 	int m_setLocation;
 	int m_getLocation;
 	bool m_roomDone;
-	MAP m_locations;
+	Map m_locations;
 	CharacterSys m_player;
 };
 

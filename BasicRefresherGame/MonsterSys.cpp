@@ -1,7 +1,7 @@
 #include "MonsterSys.h"
 #include <iostream>
 
-MonsterSys::MonsterSys(Name nameMonster)
+MonsterSys::MonsterSys(Name nameMonster,int Health, int Damage)
 {
 	m_name = nameMonster;
 	m_healthPoints = static_cast<int>(nameMonster) * 10;
