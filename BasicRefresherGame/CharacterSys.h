@@ -14,7 +14,7 @@ class CharacterSys
 	{
 		Berserker = 1,
 		Fireball,
-		Shield
+		ArrowShower
 	};
 public:
 	CharacterSys();
@@ -26,7 +26,7 @@ public:
 	int GetDamage();
 	void SetHealthPoints(int healthPoints);
 	int GetHealthPoints();
-	int GetSkills();
+	Skills GetSkills();
 	void SetManaPoints(int manaPoints);
 	int GetManaPoints();
 	void SetCharacterClass();
@@ -39,5 +39,6 @@ public:
 	int m_manaPoints;
 	int m_class;
 	Job m_job;
+	Skills skill;
 };
 

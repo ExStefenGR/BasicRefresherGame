@@ -102,7 +102,7 @@ void MapSys::LocController()
 			{
 				std::cout << "???: Hey are you " << m_player.GetName() << "? I Wasn't expecting you were a Wizard" << std::endl;
 			}
-			else if (m_player.GetCharacterClass() == static_cast<int>(Job::Shield))
+			else if (m_player.GetCharacterClass() == static_cast<int>(Job::Bow))
 			{
 				std::cout << "???: Hey are you " << m_player.GetName() << "? I Wasn't expecting you were a Knight, Why would anyone carry a door for a shield?" << std::endl;
 			}
