@@ -9,7 +9,7 @@ class CharacterSys
 		SWORD = 1,
 		STAFF,
 		SHIELD
-	};
+	}; //maybe move this in mapsys as well for easier navigation?
 public:
 	CharacterSys();
 	~CharacterSys();

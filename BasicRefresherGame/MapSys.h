@@ -32,6 +32,7 @@ public:
 private:
 	int m_setLocation;
 	int m_getLocation;
+	bool m_roomDone;
 	MAP m_locations;
 	CharacterSys m_player;
 };

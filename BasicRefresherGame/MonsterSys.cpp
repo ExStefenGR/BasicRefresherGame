@@ -22,9 +22,10 @@ int MonsterSys::GetHealthPoints()
 	return m_healthPoints;
 }
 
-void MonsterSys::MonsterInfo(Name nameMonster)
+void MonsterSys::MonsterInfo(Name m_name)
 {
-	std::cout << "Monster Name: " << nameMonster << std::endl;
+	
+	std::cout << "Monster Name: " << static_cast<int>(m_name) << std::endl;
 	std::cout << "Player Attack: " << GetDamage() << std::endl;
 	std::cout << "Player Health points: " << GetHealthPoints() << std::endl;
 }
