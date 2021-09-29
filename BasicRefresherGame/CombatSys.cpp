@@ -3,7 +3,7 @@
 
 CombatSys::CombatSys()
 {
-
+	getEquipment;
 }
 
 CombatSys::~CombatSys()

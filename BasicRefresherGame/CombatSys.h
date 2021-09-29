@@ -13,7 +13,14 @@
 
 class CombatSys
 {
-
+	enum OPTIONS
+	{
+		ATTACK,
+		DEFEND,
+		SPELL,
+		ITEM,
+		RUN
+	};
 
 
 public:
@@ -25,6 +32,8 @@ public:
 	bool isittheirturn;
 	void CombatOptions;
 
+private:
 
+	int m_setHealth;
 
 };
