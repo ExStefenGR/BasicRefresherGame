@@ -16,12 +16,18 @@ CombatSys::~CombatSys()
 
 bool CombatSys::isityourturn()
 {
-	return false;
+	if (!isittheirturn)
+	{
+		return true;
+	}
 }
 
 bool CombatSys::isittheirturn()
 {
-	return false;
+	if (!isityourturn)
+	{
+		return true;
+	}
 }
 
 void CombatSys::CombatOptions()
