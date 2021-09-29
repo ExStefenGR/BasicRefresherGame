@@ -3,6 +3,7 @@
 
 class MonsterSys
 {
+	//TODO: Cannot use Enum to Name monsters/Characters, probably we need to include this enum in Mapsys as well as character classes? 
 	enum class Name
 	{
 		RAT = 1,

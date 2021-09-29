@@ -30,6 +30,7 @@ void MapSys::LocController()
 	{
 	case GAMESTART:
 		std::cout << "Greetings Traveler, welcome to <DungeonLikeWithCombatAndStuff>. Made by Stefanos , David and Isaac" << std::endl;
+		m_player.PlayerInfo();
 		SpeechText();
 		SetMapLoc(BEGINNING);
 		//CharacterSysHere
@@ -48,13 +49,25 @@ void MapSys::LocController()
 			SpeechText();
 			SetMapLoc(DEEPFOREST);
 		}
-	case FOREST:
+		else if (m_player.GetCharacterClass() == 2)
+		{
+			std::cout << "You have unlocked the sword" << std::endl;
+			SpeechText();
+			m_player.SetDamage(+4);
+			m_player.SetManaPoints(+10);
+			std::cout << "Damage and Mana Increased" << std::endl;
+			m_player.PlayerInfo();
+			SpeechText();
+			SetMapLoc(FOREST);
+		}
+	case FOREST: //This will have to do with the Magician Route, add a fight with a magical monster/character
+				//Note if nothing is written in a case then it will automatically go to the next
 	case DEEPFOREST:
 		std::cout << "???: h3ll0 My Est33mED [[ONEDOLLAR]] CUSTom er!1" << std::endl;//Secret Boss?
 		SpeechText();
-		//TODO:Include fight here with spamton from Deltarune
+		//TODO:Include fight here with spamton from Deltarune Because that is the game I played recently and I'm bored
 
-	case PORT:
+	case PORT: 
 
 	case SHORE: //Secret item?
 	case TOWN: //SafeArea
