@@ -13,13 +13,13 @@
 
 class CombatSys
 {
-	enum OPTIONS
+	enum Combat
 	{
-		ATTACK,
-		DEFEND,
-		SPELL,
-		ITEM,
-		RUN
+		Attack,
+		Block,
+		Spells,
+		Items,
+		Run
 	};
 
 
@@ -28,12 +28,20 @@ public:
 	~CombatSys();
 
 	class getEquipment;
-	bool isityourturn;
-	bool isittheirturn;
-	void CombatOptions;
+	bool isityourturn();
+	bool isittheirturn();
+	void CombatOptions();
+	void setSwordSkills();//Hey, you think all this should be in the code for the character?
+	int getSwordSkills();
+	void setStaffSkills();
+	int getStaffSkills();
+	void setShieldSkills();
+	int getSheildSkills();
+	void setSpells(int manaCost);
+	int getSpells();
 
-private:
+	int m_manaCost;
 
-	int m_setHealth;
+
 
 };
