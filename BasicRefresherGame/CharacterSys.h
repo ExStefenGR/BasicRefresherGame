@@ -8,7 +8,7 @@ class CharacterSys
 	{
 		Sword = 1,
 		Staff,
-		Shield
+		Bow
 	}; //maybe move this in mapsys as well for easier navigation?
 	enum class Skills
 	{
@@ -39,6 +39,6 @@ public:
 	int m_manaPoints;
 	int m_class;
 	Job m_job;
-	Skills skill;
+	Skills m_skill;
 };
 

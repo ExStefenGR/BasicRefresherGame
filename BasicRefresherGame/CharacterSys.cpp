@@ -46,9 +46,18 @@ int CharacterSys::GetHealthPoints()
 	return m_healthPoints;
 }
 
-Skills CharacterSys::GetSkills()
+CharacterSys::Skills CharacterSys::GetSkills()
 {
-	return Skills();
+	if (GetCharacterClass() == static_cast<int>(Job::Sword))
+	{
+		return Skills(Skills::Berserker);
+	}
+	else if (GetCharacterClass() == static_cast<int>(Job::Staff)) {
+		return Skills(Skills::Fireball);
+	}
+	else if (GetCharacterClass() == static_cast<int>(Job::Bow)) {
+		return Skills(Skills::ArrowShower);
+	}
 }
 
 void CharacterSys::SetManaPoints(int manaPoints)
