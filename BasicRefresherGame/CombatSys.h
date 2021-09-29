@@ -17,15 +17,14 @@ class CombatSys
 
 
 public:
+	CombatSys();
+	~CombatSys();
+
 	class getEquipment;
-	bool isHPzero;
 	bool isityourturn;
 	bool isittheirturn;
-	void swordSkills;
-	void staffSkills;
-	void shieldSkills;
+	void CombatOptions;
 
-private:
 
 
 };
