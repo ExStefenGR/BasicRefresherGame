@@ -41,7 +41,7 @@ void CharacterSys::SetHealthPoints(int healthPoints)
 	m_healthPoints += healthPoints;
 }
 
-int CharacterSys::GetHP()
+int CharacterSys::GetHealthPoints()
 {
 	return m_healthPoints;
 }

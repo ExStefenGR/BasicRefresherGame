@@ -44,19 +44,31 @@ void MapSys::LocController()
 			m_player.SetCharacterClass();
 			if (m_player.GetCharacterClass() == 1)
 			{
-				std::cout << "You have unlocked the sword" << std::endl;
+				std::cout << "You have unlocked the sword, you're a Knight!" << std::endl;
 				SpeechText();
-				m_player.SetDamage(+7);
-				std::cout << "Damage Increased" << std::endl;
+				m_player.SetDamage(+8);
+				m_player.SetManaPoints(+5);
+				std::cout << "Damage and Mana Increased" << std::endl;
 				m_player.PlayerInfo();
 				SpeechText();
 				SetMapLoc(Map::DeepForest);
 			}
 			else if (m_player.GetCharacterClass() == 2)
 			{
-				std::cout << "You have unlocked the staff" << std::endl;
+				std::cout << "You have unlocked the staff, you're a Mage!" << std::endl;
 				SpeechText();
 				m_player.SetDamage(+4);
+				m_player.SetManaPoints(+15);
+				std::cout << "Damage and Mana Increased" << std::endl;
+				m_player.PlayerInfo();
+				SpeechText();
+				SetMapLoc(Map::Forest);
+			}
+			else if (m_player.GetCharacterClass() == 3)
+			{
+				std::cout << "You have unlocked the bow, you're a Archer" << std::endl;
+				SpeechText();
+				m_player.SetDamage(+6);
 				m_player.SetManaPoints(+10);
 				std::cout << "Damage and Mana Increased" << std::endl;
 				m_player.PlayerInfo();

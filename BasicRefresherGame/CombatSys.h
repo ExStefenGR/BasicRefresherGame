@@ -16,7 +16,6 @@ class CombatSys
 	enum Combat
 	{
 		Attack,
-		Block,
 		Spells,
 		Items,
 		Run

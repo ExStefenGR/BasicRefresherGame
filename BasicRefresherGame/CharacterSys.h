@@ -10,6 +10,12 @@ class CharacterSys
 		Staff,
 		Shield
 	}; //maybe move this in mapsys as well for easier navigation?
+	enum class Skills
+	{
+		Berserker = 1,
+		Fireball,
+		Shield
+	};
 public:
 	CharacterSys();
 	~CharacterSys();
@@ -19,7 +25,8 @@ public:
 	void SetDamage(int damagePoints);
 	int GetDamage();
 	void SetHealthPoints(int healthPoints);
-	int GetHP();
+	int GetHealthPoints();
+	int GetSkills();
 	void SetManaPoints(int manaPoints);
 	int GetManaPoints();
 	void SetCharacterClass();

@@ -25,7 +25,7 @@ class MapSys
 	{
 		Sword = 1,
 		Staff,
-		Shield
+		Bow
 	};
 public:
 	MapSys();
