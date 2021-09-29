@@ -3,31 +3,12 @@
 
 CombatSys::CombatSys()
 {
-	while (m_healthPoints != 0)
-	{
 
-	}
 }
 
 CombatSys::~CombatSys()
 {
 
-}
-
-bool CombatSys::isityourturn()
-{
-	if (!isittheirturn)
-	{
-		return true;
-	}
-}
-
-bool CombatSys::isittheirturn()
-{
-	if (!isityourturn)
-	{
-		return true;
-	}
 }
 
 void CombatSys::CombatOptions()

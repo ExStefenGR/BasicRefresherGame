@@ -99,6 +99,7 @@ void MapSys::LocController()
 				SetMapLoc(Map::Shore);
 			}
 			SpeechText();
+			SetMapLoc(Map::Town);
 			break;
 		case Map::Shore: 
 			std::cout << "You are now at the shore after fighting that weird monster, You look beneath you and find an item in the sand" << std::endl;

@@ -17,14 +17,15 @@ class MonsterSys
 		ICE_ELEMENTAL = 8, //BOSS
 	};
 public:
-	MonsterSys(Name);
+	MonsterSys(Name nameMonster);
 	~MonsterSys();
 
 	int GetDamage();
-	int GetHealthPoints();
+	int GetHP();
 	void MonsterInfo(Name);
-	int m_damagePoints;
-	int m_healthPoints;
 	Name m_name;
+	int m_monsterDamage;
+	int m_monsterDefence;
+	int m_monsterHP;
 };
 

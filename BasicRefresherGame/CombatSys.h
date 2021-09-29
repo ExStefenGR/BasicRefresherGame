@@ -28,8 +28,6 @@ public:
 	~CombatSys();
 
 	class getEquipment;
-	bool isityourturn();
-	bool isittheirturn();
 	void CombatOptions();
 	void setSwordSkills();//Hey, you think all this should be in the code for the character?
 	int getSwordSkills();
@@ -42,7 +40,4 @@ public:
 
 	int m_manaCost;
 	int m_healthPoints;
-
-
-
 };

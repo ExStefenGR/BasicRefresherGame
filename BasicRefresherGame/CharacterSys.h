@@ -19,7 +19,7 @@ public:
 	void SetDamage(int damagePoints);
 	int GetDamage();
 	void SetHealthPoints(int healthPoints);
-	int GetHealthPoints();
+	int GetHP();
 	void SetManaPoints(int manaPoints);
 	int GetManaPoints();
 	void SetCharacterClass();

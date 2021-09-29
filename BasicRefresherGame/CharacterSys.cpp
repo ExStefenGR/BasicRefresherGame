@@ -5,6 +5,8 @@
 
 CharacterSys::CharacterSys()
 {
+	CharacterSys::m_job = {};
+	CharacterSys::m_class = {};
 	m_healthPoints = 150;
 	m_manaPoints = 50;
 	m_damagePoints = 10;
@@ -39,7 +41,7 @@ void CharacterSys::SetHealthPoints(int healthPoints)
 	m_healthPoints += healthPoints;
 }
 
-int CharacterSys::GetHealthPoints()
+int CharacterSys::GetHP()
 {
 	return m_healthPoints;
 }
@@ -74,6 +76,6 @@ void CharacterSys::PlayerInfo()
 	std::cout << "Mana can now be used for skills" << std::endl;
 	std::cout << "Player Name: " << GetName() << std::endl;
 	std::cout << "Player Attack: " << GetDamage() << std::endl;
-	std::cout << "Player Health points: " << GetHealthPoints() << std::endl;
+	std::cout << "Player Health points: " << GetHP() << std::endl;
 	std::cout << "Player Mana points: " << GetManaPoints() << std::endl;
 }
