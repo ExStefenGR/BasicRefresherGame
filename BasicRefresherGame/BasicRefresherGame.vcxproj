@@ -123,11 +123,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CharacterSys.cpp" />
+    <ClCompile Include="CombatSys.cpp" />
+    <ClCompile Include="InventorySys.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MapSys.cpp" />
+    <ClCompile Include="MonsterSys.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CharacterSys.h" />
+    <ClInclude Include="CombatSys.h" />
+    <ClInclude Include="InventorySys.h" />
     <ClInclude Include="MapSys.h" />
+    <ClInclude Include="MonsterSys.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\Downloads\20210928_151324.jpg" />
