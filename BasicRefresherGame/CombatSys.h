@@ -18,6 +18,7 @@ class CombatSys
 		Attack,
 		Spells,
 		Items,
+		Block,
 		Run
 	};
 
