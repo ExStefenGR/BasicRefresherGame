@@ -7,6 +7,7 @@ CharacterSys::CharacterSys()
 {
 	CharacterSys::m_job = {};
 	CharacterSys::m_class = {};
+	CharacterSys::m_skill = {};
 	m_healthPoints = 150;
 	m_manaPoints = 50;
 	m_damagePoints = 10;
