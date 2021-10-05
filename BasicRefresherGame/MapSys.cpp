@@ -135,6 +135,12 @@ void MapSys::LocController()
 			//Add Item Acquired text and a boost in Magic and Damage 
 			break;
 		case Map::DarkPortal:
+			m_player.PlayerInfo();
+			SpeechText();
+			std::cout << "???: You're here, then let us go.." << std::endl;
+			SpeechText();
+			std::cout << "You have entered the Dark portal, Monsters await.." << std::endl;;
+			SpeechText();
 			break;
 		case Map::CastleOfFire:
 			break;//BOSS
