@@ -9,7 +9,6 @@
 #include <iostream>
 #include <string>
 #include "CharacterSys.h"
-#include "CombatSys.h"
 #include "MapSys.h"
 
 int main()
