@@ -13,7 +13,7 @@
 
 class CombatSys
 {
-	enum Combat
+	enum class Combat
 	{
 		Attack,
 		Spells,
