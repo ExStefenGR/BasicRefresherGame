@@ -21,6 +21,7 @@ public:
 		ArrowShower
 	};
 
+	void CreateCharacter();
 	std::string GetName();
 	void SetName();
 	void SetDamage(int damagePoints);
