@@ -21,16 +21,7 @@
     <ClCompile Include="MapSys.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CombatSys.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CharacterSys.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MonsterSys.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="InventorySys.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -38,13 +29,7 @@
     <ClInclude Include="MapSys.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CombatSys.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CharacterSys.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MonsterSys.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="InventorySys.h">
