@@ -9,7 +9,7 @@ class MapSys
 {
 	enum class Map
 	{
-		GameStart, 
+		GameStart,
 		Beginning,
 		Forest,
 		DeepForest, //Secret Boss?
