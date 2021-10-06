@@ -9,9 +9,9 @@ MapSys::MapSys()
 	m_setLocation = 0;
 }
 MapSys::~MapSys() {} //Gets Destroyed when the game closes
-void MapSys::GetMapLoc()
+MapSys::Map MapSys::GetMapLoc()
 {
-	auto m_getLocation = static_cast<int>(m_locations);
+	return MapSys::Map(m_locations);
 }
 MapSys::Map MapSys::SetMapLoc(Map NewLoc)
 {
