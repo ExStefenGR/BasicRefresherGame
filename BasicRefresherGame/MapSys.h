@@ -40,6 +40,5 @@ private:
 	int m_getLocation;
 	bool m_roomDone;
 	Map m_locations;
-	CharacterSys m_player;
 };
 

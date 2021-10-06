@@ -3,7 +3,6 @@
 MapSys::MapSys()
 {
 	m_roomDone = false;
-	m_player = {};
 	m_locations = Map::GameStart;
 	m_getLocation = 0;
 	m_setLocation = 0;
@@ -25,24 +24,20 @@ MapSys::Map MapSys::SetMapLoc(Map NewLoc)
 
 void MapSys::LocController()
 {
-	std::cout << "Player name? " << m_player.GetName() << std::endl;
-	m_player.SetName();
 	while (!m_roomDone)
 	{
 		switch (m_locations)
 		{
 		case Map::GameStart:
 			std::cout << "Greetings Traveler, welcome to <DungeonLikeWithCombatAndStuff>. Made by Stefanos , David and Isaac" << std::endl;
-			m_player.PlayerInfo();
 			SpeechText();
 			SetMapLoc(Map::Beginning);
 			break;
 		case Map::Beginning:
 		{
-			std::cout << "You find yourself in the middle of nowhere" << std::endl;
+			std::cout << "You find yourself in the middle of nowhere > map class" << std::endl;
 			SpeechText();
-			m_player.SetCharacterClass();
-			if (m_player.GetCharacterClass() == 1)
+			/*if (m_player.GetCharacterClass() == 1)
 			{
 				std::cout << "You have unlocked the sword, you're a Knight!" << std::endl;
 				SpeechText();
@@ -75,7 +70,7 @@ void MapSys::LocController()
 				SpeechText();
 				SetMapLoc(Map::Forest);
 			}
-			break;
+			break;*/
 		}
 		case Map::Forest:
 		{
@@ -97,7 +92,7 @@ void MapSys::LocController()
 		case Map::Port:
 			std::cout << "You arrive at the port and spot a human ready to depart but he stops and waves at you.." << std::endl;
 			SpeechText();
-			if (m_player.GetCharacterClass() == static_cast<int>(Job::Staff))
+			/*if (m_player.GetCharacterClass() == static_cast<int>(Job::Staff))
 			{
 				std::cout << "???: Hey are you " << m_player.GetName() << "? I Wasn't expecting you were a Wizard" << std::endl;
 			}
@@ -110,7 +105,7 @@ void MapSys::LocController()
 				SetMapLoc(Map::Shore);
 			}
 			SpeechText();
-			SetMapLoc(Map::Town);
+			SetMapLoc(Map::Town);*/
 			break;
 		case Map::Shore: 
 			std::cout << "You are now at the shore after fighting that weird monster, You look beneath you and find an item in the sand" << std::endl;
@@ -122,7 +117,7 @@ void MapSys::LocController()
 		case Map::Town:
 			std::cout << "You have arrived at the Local Town with the help of the Boat-Man" << std::endl;
 			SpeechText();
-			std::cout << "Boat-Man: Alright " << m_player.GetName() << " We have arrived, get your things and get going" << std::endl;
+			//std::cout << "Boat-Man: Alright " << m_player.GetName() << " We have arrived, get your things and get going" << std::endl;
 			SpeechText();
 			std::cout << "You leave the boat and begin looking around the shops of the town, without any money its of no use, but you browse anyway" << std::endl;
 			SpeechText();

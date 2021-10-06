@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <iostream>
+#include "MapSys.h"
 
 class CharacterSys
 {
@@ -43,5 +44,6 @@ private:
 	int m_class;
 	Job m_job;
 	Skills m_skill;
+	//MapSys m_playerLocation;
 };
 

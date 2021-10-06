@@ -13,7 +13,7 @@ CharacterSys::CharacterSys()
 	m_damagePoints = 10;
 }
 
-CharacterSys::~CharacterSys(){}
+CharacterSys::~CharacterSys() {}
 
 void CharacterSys::CreateCharacter()
 {
@@ -107,7 +107,7 @@ int CharacterSys::GetManaPoints()
 
 void CharacterSys::SetCharacterClass()
 {
-	while(m_class < 1 || m_class > 3)
+	while (m_class < 1 || m_class > 3)
 	{
 		std::cout << "You come accross three different weapons, which will you choose?" << std::endl;
 		std::cout << "1. Sword" << std::endl;
@@ -130,4 +130,19 @@ void CharacterSys::PlayerInfo()
 	std::cout << "Player Attack: " << GetDamage() << std::endl;
 	std::cout << "Player Health points: " << GetHealthPoints() << std::endl;
 	std::cout << "Player Mana points: " << GetManaPoints() << std::endl;
+
+	switch (GetSkills())
+	{
+	case Skills::Berserker:
+		std::cout << "Player Skill: Berserker" << std::endl;
+		break;
+	case Skills::Fireball:
+		std::cout << "Player Skill: Fireball" << std::endl;
+		break;
+	case Skills::ArrowShower:
+		std::cout << "Player Skill: ArrowShower" << std::endl;
+		break;
+	default:
+		break;
+	}
 }
