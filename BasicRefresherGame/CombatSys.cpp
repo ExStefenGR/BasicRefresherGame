@@ -55,4 +55,3 @@ int CombatSys::getSheildSkills()
 {
 	return 0;
 }
-

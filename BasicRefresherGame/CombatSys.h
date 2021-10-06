@@ -17,8 +17,6 @@ class CombatSys
 	{
 		Attack,
 		Spells,
-		Items,
-		Block,
 		Run
 	};
 
@@ -29,15 +27,8 @@ public:
 
 	class getEquipment;
 	void CombatOptions();
-	void setSwordSkills();//Hey, you think all this should be in the code for the character?
-	int getSwordSkills();
-	void setStaffSkills();
-	int getStaffSkills();
-	void setShieldSkills();
-	int getSheildSkills();
-	void setSpells(int manaCost);
-	int getSpells();
+	Combat GetCombatOptions();
 
-	int m_manaCost;
-	int m_healthPoints;
+	CharacterSys m_player;
+
 };
