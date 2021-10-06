@@ -2,7 +2,7 @@
 
 DialogueSys::DialogueSys()
 {
-	m_lines[0];
+	m_lines[0] = {};
 	m_playerLoc.GetMapLoc();
 }
 
@@ -12,7 +12,7 @@ DialogueSys::~DialogueSys()
 
 void DialogueSys::SpeechDialogue()
 {
-	switch (m_playerLoc.GetMapLoc())
+	switch (m_playerLoc.GetMapLoc() == MapSys::Map())
 	{
 
 	}
