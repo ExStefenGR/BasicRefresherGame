@@ -24,10 +24,15 @@ int MonsterSys::GetHP()
 	return m_monsterHP;
 }
 
+void MonsterSys::SetDamageToMonster(int Damage)
+{
+	m_monsterHP = Damage;
+}
+
 void MonsterSys::MonsterInfo(Name m_name)
 {
 	
 	std::cout << "Monster Name: " << static_cast<int>(m_name) << std::endl;
-	std::cout << "Player Attack: " << GetDamage() << std::endl;
-	std::cout << "Player Health points: " << GetHP() << std::endl;
+	std::cout << "Monster attack points: " << GetDamage() << std::endl;
+	std::cout << "Monster health points: " << GetHP() << std::endl;
 }

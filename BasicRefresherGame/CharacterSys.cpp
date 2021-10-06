@@ -11,6 +11,7 @@ CharacterSys::CharacterSys()
 	m_healthPoints = 150;
 	m_manaPoints = 50;
 	m_damagePoints = 10;
+	m_playerLocation.SetMapLoc(MapSys::Map::Beginning);
 }
 
 CharacterSys::~CharacterSys() {}
@@ -29,6 +30,7 @@ void CharacterSys::CreateCharacter()
 		SetManaPoints(+5);
 		SetHealthPoints(+15);
 		std::cout << "Damage, Health and Mana Increased" << std::endl;
+		//m_playerLocation.LocController();
 		break;
 	case 2:
 		std::cout << "You have unlocked the staff, you're a Mage!" << std::endl;
@@ -36,6 +38,7 @@ void CharacterSys::CreateCharacter()
 		SetManaPoints(+15);
 		SetHealthPoints(+5);
 		std::cout << "Damage, Health and Mana Increased" << std::endl;
+		//m_playerLocation.LocController();
 		break;
 	case 3:
 		std::cout << "You have unlocked the bow, you're a Archer" << std::endl;
@@ -43,6 +46,7 @@ void CharacterSys::CreateCharacter()
 		SetManaPoints(+10);
 		SetHealthPoints(+10);
 		std::cout << "Damage, Health and Mana Increased" << std::endl;
+		//m_playerLocation.LocController();
 		break;
 	default:
 		break;

@@ -22,6 +22,7 @@ public:
 
 	int GetDamage();
 	int GetHP();
+	void SetDamageToMonster(int Damage);
 	void MonsterInfo(Name);
 	Name m_name;
 	int m_monsterDamage;

@@ -3,13 +3,15 @@
 #include "iostream"
 #include "string"
 
-#include "CharacterSys.h"
-
 class MapSys
 {
+public:
+	MapSys();
+	~MapSys();
+
 	enum class Map
 	{
-		GameStart, 
+		GameStart,
 		Beginning,
 		Forest,
 		DeepForest, //Secret Boss?
@@ -21,15 +23,7 @@ class MapSys
 		DarkShore,	//Bad ending
 		Beach //Good ending
 	};
-	enum class Job
-	{
-		Sword = 1,
-		Staff,
-		Bow
-	};
-public:
-	MapSys();
-	~MapSys();
+
 	void GetMapLoc();
 	MapSys::Map SetMapLoc(Map NewLoc);
 	void LocController();

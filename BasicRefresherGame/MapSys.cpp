@@ -69,8 +69,9 @@ void MapSys::LocController()
 				m_player.PlayerInfo();
 				SpeechText();
 				SetMapLoc(Map::Forest);
-			}
-			break;*/
+			}*/
+			SetMapLoc(Map::Forest);
+			break;
 		}
 		case Map::Forest:
 		{

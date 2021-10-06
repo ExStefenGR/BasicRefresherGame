@@ -14,13 +14,14 @@
 
 int main()
 {
+	MapSys playerLoc;
 	CharacterSys player;
-	//MapSys playerLoc;
 
 	player.CreateCharacter();
-
 	player.PlayerInfo();
 
+	playerLoc.LocController();
+	
 	//playerLoc.LocController();
 	return 0;
 }
