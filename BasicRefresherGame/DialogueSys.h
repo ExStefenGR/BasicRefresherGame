@@ -9,7 +9,7 @@ public:
 private:
 	void SpeechDialogue();
 	void SpeechPause();
-	int m_lines[5];
+	int m_lines[1];
 	MapSys m_playerLoc;
 };
 
