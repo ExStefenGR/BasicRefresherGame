@@ -3,8 +3,6 @@
 #include "iostream"
 #include "string"
 
-#include "CharacterSys.h"
-
 class MapSys
 {
 	enum class Map
@@ -21,12 +19,6 @@ class MapSys
 		DarkShore,	//Bad ending
 		Beach //Good ending
 	};
-	enum class Job
-	{
-		Sword = 1,
-		Staff,
-		Bow
-	};
 public:
 	MapSys();
 	~MapSys();
@@ -40,6 +32,5 @@ private:
 	int m_getLocation;
 	bool m_roomDone;
 	Map m_locations;
-	CharacterSys m_player;
 };
 
