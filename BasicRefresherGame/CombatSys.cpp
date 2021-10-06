@@ -3,7 +3,12 @@
 
 CombatSys::CombatSys()
 {
-
+	m_player.GetCharacterClass;
+	m_player.GetDamage;
+	m_player.GetHealthPoints;
+	m_player.GetManaPoints;
+	m_player.GetName;
+	m_player.GetSkills;
 }
 
 CombatSys::~CombatSys()
@@ -13,45 +18,24 @@ CombatSys::~CombatSys()
 
 void CombatSys::CombatOptions()
 {
-
+	switch (Combat)
+	{
+	case Combat::Attack:
+		std::cout << "You strike the monster, dealing damage!" << std::endl;
+		//MonsterSys.DealDamage();
+		break;
+	case Combat::Spells:
+		std::cout << "You tap into your magic to use against the monster..." << std::endl;
+		break;
+	case Combat::Run:
+		std::cout << "You just book it!" << std::endl;
+		break;
+	default:
+		break;
+	}
 }
 
-void CombatSys::setSpells(int manaCost)
+Combat CombatSys::GetCombatOptions()
 {
-
-}
-
-int CombatSys::getSpells()
-{
-	return 0;
-}
-
-void CombatSys::setSwordSkills()
-{
-
-}
-
-int CombatSys::getSwordSkills()
-{
-	return 0;
-}
-
-void CombatSys::setStaffSkills()
-{
-
-}
-
-int CombatSys::getStaffSkills()
-{
-	return 0;
-}
-
-void CombatSys::setShieldSkills()
-{
-
-}
-
-int CombatSys::getSheildSkills()
-{
-	return 0;
+	if (GetCombatOptions())
 }
