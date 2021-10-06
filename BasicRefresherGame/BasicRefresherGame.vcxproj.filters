@@ -35,9 +35,6 @@
     <ClInclude Include="CharacterSys.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="InventorySys.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="DialogueSys.h">
       <Filter>Header Files</Filter>
     </ClInclude>

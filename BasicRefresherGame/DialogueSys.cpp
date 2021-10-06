@@ -2,7 +2,6 @@
 
 DialogueSys::DialogueSys()
 {
-	m_lines = 0;
 	m_playerLoc.GetMapLoc();
 }
 
@@ -12,33 +11,43 @@ DialogueSys::~DialogueSys()
 
 void DialogueSys::SpeechDialogue()
 {
-	switch (m_playerLoc.GetMapLoc() == MapSys::Map::Beginning)
+	switch (m_playerLoc.GetMapLoc())
 	{
-	case static_cast<int>(MapSys::Map::Beginning):
+	case (MapSys::Map::GameStart):
 	{
-		std::cout << "You find yourself in the middle of nowhere" << std::endl;
+		std::cout << "Greetings Traveler, welcome to <DungeonLikeWithCombatAndStuff>. Made by Stefanos , David and Isaac" << std::endl;
 		SpeechPause();
 		break;
 	}
-	case static_cast<int>(MapSys::Map::Forest):
+	case (MapSys::Map::Beginning):
+	{
+		std::cout << "You find yourself in the middle of nowhere" << std::endl;
+		SpeechPause();
+		MapSys::LocController;
+		break;
+	}
+	case (MapSys::Map::Forest):
+	{
+		std::cout << "You have encountered a Slime!" << std::endl;
+		SpeechPause();
+		MapSys::LocController;
+		break;
+	}
+	case (MapSys::Map::DeepForest):
 	{
 		break;
 	}
-	case static_cast<int>(MapSys::Map::DeepForest):
+	case (MapSys::Map::Port):
 	{
 		break;
 	}
-	case static_cast<int>(MapSys::Map::Port):
-	{
-		break;
-	}
-	case static_cast<int>(MapSys::Map::Shore):
+	case (MapSys::Map::Shore):
 	{
 		std::cout << "You are now at the shore after fighting that weird monster, You look beneath you and find an item in the sand" << std::endl;
 		SpeechPause();
 		break;
 	}
-	case static_cast<int>(MapSys::Map::Town):
+	case (MapSys::Map::Town):
 	{
 		std::cout << "You have arrived at the Local Town with the help of the Boat-Man" << std::endl;
 		SpeechPause();
@@ -53,19 +62,19 @@ void DialogueSys::SpeechDialogue()
 		SpeechPause();
 		break;
 	}
-	case static_cast<int>(MapSys::Map::DarkPortal):
+	case (MapSys::Map::DarkPortal):
 	{
 		break;
 	}
-	case static_cast<int>(MapSys::Map::CastleOfFire):
+	case (MapSys::Map::CastleOfFire):
 	{
 		break;
 	}
-	case static_cast<int>(MapSys::Map::DarkShore):
+	case (MapSys::Map::DarkShore):
 	{
 		break;
 	}
-	case static_cast<int>(MapSys::Map::Beach):
+	case (MapSys::Map::Beach):
 	{
 		break;
 	}

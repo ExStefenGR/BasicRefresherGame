@@ -6,10 +6,9 @@ class DialogueSys
 public:
 	DialogueSys();
 	~DialogueSys();
-private:
 	void SpeechDialogue();
+private:
 	void SpeechPause();
-	int m_lines[1];
 	MapSys m_playerLoc;
 };
 
