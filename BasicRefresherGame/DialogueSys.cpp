@@ -11,7 +11,7 @@ DialogueSys::~DialogueSys()
 
 void DialogueSys::SpeechDialogue()
 {
-	switch (const int (m_locations))
+	switch (const int(m_locations))
 	{
 	case (static_cast<int>(MapSys::Map::GameStart)):
 	{
@@ -23,14 +23,12 @@ void DialogueSys::SpeechDialogue()
 	{
 		std::cout << "You find yourself in the middle of nowhere" << std::endl;
 		SpeechPause();
-		MapSys& LocController();
 		break;
 	}
 	case (static_cast<int>(MapSys::Map::Forest)):
 	{
 		std::cout << "You have encountered a Slime!" << std::endl;
 		SpeechPause();
-		MapSys& LocController();
 		break;
 	}
 	case (static_cast<int>(MapSys::Map::DeepForest)):
@@ -83,8 +81,8 @@ void DialogueSys::SpeechDialogue()
 		std::cout << "DialogueSystem Malfunction: Beyond Range" << std::endl;
 		break;
 	}
-
 	}
+	MapSys LocController();
 }
 
 void DialogueSys::SpeechPause()

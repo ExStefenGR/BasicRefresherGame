@@ -26,11 +26,13 @@ void MapSys::LocController()
 		switch (m_locations)
 		{
 		case Map::GameStart:
-			DialogueSys& SpeechDialogue();
+			DialogueSys SpeechDialogue();
 			SetMapLoc(Map::Beginning);
 			break;
 		case Map::Beginning:
 		{
+			DialogueSys SpeechDialogue();
+			//TODO:: Add classes intro here
 			break;
 		}
 		case Map::Forest:
