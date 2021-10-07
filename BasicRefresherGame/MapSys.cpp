@@ -1,5 +1,5 @@
 #include "MapSys.h"
-
+//Programmed by Stefanos
 MapSys::MapSys()
 {
 	//TODO:: MapSystem -> CombatSystem -> CharacterSystem
@@ -26,7 +26,7 @@ void MapSys::LocController()
 		switch (m_locations)
 		{
 		case Map::GameStart:
-			DialogueSys::SpeechDialogue;
+			DialogueSys& SpeechDialogue();
 			SetMapLoc(Map::Beginning);
 			break;
 		case Map::Beginning:
@@ -57,7 +57,7 @@ void MapSys::LocController()
 			SetMapLoc(Map::Town);
 			break;
 		}
-		case Map::Shore: 
+		case Map::Shore:
 			std::cout << "You are now at the shore after fighting that weird monster, You look beneath you and find an item in the sand" << std::endl;
 			//add here dialogue that shows the item being in inventory
 			//Same Item as in Town Route for Shield and Magician

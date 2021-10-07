@@ -2,7 +2,7 @@
 
 DialogueSys::DialogueSys()
 {
-	m_playerLoc.GetMapLoc();
+	MapSys* m_locations = 0;
 }
 
 DialogueSys::~DialogueSys()
@@ -11,43 +11,43 @@ DialogueSys::~DialogueSys()
 
 void DialogueSys::SpeechDialogue()
 {
-	switch (m_playerLoc.GetMapLoc())
+	switch (const int (m_locations))
 	{
-	case (MapSys::Map::GameStart):
+	case (static_cast<int>(MapSys::Map::GameStart)):
 	{
-		std::cout << "Greetings Traveler, welcome to <DungeonLikeWithCombatAndStuff>. Made by Stefanos , David and Isaac" << std::endl;
+		std::cout << "Greetings Traveler, welcome to <DungeonCombatAndStuff>. Made by Stefanos , David and Isaac" << std::endl;
 		SpeechPause();
 		break;
 	}
-	case (MapSys::Map::Beginning):
+	case (static_cast<int>(MapSys::Map::Beginning)):
 	{
 		std::cout << "You find yourself in the middle of nowhere" << std::endl;
 		SpeechPause();
-		MapSys::LocController;
+		MapSys& LocController();
 		break;
 	}
-	case (MapSys::Map::Forest):
+	case (static_cast<int>(MapSys::Map::Forest)):
 	{
 		std::cout << "You have encountered a Slime!" << std::endl;
 		SpeechPause();
-		MapSys::LocController;
+		MapSys& LocController();
 		break;
 	}
-	case (MapSys::Map::DeepForest):
+	case (static_cast<int>(MapSys::Map::DeepForest)):
 	{
 		break;
 	}
-	case (MapSys::Map::Port):
+	case (static_cast<int>(MapSys::Map::Port)):
 	{
 		break;
 	}
-	case (MapSys::Map::Shore):
+	case (static_cast<int>(MapSys::Map::Shore)):
 	{
 		std::cout << "You are now at the shore after fighting that weird monster, You look beneath you and find an item in the sand" << std::endl;
 		SpeechPause();
 		break;
 	}
-	case (MapSys::Map::Town):
+	case (static_cast<int>(MapSys::Map::Town)):
 	{
 		std::cout << "You have arrived at the Local Town with the help of the Boat-Man" << std::endl;
 		SpeechPause();
@@ -62,19 +62,19 @@ void DialogueSys::SpeechDialogue()
 		SpeechPause();
 		break;
 	}
-	case (MapSys::Map::DarkPortal):
+	case (static_cast<int>(MapSys::Map::DarkPortal)):
 	{
 		break;
 	}
-	case (MapSys::Map::CastleOfFire):
+	case (static_cast<int>(MapSys::Map::CastleOfFire)):
 	{
 		break;
 	}
-	case (MapSys::Map::DarkShore):
+	case (static_cast<int>(MapSys::Map::DarkShore)):
 	{
 		break;
 	}
-	case (MapSys::Map::Beach):
+	case (static_cast<int>(MapSys::Map::Beach)):
 	{
 		break;
 	}

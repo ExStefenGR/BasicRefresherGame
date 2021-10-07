@@ -78,7 +78,6 @@ void CharacterSys::SetCharacterClass()
 		std::cout << "1. Sword" << std::endl;
 		std::cout << "2. Staff" << std::endl;
 		std::cout << "3. Bow" << std::endl;
-
 		std::cin >> m_class;
 	}
 }

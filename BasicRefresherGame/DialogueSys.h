@@ -1,6 +1,7 @@
 #pragma once
 #include "MapSys.h"
 
+class MapSys;
 class DialogueSys
 {
 public:
@@ -9,6 +10,5 @@ public:
 	void SpeechDialogue();
 private:
 	void SpeechPause();
-	MapSys m_playerLoc;
+	MapSys* m_locations;
 };
-
