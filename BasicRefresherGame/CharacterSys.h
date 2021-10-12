@@ -4,22 +4,24 @@
 
 class CharacterSys
 {
+public:
+	CharacterSys();
+	~CharacterSys();
+
 	enum class Job
 	{
 		Sword = 1,
 		Staff,
 		Bow
-	}; //maybe move this in mapsys as well for easier navigation?
+	};
 	enum class Skills
 	{
 		Berserker = 1,
 		Fireball,
 		ArrowShower
 	};
-public:
-	CharacterSys();
-	~CharacterSys();
 
+	void CreateCharacter();
 	std::string GetName();
 	void SetName();
 	void SetDamage(int damagePoints);
@@ -33,6 +35,7 @@ public:
 	int GetCharacterClass();
 	void PlayerInfo();
 
+private:
 	std::string m_name;
 	int m_damagePoints;
 	int m_healthPoints;
@@ -41,4 +44,3 @@ public:
 	Job m_job;
 	Skills m_skill;
 };
-

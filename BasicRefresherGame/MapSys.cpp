@@ -1,5 +1,4 @@
 #include "MapSys.h"
-#include "CharacterSys.h"
 //Programmed by Stefanos
 
 MapSys::MapSys()
@@ -13,7 +12,7 @@ MapSys::MapSys()
 	m_choice = 0;
 
 	m_player = new CharacterSys();
-	//m_player->CreateCharacterClass();
+	m_player->CreateCharacter();
 	m_player->PlayerInfo();
 
 }
@@ -36,7 +35,7 @@ void MapSys::LocController()
 		case Map::GameStart:
 		{
 			DialogueSys(m_locations);
-			m_player.SetCharacterClass();
+			m_player->SetCharacterClass();
 			SetMapLoc(Map::Beginning);
 			break;
 		}

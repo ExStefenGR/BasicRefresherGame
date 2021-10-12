@@ -1,9 +1,9 @@
 #pragma once
 #include <iostream>
+#include "CharacterSys.h"
+
 //Programmed by Stefanos
 //Last edited 12/10/21
-
-class CharacterSys;
 
 class MapSys
 {
