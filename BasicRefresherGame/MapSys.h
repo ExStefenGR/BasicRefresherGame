@@ -1,10 +1,12 @@
 #pragma once
-
-#include "iostream"
-#include "string"
+#include <iostream>
+//Programmed by Stefanos
 
 class MapSys
 {
+public:
+	MapSys();
+	~MapSys();
 	enum class Map
 	{
 		GameStart,
@@ -19,18 +21,16 @@ class MapSys
 		DarkShore,	//Bad ending
 		Beach //Good ending
 	};
-public:
-	MapSys();
-	~MapSys();
-	void GetMapLoc();
+	MapSys::Map GetMapLoc();
 	MapSys::Map SetMapLoc(Map NewLoc);
+	void DialogueSys(Map m_locations);
+	Map m_locations;
 	void LocController();
-	void SpeechText();
-
 private:
 	int m_setLocation;
 	int m_getLocation;
 	bool m_roomDone;
-	Map m_locations;
+	
+	void SpeechDialogue();
 };
 

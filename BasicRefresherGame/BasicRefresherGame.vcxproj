@@ -129,7 +129,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CharacterSys.h" />
-    <ClInclude Include="InventorySys.h" />
     <ClInclude Include="MapSys.h" />
   </ItemGroup>
   <ItemGroup>

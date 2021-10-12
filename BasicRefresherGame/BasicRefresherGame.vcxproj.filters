@@ -32,9 +32,6 @@
     <ClInclude Include="CharacterSys.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="InventorySys.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\Downloads\20210928_151324.jpg">
