@@ -1,3 +1,5 @@
+//Character System by Isaac
+
 #include "CharacterSys.h"
 
 #include <string>
@@ -11,7 +13,6 @@ CharacterSys::CharacterSys()
 	m_healthPoints = 150;
 	m_manaPoints = 50;
 	m_damagePoints = 10;
-	m_playerLocation.SetMapLoc(MapSys::Map::Beginning);
 }
 
 CharacterSys::~CharacterSys() {}

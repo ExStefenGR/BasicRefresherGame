@@ -44,6 +44,5 @@ private:
 	int m_class;
 	Job m_job;
 	Skills m_skill;
-	MapSys m_playerLocation;
 };
 
