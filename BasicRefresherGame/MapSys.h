@@ -1,8 +1,9 @@
 #pragma once
 #include <iostream>
-#include "CharacterSys.h"
 //Programmed by Stefanos
 //Last edited 12/10/21
+
+class CharacterSys;
 
 class MapSys
 {
@@ -29,12 +30,14 @@ public:
 	MapSys::Map SetMapLoc(Map NewLoc);
 	void DialogueSys(Map m_locations);
 	void LocController();
+
 private:
-	CharacterSys player;
+
 	int m_getLocation;
 	int m_setLocation;
 	bool m_choiceMade;
 	bool m_roomDone;
 	int m_choice;
 	void SpeechPause();
+	CharacterSys* m_player;
 };
