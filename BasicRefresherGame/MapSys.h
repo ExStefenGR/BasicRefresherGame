@@ -31,6 +31,6 @@ private:
 	int m_getLocation;
 	bool m_roomDone;
 	
-	void SpeechDialogue();
+	void SpeechPause();
 };
 
