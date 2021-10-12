@@ -11,13 +11,12 @@ MapSys::MapSys()
 MapSys::~MapSys() {} //Gets Destroyed when the game closes
 MapSys::Map MapSys::GetMapLoc()
 {
-	return MapSys::Map(m_locations);
+	return m_locations;
 }
 MapSys::Map MapSys::SetMapLoc(Map NewLoc)
 {
 	m_locations = NewLoc;
 	return m_locations;
-	//m_setLocation = m_getLocation;
 }
 void MapSys::LocController()
 {
@@ -26,12 +25,12 @@ void MapSys::LocController()
 		switch (m_locations)
 		{
 		case Map::GameStart:
-			DialogueSys SpeechDialogue();
+
 			SetMapLoc(Map::Beginning);
 			break;
 		case Map::Beginning:
 		{
-			DialogueSys SpeechDialogue();
+			SpeechDialogue();
 			SetMapLoc(Map::Forest);
 			//TODO:: Add classes intro here
 			break;
@@ -39,7 +38,7 @@ void MapSys::LocController()
 		case Map::Forest:
 		{
 			//TODO:This will have to do with the Magician Route, add a fight with a magical monster/character
-			DialogueSys SpeechDialogue();
+			SpeechDialogue();
 			SetMapLoc(Map::Port);
 			//TODO:Make the slime have high HP and low attack, def should be medium
 			break;
@@ -85,3 +84,85 @@ void MapSys::LocController()
 		}
 	}
 }
+void MapSys::DialogueSys(Map m_locations)
+{
+	switch (GetMapLoc())
+	{
+	case (MapSys::Map::GameStart):
+	{
+		std::cout << "Greetings Traveler, welcome to <DungeonCombatAndStuff>. Made by Stefanos , David and Isaac" << std::endl;
+		SpeechDialogue();
+		break;
+	}
+	case (MapSys::Map::Beginning):
+	{
+		std::cout << "You find yourself in the middle of nowhere" << std::endl;
+		SpeechDialogue();
+		break;
+	}
+	case (MapSys::Map::Forest):
+	{
+		std::cout << "You have encountered a Slime!" << std::endl;
+		SpeechDialogue();
+		break;
+	}
+	case (MapSys::Map::DeepForest):
+	{
+		break;
+	}
+	case (MapSys::Map::Port):
+	{
+		std::cout << "You arrive at the port and spot a human ready to depart but he stops and waves at you.." << std::endl;
+		break;
+	}
+	case (MapSys::Map::Shore):
+	{
+		std::cout << "You are now at the shore after fighting that weird monster, You look beneath you and find an item in the sand" << std::endl;
+		SpeechDialogue();
+		break;
+	}
+	case (MapSys::Map::Town):
+	{
+		std::cout << "You have arrived at the Local Town with the help of the Boat-Man" << std::endl;
+		SpeechDialogue();
+		//TODO:: Dialogue system std::cout << "Boat-Man: Alright " << m_player.GetName() << " We have arrived, get your things and get going" << std::endl;
+		std::cout << "You leave the boat and begin looking around the shops of the town, without any money its of no use, but you browse anyway" << std::endl;
+		SpeechDialogue();
+		std::cout << "A lady walks past you and give you a necklace and whispers.." << std::endl;
+		SpeechDialogue();
+		std::cout << "???: Come back here at night, There is big trouble in the Woods.." << std::endl;
+		SpeechDialogue();
+		std::cout << "You heard the lady and wore the necklace, it seems to hold a magical power to it.." << std::endl;
+		SpeechDialogue();
+		break;
+	}
+	case (MapSys::Map::DarkPortal):
+	{
+		break;
+	}
+	case (MapSys::Map::CastleOfFire):
+	{
+		break;
+	}
+	case (MapSys::Map::DarkShore):
+	{
+		break;
+	}
+	case (MapSys::Map::Beach):
+	{
+		break;
+	}
+	default:
+	{
+		std::cout << "DialogueSystem Malfunction: Beyond Range" << std::endl;
+		break;
+	}
+	}
+	MapSys LocController();
+}
+void MapSys::SpeechDialogue()
+{
+	system("pause");
+	system("cls");
+}
+

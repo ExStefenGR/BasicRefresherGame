@@ -1,6 +1,5 @@
 #pragma once
 #include <iostream>
-#include "DialogueSys.h"
 //Programmed by Stefanos
 
 class MapSys
@@ -24,6 +23,7 @@ public:
 	};
 	MapSys::Map GetMapLoc();
 	MapSys::Map SetMapLoc(Map NewLoc);
+	void DialogueSys(Map m_locations);
 	Map m_locations;
 	void LocController();
 private:
@@ -31,5 +31,6 @@ private:
 	int m_getLocation;
 	bool m_roomDone;
 	
+	void SpeechDialogue();
 };
 

@@ -14,8 +14,6 @@
 int main()
 {
 	MapSys playerLoc;
-	DialogueSys dialogue;
-	dialogue.SpeechDialogue();
 	playerLoc.LocController();
 	
 	return 0;

@@ -124,13 +124,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CharacterSys.cpp" />
-    <ClCompile Include="DialogueSys.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MapSys.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CharacterSys.h" />
-    <ClInclude Include="DialogueSys.h" />
     <ClInclude Include="MapSys.h" />
   </ItemGroup>
   <ItemGroup>
