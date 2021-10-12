@@ -15,6 +15,7 @@
 int main()
 {
 	MapSys playerLoc;
+	
 	playerLoc.LocController();
 	return 0;
 }
