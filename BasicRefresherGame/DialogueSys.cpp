@@ -37,6 +37,7 @@ void DialogueSys::SpeechDialogue()
 	}
 	case (static_cast<int>(MapSys::Map::Port)):
 	{
+		std::cout << "You arrive at the port and spot a human ready to depart but he stops and waves at you.." << std::endl;
 		break;
 	}
 	case (static_cast<int>(MapSys::Map::Shore)):

@@ -32,12 +32,14 @@ void MapSys::LocController()
 		case Map::Beginning:
 		{
 			DialogueSys SpeechDialogue();
+			SetMapLoc(Map::Forest);
 			//TODO:: Add classes intro here
 			break;
 		}
 		case Map::Forest:
 		{
 			//TODO:This will have to do with the Magician Route, add a fight with a magical monster/character
+			DialogueSys SpeechDialogue();
 			SetMapLoc(Map::Port);
 			//TODO:Make the slime have high HP and low attack, def should be medium
 			break;
@@ -55,12 +57,11 @@ void MapSys::LocController()
 		}
 		case Map::Port:
 		{
-			std::cout << "You arrive at the port and spot a human ready to depart but he stops and waves at you.." << std::endl;
 			SetMapLoc(Map::Town);
 			break;
 		}
 		case Map::Shore:
-			std::cout << "You are now at the shore after fighting that weird monster, You look beneath you and find an item in the sand" << std::endl;
+			
 			//add here dialogue that shows the item being in inventory
 			//Same Item as in Town Route for Shield and Magician
 			SetMapLoc(Map::DarkPortal);
