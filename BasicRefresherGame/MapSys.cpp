@@ -3,12 +3,14 @@
 MapSys::MapSys()
 {
 	//TODO:: MapSystem -> CombatSystem -> CharacterSystem
-	m_roomDone = false;
-	m_locations = Map::GameStart;
 	m_getLocation = 0;
 	m_setLocation = 0;
+	m_locations = Map::GameStart;
+	m_choiceMade = false;
+	m_roomDone = false;
+	m_choice = 0;
 }
-MapSys::~MapSys() {} //Gets Destroyed when the game closes
+MapSys::~MapSys() {}
 MapSys::Map MapSys::GetMapLoc()
 {
 	return m_locations;
@@ -27,6 +29,7 @@ void MapSys::LocController()
 		case Map::GameStart:
 		{
 			DialogueSys(m_locations);
+			player.SetCharacterClass();
 			SetMapLoc(Map::Beginning);
 			break;
 		}
@@ -34,7 +37,6 @@ void MapSys::LocController()
 		{
 			DialogueSys(m_locations);
 			SetMapLoc(Map::Forest);
-			//TODO:: Add classes intro here
 			break;
 		}
 		case Map::Forest:
@@ -45,7 +47,7 @@ void MapSys::LocController()
 			//TODO:Make the slime have high HP and low attack, def should be medium
 			break;
 		}
-		case Map::DeepForest:
+		case Map::Woods:
 		{
 			DialogueSys(m_locations);
 			SetMapLoc(Map::Shore);
@@ -69,6 +71,10 @@ void MapSys::LocController()
 		{
 			DialogueSys(m_locations);
 			SetMapLoc(Map::DarkPortal);
+			break;
+		}
+		case Map::Colluseum:
+		{
 			break;
 		}
 		case Map::DarkPortal:
@@ -103,9 +109,23 @@ void MapSys::DialogueSys(Map m_locations)
 	}
 	case (MapSys::Map::Beginning):
 	{
-		std::cout << "You find yourself in the middle of nowhere" << std::endl;
+		std::cout << "You find yourself in the middle of nowhere, You have 3 Paths, choose wisely.." << std::endl;
 		SpeechPause();
-		break;
+		std::cout << "1. Towards Forest" << std::endl;
+		std::cout << "2. Towards Woods" << std::endl;
+		while (!m_choiceMade)
+		{
+			if (!(std::cin >> m_choice))
+			{
+				std::cin.clear();
+				while (std::cin.get() != '\n');
+				std::cout << "Invalid Input!" << std::endl << std::endl;
+				continue;
+			}
+			if (m_choice == 1)SetMapLoc(Map::Forest);
+			else if (m_choice == 2)SetMapLoc(Map::Woods);
+			break;
+		}
 	}
 	case (MapSys::Map::Forest):
 	{
@@ -113,7 +133,7 @@ void MapSys::DialogueSys(Map m_locations)
 		SpeechPause();
 		break;
 	}
-	case (MapSys::Map::DeepForest):
+	case (MapSys::Map::Woods):
 	{
 		std::cout << "???: (Grizly bear sounds)" << std::endl; //Secret Boss?
 		SpeechPause();
@@ -194,4 +214,3 @@ void MapSys::SpeechPause()
 	system("pause");
 	system("cls");
 }
-
