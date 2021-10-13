@@ -5,9 +5,8 @@
 
 class CharacterSys
 {
+
 public:
-	CharacterSys();
-	~CharacterSys();
 
 	enum class Job
 	{
@@ -22,27 +21,43 @@ public:
 		ArrowShower
 	};
 
-	void CreateCharacter();
-	std::string GetName();
-	void SetName();
-	void SetDamage(int damagePoints);
-	int GetDamage();
-	void SetHealthPoints(int healthPoints);
-	int GetHealthPoints();
+	CharacterSys();
+	~CharacterSys();
+
+	int GetCharacterClass() const;
+	int GetDamage() const; // return the damage points of a character
+	int GetHealthPoints() const; // return the actual health of the character
+	int GetManaPoints() const;
+	
+	std::string GetName(); // return the name of a character
+	
 	Skills GetSkills();
-	void SetManaPoints(int manaPoints);
-	int GetManaPoints();
+	
+	void CreateCharacter(); // creates a character
+	void DealDamage(int monsterDamage);
 	void SetCharacterClass();
-	int GetCharacterClass();
+	void SetDamage(int damagePoints); // increase damage points of a the character
+	void SetHealthPoints(int healthPoints); // increase maxHealth of the character
+	void SetManaPoints(int manaPoints);
+	void SetName(); // set a character name
 	void PlayerInfo();
+	
+	
 
 private:
-	std::string m_name;
+	
+	bool m_isAlive;
+	
+	int m_class;
 	int m_damagePoints;
 	int m_healthPoints;
 	int m_manaPoints;
-	int m_class;
+	int m_maxHealthPoints;
+	
 	Job m_job;
+	
 	Skills m_skill;
+	
+	std::string m_name;
 };
 

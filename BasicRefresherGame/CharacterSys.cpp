@@ -10,12 +10,53 @@ CharacterSys::CharacterSys()
 	CharacterSys::m_job = {};
 	CharacterSys::m_class = {};
 	CharacterSys::m_skill = {};
-	m_healthPoints = 150;
+	m_isAlive = true;
+	m_maxHealthPoints = 150;
+	m_healthPoints = m_maxHealthPoints;
 	m_manaPoints = 50;
 	m_damagePoints = 10;
 }
 
 CharacterSys::~CharacterSys() {}
+
+int CharacterSys::GetCharacterClass() const
+{
+	return m_class;
+}
+
+int CharacterSys::GetDamage() const
+{
+	return m_damagePoints;
+}
+
+int CharacterSys::GetHealthPoints() const
+{
+	return m_healthPoints;
+}
+
+int CharacterSys::GetManaPoints() const
+{
+	return m_manaPoints;
+}
+
+std::string CharacterSys::GetName()
+{
+	return m_name;
+}
+
+CharacterSys::Skills CharacterSys::GetSkills()
+{
+	if (GetCharacterClass() == static_cast<int>(Job::Sword))
+	{
+		return Skills(Skills::Berserker);
+	}
+	else if (GetCharacterClass() == static_cast<int>(Job::Staff)) {
+		return Skills(Skills::Fireball);
+	}
+	else if (GetCharacterClass() == static_cast<int>(Job::Bow)) {
+		return Skills(Skills::ArrowShower);
+	}
+}
 
 void CharacterSys::CreateCharacter()
 {
@@ -54,60 +95,13 @@ void CharacterSys::CreateCharacter()
 	}
 }
 
-std::string CharacterSys::GetName()
+void CharacterSys::DealDamage(int monsterDamage)
 {
-	return m_name;
-}
-
-void CharacterSys::SetName()
-{
-	std::string name;
-	std::cin >> name;
-	m_name = name;
-}
-
-void CharacterSys::SetDamage(int damagePoints)
-{
-	m_damagePoints += damagePoints;
-}
-
-int CharacterSys::GetDamage()
-{
-	return m_damagePoints;
-}
-
-void CharacterSys::SetHealthPoints(int healthPoints)
-{
-	m_healthPoints += healthPoints;
-}
-
-int CharacterSys::GetHealthPoints()
-{
-	return m_healthPoints;
-}
-
-CharacterSys::Skills CharacterSys::GetSkills()
-{
-	if (GetCharacterClass() == static_cast<int>(Job::Sword))
+	m_healthPoints += monsterDamage;
+	if (m_healthPoints <= 0)
 	{
-		return Skills(Skills::Berserker);
+		m_isAlive = false;
 	}
-	else if (GetCharacterClass() == static_cast<int>(Job::Staff)) {
-		return Skills(Skills::Fireball);
-	}
-	else if (GetCharacterClass() == static_cast<int>(Job::Bow)) {
-		return Skills(Skills::ArrowShower);
-	}
-}
-
-void CharacterSys::SetManaPoints(int manaPoints)
-{
-	m_manaPoints += manaPoints;
-}
-
-int CharacterSys::GetManaPoints()
-{
-	return m_manaPoints;
 }
 
 void CharacterSys::SetCharacterClass()
@@ -119,13 +113,38 @@ void CharacterSys::SetCharacterClass()
 		std::cout << "2. Staff" << std::endl;
 		std::cout << "3. Bow" << std::endl;
 
-		std::cin >> m_class;
+		if (!(std::cin >> m_class))
+		{
+			std::cin.clear();
+			while (std::cin.get() != '\n');
+			{
+				std::cout << "Invalid Input. Please type number." << std::endl;
+			}
+		}
 	}
 }
 
-int CharacterSys::GetCharacterClass()
+void CharacterSys::SetDamage(int damagePoints)
 {
-	return m_class;
+	m_damagePoints += damagePoints;
+}
+
+void CharacterSys::SetHealthPoints(int healthPoints)
+{
+	m_maxHealthPoints += healthPoints;
+	m_healthPoints += healthPoints;
+}
+
+void CharacterSys::SetManaPoints(int manaPoints)
+{
+	m_manaPoints += manaPoints;
+}
+
+void CharacterSys::SetName()
+{
+	std::string name;
+	std::cin >> name;
+	m_name = name;
 }
 
 void CharacterSys::PlayerInfo()
