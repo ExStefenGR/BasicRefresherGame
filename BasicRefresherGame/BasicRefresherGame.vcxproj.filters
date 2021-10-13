@@ -13,24 +13,39 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Stefanos">
+      <UniqueIdentifier>{0b424913-32c4-48cc-9f1a-197a7fd1a814}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Stefanos">
+      <UniqueIdentifier>{195fe2fe-6e92-459e-8be7-8001ace8531e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Isaac">
+      <UniqueIdentifier>{91ace49f-3f00-4385-b431-b4fb78840bb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Isaac">
+      <UniqueIdentifier>{39d30a26-4b85-48ac-98aa-ee3ad60ad757}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core">
+      <UniqueIdentifier>{b986786b-0a8b-463d-ad98-dc31992fb159}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MapSys.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Stefanos</Filter>
     </ClCompile>
     <ClCompile Include="CharacterSys.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Isaac</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files\Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MapSys.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Stefanos</Filter>
     </ClInclude>
     <ClInclude Include="CharacterSys.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Isaac</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -10,7 +10,6 @@ MapSys::MapSys()
 	m_choiceMade = false;
 	m_roomDone = false;
 	m_choice = 0;
-
 	m_player = new CharacterSys();
 	m_player->CreateCharacter();
 	m_player->PlayerInfo();
@@ -133,13 +132,13 @@ void MapSys::DialogueSys(Map m_locations)
 			break;
 		}
 	}
-	case (MapSys::Map::Forest):
+	case (Map::Forest):
 	{
 		std::cout << "You have encountered a Slime!" << std::endl;
 		SpeechPause();
 		break;
 	}
-	case (MapSys::Map::Woods):
+	case (Map::Woods):
 	{
 		std::cout << "???: (Grizly bear sounds)" << std::endl; //Secret Boss?
 		SpeechPause();
@@ -150,12 +149,12 @@ void MapSys::DialogueSys(Map m_locations)
 		//m_player.PlayerInfo();
 		break;
 	}
-	case (MapSys::Map::Port):
+	case (Map::Port):
 	{
 		std::cout << "You arrive at the port and spot a human ready to depart but he stops and waves at you.." << std::endl;
 		break;
 	}
-	case (MapSys::Map::Shore):
+	case (Map::Shore):
 	{
 		std::cout << "You are now at the shore after fighting that weird monster, You look beneath you and find an item in the sand" << std::endl;
 		SpeechPause();
