@@ -131,10 +131,6 @@
     <ClInclude Include="CharacterSys.h" />
     <ClInclude Include="MapSys.h" />
   </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\..\..\Downloads\20210928_151324.jpg" />
-    <Image Include="..\..\..\Downloads\20210928_151331.jpg" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

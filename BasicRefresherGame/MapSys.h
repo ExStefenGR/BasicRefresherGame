@@ -28,7 +28,8 @@ public:
 	~MapSys();
 	MapSys::Map GetMapLoc();
 	MapSys::Map SetMapLoc(Map NewLoc);
-	void DialogueSys(Map m_locations);
+	void DialogueSys(Map& m_locations);
+	void ChoiceSys(Map& m_locations);
 	void LocController();
 
 private:

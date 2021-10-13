@@ -3,17 +3,15 @@
 
 MapSys::MapSys()
 {
-	//TODO:: MapSystem -> CombatSystem -> CharacterSystem
+	m_locations = Map::GameStart;
 	m_getLocation = 0;
 	m_setLocation = 0;
-	m_locations = Map::GameStart;
+	m_choice = 0;
 	m_choiceMade = false;
 	m_roomDone = false;
-	m_choice = 0;
 	m_player = new CharacterSys();
 	m_player->CreateCharacter();
 	m_player->PlayerInfo();
-
 }
 MapSys::~MapSys() {}
 MapSys::Map MapSys::GetMapLoc()
@@ -46,8 +44,6 @@ void MapSys::LocController()
 		}
 		case Map::Forest:
 		{
-			DialogueSys(m_locations);
-			//TODO:This will have to do with the Magician Route, add a fight with a magical monster/character
 			SetMapLoc(Map::Port);
 			//TODO:Make the slime have high HP and low attack, def should be medium
 			break;
@@ -102,39 +98,25 @@ void MapSys::LocController()
 		}
 	}
 }
-void MapSys::DialogueSys(Map m_locations)
+void MapSys::DialogueSys(Map& m_locations)
 {
 	switch (GetMapLoc())
 	{
-	case (MapSys::Map::GameStart):
+	case (Map::GameStart):
 	{
 		std::cout << "Greetings Traveler, welcome to <DungeonCombatAndStuff>. Made by Stefanos , David and Isaac" << std::endl;
 		SpeechPause();
 		break;
 	}
-	case (MapSys::Map::Beginning):
+	case (Map::Beginning):
 	{
-		std::cout << "You find yourself in the middle of nowhere, You have 3 Paths, choose wisely.." << std::endl;
+		std::cout << "You find yourself in the middle of nowhere, You have 2 Paths, choose wisely.." << std::endl;
 		SpeechPause();
-		std::cout << "1. Towards Forest" << std::endl;
-		std::cout << "2. Towards Woods" << std::endl;
-		while (!m_choiceMade)
-		{
-			if (!(std::cin >> m_choice))
-			{
-				std::cin.clear();
-				while (std::cin.get() != '\n');
-				std::cout << "Invalid Input!" << std::endl << std::endl;
-				continue;
-			}
-			if (m_choice == 1)SetMapLoc(Map::Forest);
-			else if (m_choice == 2)SetMapLoc(Map::Woods);
-			break;
-		}
+		ChoiceSys(m_locations);
 	}
 	case (Map::Forest):
 	{
-		std::cout << "You have encountered a Slime!" << std::endl;
+		std::cout << "Slime has ambushed you!" << std::endl; //placeholder
 		SpeechPause();
 		break;
 	}
@@ -144,7 +126,7 @@ void MapSys::DialogueSys(Map m_locations)
 		SpeechPause();
 		//TODO:Big bear Fight here
 		//TODO:Make him have High def and low HP but higher Attack than slime
-		std::cout << "Your strength has increased!" << std::endl;
+		//std::cout << "Your strength has increased!" << std::endl;
 		//m_player.SetDamage(+10);
 		//m_player.PlayerInfo();
 		break;
@@ -160,7 +142,7 @@ void MapSys::DialogueSys(Map m_locations)
 		SpeechPause();
 		break;
 	}
-	case (MapSys::Map::Town):
+	case (Map::Town):
 	{
 		std::cout << "You have arrived at the Local Town with the help of the Boat-Man" << std::endl;
 		SpeechPause();
@@ -175,7 +157,7 @@ void MapSys::DialogueSys(Map m_locations)
 		SpeechPause();
 		break;
 	}
-	case (MapSys::Map::DarkPortal):
+	case (Map::DarkPortal):
 	{
 		std::cout << "???: You're here, then let us go.." << std::endl;
 		SpeechPause();
@@ -183,11 +165,11 @@ void MapSys::DialogueSys(Map m_locations)
 		SpeechPause();
 		break;
 	}
-	case (MapSys::Map::CastleOfFire):
+	case (Map::CastleOfFire):
 	{
 		break;
 	}
-	case (MapSys::Map::DarkShore):
+	case (Map::DarkShore):
 	{
 		std::cout << "???: You have arrived..." << std::endl;
 		SpeechPause();
@@ -203,7 +185,7 @@ void MapSys::DialogueSys(Map m_locations)
 		SpeechPause();
 		break;
 	}
-	case (MapSys::Map::Beach):
+	case (Map::Beach):
 	{
 		break;
 	}
@@ -212,6 +194,55 @@ void MapSys::DialogueSys(Map m_locations)
 		std::cout << "DialogueSystem Malfunction: Beyond Range" << std::endl;
 		break;
 	}
+	}
+}
+void MapSys::ChoiceSys(Map& m_locations)
+{
+	switch (m_locations)
+	{
+	case (Map::Beginning):
+	{
+		std::cout << "1. Towards Forest" << std::endl;
+		std::cout << "2. Towards Woods" << std::endl;
+		m_choiceMade = false;
+		while (!m_choiceMade)
+		{
+			if (!(std::cin >> m_choice))
+			{
+				std::cin.clear();
+				while (std::cin.get() != '\n');
+				std::cout << "Invalid Input!" << std::endl << std::endl;
+				continue;
+			}
+			switch (m_choice)
+			{
+			case 1:
+			{
+				SetMapLoc(Map::Forest);
+				m_choiceMade = true;
+				break;
+			}
+			case 2:
+			{
+				SetMapLoc(Map::Woods);
+				m_choiceMade = true;
+				break;
+			}
+			default:
+			{
+				std::cout << "Choice is not there, try again.." << std::endl;
+				break;
+			}
+			}
+		}
+		break;
+	}
+	default:
+	{
+		std::cout << "Function ChoiceSys called outside normal operation" << std::endl;
+		break;
+	}
+
 	}
 }
 void MapSys::SpeechPause()
