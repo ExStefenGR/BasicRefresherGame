@@ -56,7 +56,7 @@ void MapSys::LocController()
 		}
 		case Map::Port:
 		{
-			DialogueSys(m_locations);
+			ChoiceSys(m_locations);
 			SetMapLoc(Map::Town);
 			break;
 		}
@@ -71,10 +71,11 @@ void MapSys::LocController()
 		case Map::Town:
 		{
 			DialogueSys(m_locations);
-			SetMapLoc(Map::DarkPortal);
+			ChoiceSys(m_locations);
+			
 			break;
 		}
-		case Map::Colluseum:
+		case Map::Colosseum:
 		{
 			break;
 		}
@@ -116,13 +117,13 @@ void MapSys::DialogueSys(Map& m_locations)
 	}
 	case (Map::Forest):
 	{
-		std::cout << "Slime has ambushed you!" << std::endl; //placeholder
+		std::cout << "Slime has ambushed you!" << std::endl; //Placeholder, can be accessed once
 		SpeechPause();
 		break;
 	}
 	case (Map::Woods):
 	{
-		std::cout << "???: (Grizly bear sounds)" << std::endl; //Secret Boss?
+		std::cout << "???: (Grizly bear sounds)" << std::endl; //Placeholder, can be accessed once
 		SpeechPause();
 		//TODO:Big bear Fight here
 		//TODO:Make him have High def and low HP but higher Attack than slime
@@ -237,6 +238,88 @@ void MapSys::ChoiceSys(Map& m_locations)
 		}
 		break;
 	}
+	case (Map::Port):
+	{
+		std::cout << "1. Ask the Man for help" << std::endl;
+		std::cout << "2. Try and Sabotage him (Will start a fight)" << std::endl;
+		m_choiceMade = false;
+		while (!m_choiceMade)
+		{
+			if (!(std::cin >> m_choice))
+			{
+				std::cin.clear();
+				while (std::cin.get() != '\n');
+				std::cout << "Invalid Input!" << std::endl << std::endl;
+				continue;
+			}
+			switch (m_choice)
+			{
+			case 1:
+			{
+				DialogueSys(m_locations);
+				m_choiceMade = true;
+				break;
+			}
+			case 2:
+			{
+				std::cout << "You attack the Boat owner" << std::endl;
+				SpeechPause();
+				//fight here then go to town
+				SetMapLoc(Map::Town);
+				m_choiceMade = true;
+				break;
+			}
+			default:
+			{
+				std::cout << "Choice is not there, try again.." << std::endl;
+				m_choiceMade = true;
+				break;
+			}
+			}
+		}
+		break;
+	}
+	case (Map::Town):
+	{
+		std::cout << "1. Visit the Lady during the night" << std::endl;
+		std::cout << "2. Visit the Colosseum" << std::endl;
+		m_choiceMade = false;
+		while (!m_choiceMade)
+		{
+			if (!(std::cin >> m_choice))
+			{
+				std::cin.clear();
+				while (std::cin.get() != '\n');
+				std::cout << "Invalid Input!" << std::endl << std::endl;
+				continue;
+			}
+			switch (m_choice)
+			{
+			case 1:
+			{
+				SetMapLoc(Map::DarkPortal);
+				m_choiceMade = true;
+				break;
+			}
+			case 2:
+			{
+				SetMapLoc(Map::Colosseum);
+				SpeechPause();
+				//colluseum will have its own ChoiceSystem where the player can fight different monsters of their choice
+				m_choiceMade = true;
+				break;
+			}
+			default:
+			{
+				std::cout << "Choice is not there, try again.." << std::endl;
+				m_choiceMade = true;
+				break;
+			}
+			}
+		}
+		break;
+	}
+
 	default:
 	{
 		std::cout << "Function ChoiceSys called outside normal operation" << std::endl;

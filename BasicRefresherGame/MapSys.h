@@ -17,7 +17,7 @@ public:
 		Port,
 		Shore, //Secret item?
 		Town,	//SafeArea
-		Colluseum, //Training Area for XP
+		Colosseum, //Training Area for XP
 		DarkPortal,
 		CastleOfFire, //BOSS
 		DarkShore,	//Bad ending
