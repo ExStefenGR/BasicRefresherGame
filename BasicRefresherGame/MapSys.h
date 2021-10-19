@@ -42,7 +42,9 @@ private:
 	int m_choice;
 	void SpeechPause();
 	CharacterSys* m_player;
+	
+	struct Area;
 
 	bool m_diagDone;
-	std::map<std::string, std::string> dialogue;
+	std::map<std::string, Area> dialogue;
 };
