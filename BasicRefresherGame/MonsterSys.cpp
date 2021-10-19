@@ -1,13 +1,13 @@
 #include "MonsterSys.h"
 #include <iostream>
 
-MonsterSys::MonsterSys(std::string monsterName, MonsterStats monsterStats)
+MonsterSys::MonsterSys()
 {
-	m_monsterName = monsterName;
-	m_stats = monsterStats;
-	m_monsterDamage = static_cast<int>(monsterStats) * 5;
-	m_maxMonsterHP = static_cast<int>(monsterStats) * 5;
-	m_monsterDefence = static_cast<int>(monsterStats) * 5;
+	m_monsterHP = 5;
+	m_monsterDamage = 5;
+	m_maxMonsterHP = 5;
+	m_monsterDefence = 5;
+	m_isAlive = true;
 }
 
 MonsterSys::~MonsterSys()
@@ -26,12 +26,9 @@ int MonsterSys::GetHealthPoints() const
 
 void MonsterSys::SetDamageToMonster(int Damage)
 {
-	m_monsterHP = Damage;
-}
-
-void MonsterSys::MonsterInfo(MonsterStats m_name)
-{
-	std::cout << "Monster Name: " << static_cast<int>(m_name) << std::endl;
-	std::cout << "Monster attack points: " << GetDamage() << std::endl;
-	std::cout << "Monster health points: " << GetHealthPoints() << std::endl;
+	m_monsterHP = m_monsterHP - Damage;
+	if (m_monsterHP < 0)
+	{
+		m_isAlive = false;
+	}
 }

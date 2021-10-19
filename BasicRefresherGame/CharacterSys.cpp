@@ -97,7 +97,7 @@ void CharacterSys::CreateCharacter()
 
 void CharacterSys::DealDamage(int monsterDamage)
 {
-	m_healthPoints += monsterDamage;
+	m_healthPoints -= monsterDamage;
 	if (m_healthPoints <= 0)
 	{
 		m_isAlive = false;
