@@ -1,33 +1,34 @@
 #include "MonsterSys.h"
 #include <iostream>
 
-MonsterSys::MonsterSys(Name nameMonster)
+MonsterSys::MonsterSys()
 {
-	m_name = nameMonster;
-	m_monsterDamage = static_cast<int>(nameMonster) * 5;
-	m_monsterHP = static_cast<int>(nameMonster) * 5;
-	m_monsterDefence = static_cast<int>(nameMonster) * 5;
-	//TODO: Maybe have attributes for each monster So we only call the monster itself without adding HP Def or Damage
+	m_monsterHP = 5;
+	m_monsterDamage = 5;
+	m_maxMonsterHP = 5;
+	m_monsterDefence = 5;
+	m_isAlive = true;
 }
 
 MonsterSys::~MonsterSys()
 {
 }
 
-int MonsterSys::GetDamage()
+int MonsterSys::GetDamage() const
 {
 	return m_monsterDamage;
 }
 
-int MonsterSys::GetHP()
+int MonsterSys::GetHealthPoints() const
 {
 	return m_monsterHP;
 }
 
-void MonsterSys::MonsterInfo(Name m_name)
+void MonsterSys::SetDamageToMonster(int Damage)
 {
-	
-	std::cout << "Monster Name: " << static_cast<int>(m_name) << std::endl;
-	std::cout << "Player Attack: " << GetDamage() << std::endl;
-	std::cout << "Player Health points: " << GetHP() << std::endl;
+	m_monsterHP = m_monsterHP - Damage;
+	if (m_monsterHP < 0)
+	{
+		m_isAlive = false;
+	}
 }

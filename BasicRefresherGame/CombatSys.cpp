@@ -1,4 +1,5 @@
 #include "CombatSys.h"
+#include <map>
 #include <iostream>
 #include <string>
 
@@ -9,7 +10,11 @@ CombatSys::CombatSys()
 	m_player.GetHealthPoints();
 	m_player.GetManaPoints();
 	m_player.GetName();
-	m_player.GetSkills();
+	m_player.GetSkills();	
+
+	MonsterObjectMap monster;
+
+	monster["RAT"] = 
 }
 
 CombatSys::~CombatSys()
@@ -20,13 +25,21 @@ CombatSys::~CombatSys()
 void CombatSys::Fight()
 {
 	int option;
-	std::cin >> option;
 
+	while (option > 0 || option < 4)
+	{
+		std::cout << "Select one of the options" << std::endl;
+		std::cout << "1 - Attack" << std::endl;
+		std::cout << "2 - Spells" << std::endl;
+		std::cout << "3 - Run" << std::endl;
+		std::cin >> option;
+	}
+	
+	GetCombatOptions(option);
 }
 
 CombatSys::Combat CombatSys::GetCombatOptions(int playerOption)
 {
-	
 	switch (playerOption)
 	{
 	case static_cast<int>(Combat::Attack):

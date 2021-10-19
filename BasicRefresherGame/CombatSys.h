@@ -13,6 +13,8 @@
 #include "CharacterSys.h"
 #include "MonsterSys.h"
 
+typedef std::map<std::string, MonsterSys*> MonsterObjectMap;
+
 class CombatSys
 {
 	enum class Combat
@@ -32,5 +34,5 @@ public:
 	Combat GetCombatOptions(int playerOption);
 
 	CharacterSys m_player;
-
+	MonsterObjectMap monsterObjectMap;
 };
