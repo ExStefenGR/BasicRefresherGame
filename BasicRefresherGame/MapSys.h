@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <map>
 #include "CharacterSys.h"
 
 //Programmed by Stefanos
@@ -41,4 +42,7 @@ private:
 	int m_choice;
 	void SpeechPause();
 	CharacterSys* m_player;
+
+	bool m_diagDone;
+	std::map<std::string, std::string> dialogue;
 };

@@ -12,6 +12,21 @@ MapSys::MapSys()
 	m_player = new CharacterSys();
 	m_player->CreateCharacter();
 	m_player->PlayerInfo();
+
+	//dialogue
+	m_diagDone = false;
+	dialogue.insert(std::pair<std::string, std::string>("GameStart1", "Greetings Traveler, welcome to <DungeonCombatAndStuff>. Made by Stefanos , David and Isaac"));
+	dialogue.insert(std::pair<std::string, std::string>("Beginning1", "You leave the boat and begin looking around the shops of the town, without any money its of no use, but you browse anyway"));
+	dialogue.insert(std::pair<std::string, std::string>("Beginning2", "A lady walks past you and give you a necklace and whispers.."));
+	dialogue.insert(std::pair<std::string, std::string>("Beginning3", "???: Come back here at night, There is big trouble in the Woods.."));
+	dialogue.insert(std::pair<std::string, std::string>("Beginning4", "You heard the lady and wore the necklace, it seems to hold a magical power to it.."));
+	dialogue.insert(std::pair<std::string, std::string>("something", "This means that the find will not index until the last Town occurance"));
+	dialogue.insert(std::pair<std::string, std::string>("Town1", "You have arrived at the Local Town with the help of the Boat-Man"));
+	dialogue.insert(std::pair<std::string, std::string>("Town2", "You leave the boat and begin looking around the shops of the town, without any money its of no use, but you browse anyway"));
+	dialogue.insert(std::pair<std::string, std::string>("Town3", "A lady walks past you and give you a necklace and whispers.."));
+	dialogue.insert(std::pair<std::string, std::string>("Town4", "???: Come back here at night, There is big trouble in the Woods.."));
+	dialogue.insert(std::pair<std::string, std::string>("Town5", "You heard the lady and wore the necklace, it seems to hold a magical power to it.."));
+	dialogue.insert(std::pair<std::string, std::string>("something", "This means that the find will not index until the last Town occurance"));
 }
 MapSys::~MapSys() {}
 MapSys::Map MapSys::GetMapLoc()
@@ -105,8 +120,16 @@ void MapSys::DialogueSys(Map& m_locations)
 	{
 	case (Map::GameStart):
 	{
-		std::cout << "Greetings Traveler, welcome to <DungeonCombatAndStuff>. Made by Stefanos , David and Isaac" << std::endl;
-		SpeechPause();
+		auto i = dialogue.find("GameStart1");
+		if (i != dialogue.end())
+		{
+				std::cout << i->second << std::endl;
+				SpeechPause();	
+		}
+		else
+		{
+			std::cout << "Town Not found" << std::endl;
+		}
 		break;
 	}
 	case (Map::Beginning):
@@ -145,18 +168,30 @@ void MapSys::DialogueSys(Map& m_locations)
 	}
 	case (Map::Town):
 	{
-		std::cout << "You have arrived at the Local Town with the help of the Boat-Man" << std::endl;
-		SpeechPause();
-		//TODO:: Dialogue system std::cout << "Boat-Man: Alright " << m_player.GetName() << " We have arrived, get your things and get going" << std::endl;
-		std::cout << "You leave the boat and begin looking around the shops of the town, without any money its of no use, but you browse anyway" << std::endl;
-		SpeechPause();
-		std::cout << "A lady walks past you and give you a necklace and whispers.." << std::endl;
-		SpeechPause();
-		std::cout << "???: Come back here at night, There is big trouble in the Woods.." << std::endl;
-		SpeechPause();
-		std::cout << "You heard the lady and wore the necklace, it seems to hold a magical power to it.." << std::endl;
-		SpeechPause();
+		auto i = dialogue.find("Town1");
+		if (i != dialogue.end())
+		{
+			for (const auto& i : dialogue)
+			{
+				auto it = i.first.find("Town");
+				if (it != std::string::npos)
+				{
+					//If label is there iterate through text
+					std::cout << i.second << std::endl;
+				}
+				SpeechPause();
+			}
+		}
+		else
+		{
+			std::cout << "Town Not found" << std::endl;
+		}
 		break;
+	}
+	case (Map::Colosseum):
+	{
+		std::cout << "You arrive at the colluseum, Choose what you would like to do" << std::endl;
+		ChoiceSys(m_locations);
 	}
 	case (Map::DarkPortal):
 	{
