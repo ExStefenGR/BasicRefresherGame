@@ -28,8 +28,8 @@ public:
 	~CombatSys();
 
 	class getEquipment;
-	void CombatOptions(int playerOption);
-	Combat GetCombatOptions();
+	void Fight();
+	Combat GetCombatOptions(int playerOption);
 
 	CharacterSys m_player;
 

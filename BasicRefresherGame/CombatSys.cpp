@@ -17,30 +17,33 @@ CombatSys::~CombatSys()
 
 }
 
-void CombatSys::CombatOptions(int playerOption)
-{
-	switch (Combat)
-	{
-	case Combat::Attack:
-		std::cout << "You strike the monster, dealing damage!" << std::endl;
-		//MonsterSys.DealDamage(m_player.GetDamage());
-		break;
-	case Combat::Spells:
-		std::cout << "You tap into your magic to use against the monster..." << std::endl;
-		break;
-	case Combat::Run:
-		std::cout << "You just book it!" << std::endl;
-		break;
-	default:
-		break;
-	}
-}
-
-Combat CombatSys::GetCombatOptions()
+void CombatSys::Fight()
 {
 	int option;
+	std::cin >> option;
 
-	cin option;
-		CombatOptions(int playerOption);
-	//if (GetCombatOptions())
+}
+
+CombatSys::Combat CombatSys::GetCombatOptions(int playerOption)
+{
+	
+	switch (playerOption)
+	{
+	case static_cast<int>(Combat::Attack):
+		std::cout << "You strike the monster, dealing damage!" << std::endl;
+		return Combat(Combat::Attack);
+		//MonsterSys.DealDamage(m_player.GetDamage());
+		break;
+	case static_cast<int>(Combat::Spells):
+		std::cout << "You tap into your magic to use against the monster..." << std::endl;
+		return Combat(Combat::Spells);
+		break;
+	case static_cast<int>(Combat::Run):
+		std::cout << "You just book it!" << std::endl;
+		return Combat(Combat::Run);
+		break;
+	default:
+		std::cout << "default value";
+		break;
+	}
 }
