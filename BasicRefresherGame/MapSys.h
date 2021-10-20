@@ -44,6 +44,8 @@ private:
 		std::string dialogue3;
 		std::string dialogue4;
 		std::string dialogue5;
+		std::string dialogue6;
+		std::string dialogue7;
 	};
 
 	std::map<std::string, Area> dialogue;

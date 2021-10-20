@@ -14,21 +14,40 @@ MapSys::MapSys()
 	m_player->CreateCharacter();
 	m_player->PlayerInfo();
 
-	Area gameStart;
-	Area beginning;
-	Area town;
-
+	Area gameStart, beginning, forest, woods, port, shore, town, colosseum, darkPortal, castleOfFire, darkShore, beach;
 	gameStart.dialogue1 = "Welcome to <DungeonTexter>, A text RPG made by Stefanos, Isaac and David!";
 	beginning.dialogue1 = "You find yourself in the middle of nowhere, You have 2 Paths, choose wisely..";
+	forest.dialogue1 = "Slime has ambushed you!";
+	woods.dialogue1 = "???:(Grizly bear sounds)";
+	port.dialogue1 = "You arrive at the port and spot a human ready to depart but he stops and waves at you..";
+	shore.dialogue1 = "You are now at the shore after fighting that weird monster, You look beneath youand find an item in the sand";
 	town.dialogue1 = "You have arrived at the Local Town with the help of the Boat-Man";
 	town.dialogue2 = "The Town seems quiet big for it to be called a 'Town'";
 	town.dialogue3 = "A masked lady approaches you and hands you a necklace as she whispers";
 	town.dialogue4 = "???: Arrive by nine tonight..";
 	town.dialogue5 = "That approach seemed frightening, although you now come across a colluseum..";
+	colosseum.dialogue1 = "You arrive at the colluseum, Choose what you would like to do..";
+	darkPortal.dialogue1 = "???: You're here, then let us go..";
+	darkPortal.dialogue2 = "You have entered the Dark portal, Monsters await..";
+	darkShore.dialogue1 = "???: You have arrived...";
+	darkShore.dialogue2 = "???: I did not expect you so soon...";
+	darkShore.dialogue3 = "???: Welcome to my realm, enjoy your stay..Eternally that is..";
+	darkShore.dialogue4 = "You find yourself in the shore, although something seems off, everything is dark and it seems like it is night-time..";
+	darkShore.dialogue5 = "You seem not to be able to see your reflection in the water...";
+	darkShore.dialogue6 = "???: Well, You are dead, what did you expect..?";
 
 	dialogue.insert(std::pair<std::string, Area>("GameStart", gameStart));
 	dialogue.insert(std::pair<std::string, Area>("Beginning", beginning));
+	dialogue.insert(std::pair<std::string, Area>("Forest", forest));
+	dialogue.insert(std::pair<std::string, Area>("Woods", woods));
+	dialogue.insert(std::pair<std::string, Area>("Port", port));
+	dialogue.insert(std::pair<std::string, Area>("Shore", shore));
 	dialogue.insert(std::pair<std::string, Area>("Town", town));
+	dialogue.insert(std::pair<std::string, Area>("Colosseum", colosseum));
+	dialogue.insert(std::pair<std::string, Area>("DarkPortal", darkPortal));
+	dialogue.insert(std::pair<std::string, Area>("CastleOfFire", castleOfFire));
+	dialogue.insert(std::pair<std::string, Area>("DarkShore", darkShore));
+	dialogue.insert(std::pair<std::string, Area>("Beach", beach));
 }
 MapSys::~MapSys() {}
 MapSys::Map MapSys::GetMapLoc() const
@@ -148,61 +167,64 @@ void MapSys::DialogueSys(Map& m_locations)
 			std::cout << i->second.dialogue1 << std::endl;
 			SpeechPause();
 		}
-		else
-		{
-			std::cout << "Town Not found" << std::endl;
-		}
 		break;
 	}
 	case (Map::Beginning):
 	{
-		for (const auto& i : dialogue)
+		auto i = dialogue.find("Beginning");
+		if (i != dialogue.end())
 		{
-			auto it = i.first.find("Beginning");
-			if (it != std::string::npos)
-			{
-				//If label is there iterate through text
-				std::cout << i.second.dialogue1 << std::endl;
-			}
+			std::cout << i->second.dialogue1 << std::endl;
+			SpeechPause();
 		}
-		SpeechPause();
 		ChoiceSys(m_locations);
 	}
 	case (Map::Forest):
 	{
-		std::cout << "Slime has ambushed you!" << std::endl; //Placeholder, can be accessed once
-		SpeechPause();
+		auto i = dialogue.find("Forest");
+		if (i != dialogue.end())
+		{
+			std::cout << i->second.dialogue1 << std::endl;
+			SpeechPause();
+		}
 		break;
 	}
 	case (Map::Woods):
 	{
-		std::cout << "???: (Grizly bear sounds)" << std::endl; //Placeholder, can be accessed once
-		SpeechPause();
+		auto i = dialogue.find("Woods");
+		if (i != dialogue.end())
+		{
+			std::cout << i->second.dialogue1 << std::endl;
+			SpeechPause();
+		}
 		//TODO:Big bear Fight here
 		//TODO:Make him have High def and low HP but higher Attack than slime
 		//std::cout << "Your strength has increased!" << std::endl;
-		//m_player.SetDamage(+10);
-		//m_player.PlayerInfo();
 		break;
 	}
 	case (Map::Port):
 	{
-		std::cout << "You arrive at the port and spot a human ready to depart but he stops and waves at you.." << std::endl;
-		SpeechPause();
+		auto i = dialogue.find("Port");
+		if (i != dialogue.end())
+		{
+			std::cout << i->second.dialogue1 << std::endl;
+			SpeechPause();
+		}
 		ChoiceSys(m_locations);
 		break;
 	}
 	case (Map::Shore):
 	{
-		std::cout << "You are now at the shore after fighting that weird monster, You look beneath you and find an item in the sand" << std::endl;
-		SpeechPause();
+		auto i = dialogue.find("Shore");
+		if (i != dialogue.end())
+		{
+			std::cout << i->second.dialogue1 << std::endl;
+			SpeechPause();
+		}
 		break;
 	}
 	case (Map::Town):
 	{
-		//auto i = dialogue.find("Town1");
-		//if (i != dialogue.end())
-
 		for (const auto& i : dialogue)
 		{
 			auto it = i.first.find("Town");
@@ -218,21 +240,35 @@ void MapSys::DialogueSys(Map& m_locations)
 				std::cout << i.second.dialogue4 << std::endl;
 				SpeechPause();
 				std::cout << i.second.dialogue5 << std::endl;
+				SpeechPause();
 			}
 		}
 		break;
 	}
 	case (Map::Colosseum):
 	{
-		std::cout << "You arrive at the colluseum, Choose what you would like to do" << std::endl;
+		auto i = dialogue.find("Colosseum");
+		if (i != dialogue.end())
+		{
+			std::cout << i->second.dialogue1 << std::endl;
+			SpeechPause();
+		}
 		ChoiceSys(m_locations);
 	}
 	case (Map::DarkPortal):
 	{
-		std::cout << "???: You're here, then let us go.." << std::endl;
-		SpeechPause();
-		std::cout << "You have entered the Dark portal, Monsters await.." << std::endl;
-		SpeechPause();
+		for (const auto& i : dialogue)
+		{
+			auto it = i.first.find("DarkPortal");
+			if (it != std::string::npos)
+			{
+				//If label is there iterate through text
+				std::cout << i.second.dialogue1 << std::endl;
+				SpeechPause();
+				std::cout << i.second.dialogue2 << std::endl;
+				SpeechPause();
+			}
+		}
 		break;
 	}
 	case (Map::CastleOfFire):
@@ -241,18 +277,27 @@ void MapSys::DialogueSys(Map& m_locations)
 	}
 	case (Map::DarkShore):
 	{
-		std::cout << "???: You have arrived..." << std::endl;
-		SpeechPause();
-		std::cout << "???: I did not expect you so soon..." << std::endl;
-		SpeechPause();
-		std::cout << "???: Welcome to my realm, enjoy your stay..Eternally that is.." << std::endl;
-		SpeechPause();
-		std::cout << "You find yourself in the shore, although something seems off, everything is dark and it seems like it is night-time.." << std::endl;
-		SpeechPause();
-		std::cout << "You seem not to be able to see your reflection in the water..." << std::endl;
-		SpeechPause();
-		std::cout << "???: Well, You are dead, what did you expect..?" << std::endl;
-		SpeechPause();
+		for (const auto& i : dialogue)
+		{
+			auto it = i.first.find("DarkShore");
+			if (it != std::string::npos)
+			{
+				//If label is there iterate through text
+				std::cout << i.second.dialogue1 << std::endl;
+				SpeechPause();
+				std::cout << i.second.dialogue2 << std::endl;
+				SpeechPause();
+				std::cout << i.second.dialogue3 << std::endl;
+				SpeechPause();
+				std::cout << i.second.dialogue4 << std::endl;
+				SpeechPause();
+				std::cout << i.second.dialogue5 << std::endl;
+				SpeechPause();
+				std::cout << i.second.dialogue6 << std::endl;
+				SpeechPause();
+			}
+		}
+
 		break;
 	}
 	case (Map::Beach):
@@ -388,13 +433,11 @@ void MapSys::ChoiceSys(Map& m_locations)
 		}
 		break;
 	}
-
 	default:
 	{
 		std::cout << "Function ChoiceSys called outside normal operation" << std::endl;
 		break;
 	}
-
 	}
 }
 void MapSys::SpeechPause() const
