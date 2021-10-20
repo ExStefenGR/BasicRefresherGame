@@ -1,45 +1,60 @@
 #pragma once
-
-#include "iostream"
-#include "string"
-
+#include <iostream>
+#include <map>
+#include <string>
 #include "CharacterSys.h"
+#include "CombatSys.h"
+
+//Programmed by Stefanos
+//Last edited 12/10/21
 
 class MapSys
 {
+
+public:
 	enum class Map
 	{
-		GameStart, 
+		GameStart,
 		Beginning,
 		Forest,
-		DeepForest, //Secret Boss?
+		Woods, //Bad choice but rewarding fight if won?
 		Port,
 		Shore, //Secret item?
-		Town, //SafeArea
+		Town,	//SafeArea
+		Colosseum, //Training Area for XP
 		DarkPortal,
 		CastleOfFire, //BOSS
 		DarkShore,	//Bad ending
 		Beach //Good ending
 	};
-	enum class Job
-	{
-		Sword = 1,
-		Staff,
-		Bow
-	};
-public:
+	Map m_locations;
 	MapSys();
 	~MapSys();
-	void GetMapLoc();
+	MapSys::Map GetMapLoc();
 	MapSys::Map SetMapLoc(Map NewLoc);
+	void DialogueSys(Map& m_locations);
+	void ChoiceSys(Map& m_locations);
 	void LocController();
-	void SpeechText();
 
 private:
-	int m_setLocation;
-	int m_getLocation;
-	bool m_roomDone;
-	Map m_locations;
-	CharacterSys m_player;
-};
 
+	struct Area
+	{
+		std::string dialogue1;
+		std::string dialogue2;
+		std::string dialogue3;
+		std::string dialogue4;
+		std::string dialogue5;
+	};
+
+	std::map<std::string, Area> dialogue;
+	bool m_choiceMade;
+	bool m_roomDone;
+	int m_getLocation;
+	int m_setLocation;
+	int m_choice;
+	CharacterSys* m_player;
+	CombatSys* m_combat;
+
+	void SpeechPause();
+};

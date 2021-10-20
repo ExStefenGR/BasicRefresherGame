@@ -3,21 +3,23 @@
 //Sword is for attacks and consumes mana for skills
 //Staff is the second class, they deal damage with spells, it costs more mana than sword but deals heavier damage in bursts
 //The third class which is shield is used for tank, HP is expotentially increased for the cost of not being able to do spells or skills
-
+//Combat System by David and Isaac
+//Last Changed: 20/10/21
 
 #include <iostream>
 #include <string>
-
-#include "CharacterSys.h"
+#include <map>
+//#include "CharacterSys.h"
 #include "MonsterSys.h"
+
+typedef std::map<std::string, MonsterSys*> MonsterObjectMap;
 
 class CombatSys
 {
-	enum Combat
+	enum class Combat
 	{
 		Attack,
 		Spells,
-		Items,
 		Run
 	};
 
@@ -26,17 +28,10 @@ public:
 	CombatSys();
 	~CombatSys();
 
-	class getEquipment;
-	void CombatOptions();
-	void setSwordSkills();//Hey, you think all this should be in the code for the character?
-	int getSwordSkills();
-	void setStaffSkills();
-	int getStaffSkills();
-	void setShieldSkills();
-	int getSheildSkills();
-	void setSpells(int manaCost);
-	int getSpells();
+	void Fight();
+	Combat GetCombatOptions(int playerOption);
 
-	int m_manaCost;
-	int m_healthPoints;
+	//CharacterSys* m_player;
+	//MapSys* m_map;
+	MonsterObjectMap monsterObjectMap;
 };
