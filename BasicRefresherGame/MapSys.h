@@ -2,12 +2,14 @@
 #include <iostream>
 #include <map>
 #include "CharacterSys.h"
+#include <string>
 
 //Programmed by Stefanos
 //Last edited 12/10/21
 
 class MapSys
 {
+	
 public:
 	enum class Map
 	{
@@ -35,16 +37,21 @@ public:
 
 private:
 
-	int m_getLocation;
-	int m_setLocation;
+	struct Area
+	{
+		std::string dialogue1;
+		std::string dialogue2;
+		std::string dialogue3;
+		std::string dialogue4;
+		std::string dialogue5;
+	};
+
+	std::map<std::string, Area> dialogue;
 	bool m_choiceMade;
 	bool m_roomDone;
+	int m_getLocation;
+	int m_setLocation;
 	int m_choice;
-	void SpeechPause();
 	CharacterSys* m_player;
-	
-	struct Area;
-
-	bool m_diagDone;
-	std::map<std::string, Area> dialogue;
+	void SpeechPause();
 };

@@ -13,25 +13,18 @@ MapSys::MapSys()
 	m_player->CreateCharacter();
 	m_player->PlayerInfo();
 
-	struct Area
-	{
-		std::string dialogue1;
-		std::string dialogue2;
-		std::string dialogue3;
-		std::string dialogue4;
-		std::string dialogue5;
-	};
-
 	Area town;
+	Area gameStart;
+
+	gameStart.dialogue1 = "Welcome to <DungeonTexter>, A text RPG made by Stefanos, Isaac and David!";
 	town.dialogue1 = "You have arrived at the Local Town with the help of the Boat-Man";
+	town.dialogue2 = "The Town seems quiet big for it to be called a 'Town'";
+	town.dialogue3 = "A masked lady approaches you and hands you a necklace as she whispers";
+	town.dialogue4 = "???: Arrive by nine tonight..";
+	town.dialogue5 = "That approach seemed frightening, although you now come across a colluseum..";
 
-	//dialogue
-	m_diagDone = false;
-
-	dialogue.insert(std::pair<std::string, Area>("Town", town));
-
-
-	//todo at home, use a struct and test
+	dialogue.insert(std::pair<std::string,Area>("Town", town));
+	dialogue.insert(std::pair<std::string, Area>("GameStart", gameStart));
 }
 MapSys::~MapSys() {}
 MapSys::Map MapSys::GetMapLoc()
@@ -125,10 +118,10 @@ void MapSys::DialogueSys(Map& m_locations)
 	{
 	case (Map::GameStart):
 	{
-		auto i = dialogue.find("GameStart1");
+		auto i = dialogue.find("GameStart");
 		if (i != dialogue.end())
 		{
-				std::cout << i->second << std::endl;
+				std::cout << i->second.dialogue1 << std::endl;
 				SpeechPause();	
 		}
 		else
@@ -163,6 +156,8 @@ void MapSys::DialogueSys(Map& m_locations)
 	case (Map::Port):
 	{
 		std::cout << "You arrive at the port and spot a human ready to depart but he stops and waves at you.." << std::endl;
+		SpeechPause();
+		ChoiceSys(m_locations);
 		break;
 	}
 	case (Map::Shore):
@@ -182,13 +177,11 @@ void MapSys::DialogueSys(Map& m_locations)
 				if (it != std::string::npos)
 				{
 					//If label is there iterate through text
-					std::cout << i.second << std::endl;
+					std::cout << i.second.dialogue1 << std::endl;
+					SpeechPause();
+					std::cout << i.second.dialogue2 << std::endl;
+					SpeechPause();
 				}
-				else
-				{
-					std::cout << "Town Not found" << std::endl;
-				}
-				SpeechPause();
 			}
 		break;
 	}
@@ -277,6 +270,10 @@ void MapSys::ChoiceSys(Map& m_locations)
 		}
 		break;
 	}
+	case (Map::Forest):
+	{
+
+	}
 	case (Map::Port):
 	{
 		std::cout << "1. Ask the Man for help" << std::endl;
@@ -295,7 +292,7 @@ void MapSys::ChoiceSys(Map& m_locations)
 			{
 			case 1:
 			{
-				DialogueSys(m_locations);
+				SetMapLoc(Map::Town);
 				m_choiceMade = true;
 				break;
 			}
