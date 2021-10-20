@@ -1,5 +1,6 @@
 #include "MapSys.h"
 //Programmed by Stefanos
+//Last edited 20/10/21
 
 MapSys::MapSys()
 {
@@ -13,21 +14,24 @@ MapSys::MapSys()
 	m_player->CreateCharacter();
 	m_player->PlayerInfo();
 
-	Area town;
 	Area gameStart;
+	Area beginning;
+	Area town;
 
 	gameStart.dialogue1 = "Welcome to <DungeonTexter>, A text RPG made by Stefanos, Isaac and David!";
+	beginning.dialogue1 = "You find yourself in the middle of nowhere, You have 2 Paths, choose wisely..";
 	town.dialogue1 = "You have arrived at the Local Town with the help of the Boat-Man";
 	town.dialogue2 = "The Town seems quiet big for it to be called a 'Town'";
 	town.dialogue3 = "A masked lady approaches you and hands you a necklace as she whispers";
 	town.dialogue4 = "???: Arrive by nine tonight..";
 	town.dialogue5 = "That approach seemed frightening, although you now come across a colluseum..";
 
-	dialogue.insert(std::pair<std::string,Area>("Town", town));
 	dialogue.insert(std::pair<std::string, Area>("GameStart", gameStart));
+	dialogue.insert(std::pair<std::string, Area>("Beginning", beginning));
+	dialogue.insert(std::pair<std::string, Area>("Town", town));
 }
 MapSys::~MapSys() {}
-MapSys::Map MapSys::GetMapLoc()
+MapSys::Map MapSys::GetMapLoc() const
 {
 	return m_locations;
 }
@@ -44,6 +48,8 @@ void MapSys::LocController()
 		{
 		case Map::GameStart:
 		{
+			std::cout << "GameStart" << std::endl;
+			SpeechPause();
 			DialogueSys(m_locations);
 			m_player->SetCharacterClass();
 			SetMapLoc(Map::Beginning);
@@ -51,24 +57,32 @@ void MapSys::LocController()
 		}
 		case Map::Beginning:
 		{
+			std::cout << "Beginning" << std::endl;
 			DialogueSys(m_locations);
-			SetMapLoc(Map::Forest);
 			break;
 		}
 		case Map::Forest:
 		{
+			std::cout << "Forest" << std::endl;
+			SpeechPause();
+			DialogueSys(m_locations);
 			SetMapLoc(Map::Port);
 			//TODO:Make the slime have high HP and low attack, def should be medium
 			break;
 		}
 		case Map::Woods:
 		{
+			std::cout << "Woods" << std::endl;
+			SpeechPause();
 			DialogueSys(m_locations);
 			SetMapLoc(Map::Shore);
 			break;
 		}
 		case Map::Port:
 		{
+			std::cout << "Port" << std::endl;
+			SpeechPause();
+			DialogueSys(m_locations);
 			ChoiceSys(m_locations);
 			SetMapLoc(Map::Town);
 			break;
@@ -77,28 +91,38 @@ void MapSys::LocController()
 		{
 			//add here dialogue that shows the item being in inventory
 			//Same Item as in Town Route for Shield and Magician
+			std::cout << "Shore" << std::endl;
+			SpeechPause();
 			DialogueSys(m_locations);
 			SetMapLoc(Map::DarkPortal);
 			break;
 		}
 		case Map::Town:
 		{
+			std::cout << "Town" << std::endl;
+			SpeechPause();
 			DialogueSys(m_locations);
 			ChoiceSys(m_locations);
-			
+
 			break;
 		}
 		case Map::Colosseum:
 		{
+			std::cout << "Colusseum" << std::endl;
+			SpeechPause();
 			break;
 		}
 		case Map::DarkPortal:
 		{
+			std::cout << "DarkPortal" << std::endl;
+			SpeechPause();
 			DialogueSys(m_locations);
 			SetMapLoc(Map::CastleOfFire);
 			break;
 		}
 		case Map::CastleOfFire:
+			std::cout << "CastleOfFire" << std::endl;
+			SpeechPause();
 			DialogueSys(m_locations);
 			SetMapLoc(Map::Beach);
 			break;//BOSS
@@ -107,7 +131,7 @@ void MapSys::LocController()
 		case Map::Beach:
 			break;//Good ending
 		default:
-			std::cout << "error?" << std::endl;
+			std::cout << "Location Cotroller malfunction" << std::endl;
 			break;
 		}
 	}
@@ -121,8 +145,8 @@ void MapSys::DialogueSys(Map& m_locations)
 		auto i = dialogue.find("GameStart");
 		if (i != dialogue.end())
 		{
-				std::cout << i->second.dialogue1 << std::endl;
-				SpeechPause();	
+			std::cout << i->second.dialogue1 << std::endl;
+			SpeechPause();
 		}
 		else
 		{
@@ -132,7 +156,15 @@ void MapSys::DialogueSys(Map& m_locations)
 	}
 	case (Map::Beginning):
 	{
-		std::cout << "You find yourself in the middle of nowhere, You have 2 Paths, choose wisely.." << std::endl;
+		for (const auto& i : dialogue)
+		{
+			auto it = i.first.find("Beginning");
+			if (it != std::string::npos)
+			{
+				//If label is there iterate through text
+				std::cout << i.second.dialogue1 << std::endl;
+			}
+		}
 		SpeechPause();
 		ChoiceSys(m_locations);
 	}
@@ -170,19 +202,24 @@ void MapSys::DialogueSys(Map& m_locations)
 	{
 		//auto i = dialogue.find("Town1");
 		//if (i != dialogue.end())
-		
-			for (const auto& i : dialogue)
+
+		for (const auto& i : dialogue)
+		{
+			auto it = i.first.find("Town");
+			if (it != std::string::npos)
 			{
-				auto it = i.first.find("Town");
-				if (it != std::string::npos)
-				{
-					//If label is there iterate through text
-					std::cout << i.second.dialogue1 << std::endl;
-					SpeechPause();
-					std::cout << i.second.dialogue2 << std::endl;
-					SpeechPause();
-				}
+				//If label is there iterate through text
+				std::cout << i.second.dialogue1 << std::endl;
+				SpeechPause();
+				std::cout << i.second.dialogue2 << std::endl;
+				SpeechPause();
+				std::cout << i.second.dialogue3 << std::endl;
+				SpeechPause();
+				std::cout << i.second.dialogue4 << std::endl;
+				SpeechPause();
+				std::cout << i.second.dialogue5 << std::endl;
 			}
+		}
 		break;
 	}
 	case (Map::Colosseum):
@@ -252,13 +289,13 @@ void MapSys::ChoiceSys(Map& m_locations)
 			case 1:
 			{
 				SetMapLoc(Map::Forest);
-				m_choiceMade = true;
+				LocController();
 				break;
 			}
 			case 2:
 			{
 				SetMapLoc(Map::Woods);
-				m_choiceMade = true;
+				LocController();
 				break;
 			}
 			default:
@@ -269,10 +306,6 @@ void MapSys::ChoiceSys(Map& m_locations)
 			}
 		}
 		break;
-	}
-	case (Map::Forest):
-	{
-
 	}
 	case (Map::Port):
 	{
@@ -293,7 +326,7 @@ void MapSys::ChoiceSys(Map& m_locations)
 			case 1:
 			{
 				SetMapLoc(Map::Town);
-				m_choiceMade = true;
+				LocController();
 				break;
 			}
 			case 2:
@@ -302,7 +335,7 @@ void MapSys::ChoiceSys(Map& m_locations)
 				SpeechPause();
 				//fight here then go to town
 				SetMapLoc(Map::Town);
-				m_choiceMade = true;
+				LocController();
 				break;
 			}
 			default:
@@ -364,7 +397,7 @@ void MapSys::ChoiceSys(Map& m_locations)
 
 	}
 }
-void MapSys::SpeechPause()
+void MapSys::SpeechPause() const
 {
 	system("pause");
 	system("cls");

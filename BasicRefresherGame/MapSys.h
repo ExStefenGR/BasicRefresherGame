@@ -1,11 +1,11 @@
 #pragma once
 #include <iostream>
 #include <map>
-#include "CharacterSys.h"
 #include <string>
+#include "CharacterSys.h"
 
 //Programmed by Stefanos
-//Last edited 12/10/21
+//Last edited 20/10/21
 
 class MapSys
 {
@@ -29,7 +29,7 @@ public:
 	Map m_locations;
 	MapSys();
 	~MapSys();
-	MapSys::Map GetMapLoc();
+	MapSys::Map GetMapLoc() const;
 	MapSys::Map SetMapLoc(Map NewLoc);
 	void DialogueSys(Map& m_locations);
 	void ChoiceSys(Map& m_locations);
@@ -53,5 +53,5 @@ private:
 	int m_setLocation;
 	int m_choice;
 	CharacterSys* m_player;
-	void SpeechPause();
+	void SpeechPause() const;
 };
