@@ -35,6 +35,10 @@ public:
 	void DialogueSys(Map& m_locations);
 	void ChoiceSys(Map& m_locations);
 	void LocController();
+	CharacterSys* GetPlayer()
+	{ 
+		return m_player; 
+	}
 
 private:
 

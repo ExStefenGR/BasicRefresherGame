@@ -9,8 +9,10 @@
 #include <iostream>
 #include <string>
 #include <map>
-//#include "CharacterSys.h"
+
 #include "MonsterSys.h"
+
+class MapSys;
 
 typedef std::map<std::string, MonsterSys*> MonsterObjectMap;
 
@@ -25,13 +27,13 @@ class CombatSys
 
 
 public:
-	CombatSys();
+	CombatSys(MapSys* map);
 	~CombatSys();
 
 	void Fight();
-	Combat GetCombatOptions(int playerOption);
+	//Combat GetCombatOptions(int playerOption);
 
 	//CharacterSys* m_player;
-	//MapSys* m_map;
+	MapSys* m_map;
 	MonsterObjectMap monsterObjectMap;
 };

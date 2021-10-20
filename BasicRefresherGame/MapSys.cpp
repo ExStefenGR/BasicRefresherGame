@@ -12,6 +12,7 @@ MapSys::MapSys()
 	m_player = new CharacterSys();
 	m_player->CreateCharacter();
 	m_player->PlayerInfo();
+	m_combat = new CombatSys(this);
 
 	Area town;
 	Area gameStart;
@@ -53,8 +54,8 @@ void MapSys::LocController()
 		}
 		case Map::Beginning:
 		{
-			m_combat.Fight();
 			DialogueSys(m_locations);
+			m_combat->Fight();
 			SetMapLoc(Map::Forest);
 			break;
 		}
