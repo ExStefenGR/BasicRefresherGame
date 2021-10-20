@@ -155,6 +155,9 @@ void MapSys::LocController()
 		}
 	}
 }
+void MapSys::MonsterFight(Map& m_locations)
+{
+}
 void MapSys::DialogueSys(Map& m_locations)
 {
 	switch (GetMapLoc())

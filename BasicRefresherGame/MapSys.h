@@ -34,6 +34,7 @@ public:
 	void DialogueSys(Map& m_locations);
 	void ChoiceSys(Map& m_locations);
 	void LocController();
+	void MonsterFight(Map& m_locations);
 
 private:
 
