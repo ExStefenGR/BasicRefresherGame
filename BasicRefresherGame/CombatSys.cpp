@@ -1,20 +1,14 @@
 #include "CombatSys.h"
-#include <map>
 #include <iostream>
 #include <string>
 
 CombatSys::CombatSys()
 {
-	m_player.GetCharacterClass();
-	m_player.GetDamage();
-	m_player.GetHealthPoints();
-	m_player.GetManaPoints();
-	m_player.GetName();
-	m_player.GetSkills();	
-
 	MonsterObjectMap monster;
+	
+	Fight();
 
-	monster["RAT"] = 
+	//monster["RAT"] = m_monster;
 }
 
 CombatSys::~CombatSys()
@@ -24,18 +18,28 @@ CombatSys::~CombatSys()
 
 void CombatSys::Fight()
 {
-	int option;
+	MonsterSys m_monster;
 
-	while (option > 0 || option < 4)
+	int options;
+
+	std::cin >> options;
+	
+	while (options > 0 || options < 4)
 	{
 		std::cout << "Select one of the options" << std::endl;
 		std::cout << "1 - Attack" << std::endl;
 		std::cout << "2 - Spells" << std::endl;
 		std::cout << "3 - Run" << std::endl;
-		std::cin >> option;
 	}
-	
-	GetCombatOptions(option);
+
+	if (options == 1)
+	{
+		m_monster.SetDamageToMonster(m_player->GetDamage());
+		std::cout << m_monster.GetHealthPoints() << std::endl;
+		system("pause");
+	}
+
+	//GetCombatOptions(option);
 }
 
 CombatSys::Combat CombatSys::GetCombatOptions(int playerOption)

@@ -2,7 +2,7 @@
 
 #include "iostream"
 #include "string"
-
+#include "CombatSys.h"
 #include "CharacterSys.h"
 
 class MapSys
@@ -41,5 +41,6 @@ private:
 	bool m_roomDone;
 	Map m_locations;
 	CharacterSys m_player;
+	CombatSys m_combat;
 };
 

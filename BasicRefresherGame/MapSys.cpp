@@ -82,6 +82,7 @@ void MapSys::LocController()
 			//This will have to do with the Magician Route, add a fight with a magical monster/character
 			//Note if nothing is written in a case then it will automatically go to the next
 			std::cout << "You have encountered a Slime!" << std::endl;
+			m_combat.Fight();
 			SpeechText();
 			SetMapLoc(Map::Port);
 			//TODO:Make the slime have high HP and low attack, def should be medium

@@ -6,12 +6,12 @@
 //Combat System by David, with help from Isaac
 //Last Changed: 19/10/21
 
-
 #include <iostream>
 #include <string>
-
+#include <map>
 #include "CharacterSys.h"
 #include "MonsterSys.h"
+#include "MapSys.h"
 
 typedef std::map<std::string, MonsterSys*> MonsterObjectMap;
 
@@ -29,10 +29,10 @@ public:
 	CombatSys();
 	~CombatSys();
 
-	class getEquipment;
 	void Fight();
 	Combat GetCombatOptions(int playerOption);
 
-	CharacterSys m_player;
+	CharacterSys* m_player;
+	MapSys* m_map;
 	MonsterObjectMap monsterObjectMap;
 };
