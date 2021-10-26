@@ -18,7 +18,7 @@ MapSys::MapSys()
 	CreateDialog();
 }
 
-MapSys::~MapSys() 
+MapSys::~MapSys()
 {
 
 }
@@ -174,7 +174,7 @@ void MapSys::CreateDialog()
 	town.dialogue4 = "???: Arrive by nine tonight..";
 	town.dialogue5 = "That approach seemed frightening, although you now come across a colluseum..";
 	colosseum.dialogue1 = "You arrive at the colluseum, Choose what you would like to do..";
-	darkPortal.dialogue1 = "???: You're here, then let us go..";
+	darkPortal.dialogue1 = "???: You're here, then let us go..My name is Rose";
 	darkPortal.dialogue2 = "You have entered the Dark portal, Monsters await..";
 	darkShore.dialogue1 = "???: You have arrived...";
 	darkShore.dialogue2 = "???: I did not expect you so soon...";
@@ -182,6 +182,16 @@ void MapSys::CreateDialog()
 	darkShore.dialogue4 = "You find yourself in the shore, although something seems off, everything is dark and it seems like it is night-time..";
 	darkShore.dialogue5 = "You seem not to be able to see your reflection in the water...";
 	darkShore.dialogue6 = "???: Well, You are dead, what did you expect..?";
+	castleOfFire.dialogue1 = "???: WHO DARES ENTER MY CASTLE?";
+	castleOfFire.dialogue2 = "Rose: I didn't expect the Dark Knight would be already here! Be careful traveler!";
+	castleOfFire.dialogue3 = "Dark Knight: Fighter of the Light... I will show you why entering my castle was a terrible idea...";
+	beach.dialogue1 = "Rose: Good Job Traveler, looks like we will live another day";
+	beach.dialogue2 = "Rose: Perhaps you would like to join our guild, It is not near town, we tend to travel a lot just like you";
+	beach.dialogue3 = "Rose: I'll give you lots of time to think about it...";
+	beach.dialogue4 = "It looks like you managed to defeat the Dark Knight and make a friend along the way";
+	beach.dialogue5 = "Although you still do not know of your past, following Rose and joining the guild may be beneficial..";
+	beach.dialogue6 = "The end...";
+	beach.dialogue7 = "You have reached the end of the game, thanks a lot for playing!";
 
 	dialogue.insert(std::pair<std::string, Area>("GameStart", gameStart));
 	dialogue.insert(std::pair<std::string, Area>("Beginning", beginning));
@@ -309,12 +319,27 @@ void MapSys::DialogueSys()
 				SpeechPause();
 				std::cout << i.second.dialogue2 << std::endl;
 				SpeechPause();
+				std::cout << i.second.dialogue3 << std::endl;
+				SpeechPause();
 			}
 		}
 		break;
 	}
 	case (Map::CastleOfFire):
 	{
+		for (const auto& i : dialogue)
+		{
+			auto it = i.first.find("CastleOfFire");
+			if (it != std::string::npos)
+			{
+				//If label is there iterate through text
+				std::cout << i.second.dialogue1 << std::endl;
+				SpeechPause();
+				std::cout << i.second.dialogue2 << std::endl;
+				SpeechPause();
+				std::cout << i.second.dialogue3 << std::endl;
+			}
+		}
 		break;
 	}
 	case (Map::DarkShore):
@@ -344,6 +369,28 @@ void MapSys::DialogueSys()
 	}
 	case (Map::Beach):
 	{
+		for (const auto& i : dialogue)
+		{
+			auto it = i.first.find("Beach");
+			if (it != std::string::npos)
+			{
+				//If label is there iterate through text
+				std::cout << i.second.dialogue1 << std::endl;
+				SpeechPause();
+				std::cout << i.second.dialogue2 << std::endl;
+				SpeechPause();
+				std::cout << i.second.dialogue3 << std::endl;
+				SpeechPause();
+				std::cout << i.second.dialogue4 << std::endl;
+				SpeechPause();
+				std::cout << i.second.dialogue5 << std::endl;
+				SpeechPause();
+				std::cout << i.second.dialogue6 << std::endl;
+				SpeechPause();
+				std::cout << i.second.dialogue7 << std::endl;
+				SpeechPause();
+			}
+		}
 		break;
 	}
 	default:
@@ -417,7 +464,6 @@ void MapSys::LocController()
 			SpeechPause();
 			DialogueSys();
 			ChoiceSys();
-
 			break;
 		}
 		case Map::Colosseum:
@@ -438,11 +484,17 @@ void MapSys::LocController()
 			std::cout << "CastleOfFire" << std::endl;
 			SpeechPause();
 			DialogueSys();
-			SetMapLoc(Map::Beach);
+			//bossfight here
 			break;//BOSS
 		case Map::DarkShore:
+			std::cout << "Dark Shore" << std::endl;
+			SpeechPause();
+			DialogueSys();
 			break;//Bad ending
 		case Map::Beach:
+			std::cout << "Beach" << std::endl;
+			SpeechPause();
+			DialogueSys();
 			break;//Good ending
 		default:
 			std::cout << "Location Cotroller malfunction" << std::endl;

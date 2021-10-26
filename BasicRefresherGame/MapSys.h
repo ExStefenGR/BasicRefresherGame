@@ -1,18 +1,14 @@
 #pragma once
-
 #include <iostream>
 #include <map>
 #include <string>
-
 #include "CharacterSys.h"
 #include "MonsterSys.h"
-
 //Programmed by Stefanos
 //Last edited 20/10/21
 
 class MapSys
 {
-
 public:
 	enum class Map
 	{
@@ -29,12 +25,9 @@ public:
 		DarkShore,	//Bad ending
 		Beach //Good ending
 	};
-
 	MapSys();
 	~MapSys();
-
 	MapSys::Map GetMapLoc() const;
-	
 	void ChoiceSys();
 	void CreateDialog();
 	void DialogueSys();
@@ -42,9 +35,7 @@ public:
 	void MonsterFight();
 	void SetMapLoc(Map newLocation);
 	void SpeechPause() const;
-
 private:
-
 	struct Area
 	{
 		std::string dialogue1;
@@ -55,20 +46,13 @@ private:
 		std::string dialogue6;
 		std::string dialogue7;
 	};
-
 	CharacterSys *m_player;
 	MonsterSys* m_monster;
-
 	Map m_locations;
-
 	std::map<std::string, Area> dialogue;
-
 	bool m_choiceMade;
 	bool m_roomDone;
-	
 	int m_getLocation;
 	int m_setLocation;
 	int m_choice;
-	
-	
 };
