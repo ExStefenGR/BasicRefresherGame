@@ -34,8 +34,8 @@ void CombatSys::Fight()
 
 	if (options == 1)
 	{
-		m_monster.SetDamageToMonster(m_player->GetDamage());
-		std::cout << m_monster.GetHealthPoints() << std::endl;
+		//m_monster.SetDamageToMonster(m_player->GetDamage());
+		std::cout << m_monster.GetMonsterHealthPoints() << std::endl;
 		system("pause");
 	}
 

@@ -3,30 +3,58 @@
 
 MonsterSys::MonsterSys()
 {
-	m_monsterHP = 5;
-	m_monsterDamage = 5;
-	m_maxMonsterHP = 5;
-	m_monsterDefence = 5;
 	m_isAlive = true;
+
+	m_maxMonsterHP = 20;
+	m_monsterDamage = 5;
+	m_monsterDefence = 1;
+	m_monsterHP = 20;
 }
 
 MonsterSys::~MonsterSys()
 {
 }
 
-int MonsterSys::GetDamage() const
+std::string MonsterSys::GetMonsterName()
+{
+	return m_monsterName;
+}
+
+bool MonsterSys::MonsterIsAlive() const
+{
+	return m_isAlive;
+}
+
+int MonsterSys::GetMonsterDamage() const
 {
 	return m_monsterDamage;
 }
 
-int MonsterSys::GetHealthPoints() const
+int MonsterSys::GetMonsterHealthPoints() const
 {
 	return m_monsterHP;
 }
 
-void MonsterSys::SetDamageToMonster(int Damage)
+void MonsterSys::CreateMonster(int monsterStats, std::string monsterName)
 {
-	m_monsterHP = m_monsterHP - Damage;
+	m_monsterName = monsterName;
+
+	m_maxMonsterHP = m_maxMonsterHP * monsterStats;
+	m_monsterDamage = m_monsterDamage * monsterStats;
+	m_monsterDefence = m_monsterDefence * monsterStats;
+	m_monsterHP = m_monsterHP * monsterStats;
+}
+
+void MonsterSys::MonsterInfo()
+{
+	std::cout << "Monster Name: " << GetMonsterName() << std::endl;
+	std::cout << "Monster Attack: " << GetMonsterDamage() << std::endl;
+	std::cout << "Monster Health points: " << GetMonsterHealthPoints() << std::endl;
+}
+
+void MonsterSys::MonsterReceiveDamage(int playerDamage)
+{
+	m_monsterHP = m_monsterHP - playerDamage;
 	if (m_monsterHP < 0)
 	{
 		m_isAlive = false;
