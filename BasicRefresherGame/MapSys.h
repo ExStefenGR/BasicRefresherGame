@@ -5,6 +5,8 @@
 #include <string>
 
 #include "CharacterSys.h"
+#include "MonsterSys.h"
+
 //Programmed by Stefanos
 //Last edited 20/10/21
 
@@ -28,17 +30,18 @@ public:
 		Beach //Good ending
 	};
 
-	Map m_locations;
 	MapSys();
 	~MapSys();
 
 	MapSys::Map GetMapLoc() const;
 	
-	void SetMapLoc(Map newLocation);
-	void DialogueSys(Map playerLocation);
-	void ChoiceSys(Map playerLocation);
+	void ChoiceSys();
+	void CreateDialog();
+	void DialogueSys();
 	void LocController();
-	void MonsterFight(Map& m_locations);
+	void MonsterFight();
+	void SetMapLoc(Map newLocation);
+	void SpeechPause() const;
 
 private:
 
@@ -53,12 +56,16 @@ private:
 		std::string dialogue7;
 	};
 
-	std::map<std::string, Area> dialogue;
 	bool m_choiceMade;
 	bool m_roomDone;
+	
 	int m_getLocation;
 	int m_setLocation;
 	int m_choice;
+	
 	CharacterSys *m_player;
-	void SpeechPause() const;
+	
+	Map m_locations;
+	
+	std::map<std::string, Area> dialogue;
 };
