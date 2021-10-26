@@ -1,12 +1,12 @@
 #pragma once
+
 #include <iostream>
 #include <map>
 #include <string>
-#include "CharacterSys.h"
-#include "CombatSys.h"
 
+#include "CharacterSys.h"
 //Programmed by Stefanos
-//Last edited 12/10/21
+//Last edited 20/10/21
 
 class MapSys
 {
@@ -27,18 +27,18 @@ public:
 		DarkShore,	//Bad ending
 		Beach //Good ending
 	};
+
 	Map m_locations;
 	MapSys();
 	~MapSys();
-	MapSys::Map GetMapLoc();
-	MapSys::Map SetMapLoc(Map NewLoc);
-	void DialogueSys(Map& m_locations);
-	void ChoiceSys(Map& m_locations);
+
+	MapSys::Map GetMapLoc() const;
+	
+	void SetMapLoc(Map newLocation);
+	void DialogueSys(Map playerLocation);
+	void ChoiceSys(Map playerLocation);
 	void LocController();
-	CharacterSys* GetPlayer()
-	{ 
-		return m_player; 
-	}
+	void MonsterFight(Map& m_locations);
 
 private:
 
@@ -49,6 +49,8 @@ private:
 		std::string dialogue3;
 		std::string dialogue4;
 		std::string dialogue5;
+		std::string dialogue6;
+		std::string dialogue7;
 	};
 
 	std::map<std::string, Area> dialogue;
@@ -57,8 +59,6 @@ private:
 	int m_getLocation;
 	int m_setLocation;
 	int m_choice;
-	CharacterSys* m_player;
-	CombatSys* m_combat;
-
-	void SpeechPause();
+	CharacterSys *m_player;
+	void SpeechPause() const;
 };

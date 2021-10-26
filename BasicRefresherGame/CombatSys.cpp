@@ -33,7 +33,7 @@ void CombatSys::Fight()
 	switch (options)
 	{
 	case 1:
-		m_monster.SetDamageToMonster(m_map->GetPlayer()->GetDamage());
+		//m_monster.SetDamageToMonster(m_map->GetPlayer()->GetDamage());
 
 		std::cout << m_monster.GetHealthPoints() << std::endl;
 		system("pause");

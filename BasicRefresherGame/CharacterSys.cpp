@@ -1,6 +1,7 @@
 //Character System by Isaac
 
 #include "CharacterSys.h"
+
 #include <string>
 #include <iostream>
 
@@ -94,7 +95,7 @@ void CharacterSys::CreateCharacter()
 	}
 }
 
-void CharacterSys::DealDamage(int monsterDamage)
+void CharacterSys::ReceiveDamage(int monsterDamage)
 {
 	m_healthPoints -= monsterDamage;
 	if (m_healthPoints <= 0)

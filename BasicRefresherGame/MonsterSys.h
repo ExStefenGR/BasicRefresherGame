@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 
 class MonsterSys
 {
@@ -14,6 +15,7 @@ class MonsterSys
 	//	Orc = 6,
 	//	Fire_Elemental = 7, //BOSS
 	//	Ice_Elemental = 8, //BOSS
+
 	//};
 
 public:

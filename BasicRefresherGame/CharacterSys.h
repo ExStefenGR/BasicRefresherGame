@@ -33,7 +33,7 @@ public:
 	Skills GetSkills();
 
 	void CreateCharacter(); // creates a character
-	void DealDamage(int monsterDamage);
+	void ReceiveDamage(int monsterDamage);
 	void SetCharacterClass();
 	void SetDamage(int damagePoints); // increase damage points of a the character
 	void SetHealthPoints(int healthPoints); // increase maxHealth of the character
