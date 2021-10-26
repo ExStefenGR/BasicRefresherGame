@@ -10,6 +10,7 @@ MapSys::MapSys()
 	m_choice = 0;
 	m_choiceMade = false;
 	m_roomDone = false;
+	m_monster = new MonsterSys();
 	m_player = new CharacterSys();
 	m_player->CreateCharacter();
 	m_player->PlayerInfo();
@@ -451,11 +452,15 @@ void MapSys::LocController()
 }
 void MapSys::MonsterFight()
 {
-	//COMBAT SYSTEM HERE
+	//TODO COMBAT SYSTEM HERE
 	// 
 	//GetMapLoc() -- Get map location return number (1 to 10) to multiply by monster status and make it stronger as you go latest MAPS.
 	//m_player->GetDamage() -- Get character damage to deal damage into monster.
-	//m_player->ReceiveDamage(int monsterDamage) -- Deal damage to Player.
+	//m_player->ReceiveDamage(m_monster->GetMonsterDamage()) -- Deal damage to Player.
+	//m_monster->CreateMonster(static_cast<int>(GetMapLoc()), "Rat"); create monster with name and specific status acording to map location.
+	//m_monster->MonsterReceiveDamage(m_player->GetDamage()); --Deal damage to monster according to player damage.
+	//m_monster->MonsterIsAlive(); --return if monster is dead or not.
+	//m_monster->~MonsterSys(); -- delete monster after monster die.
 }
 
 void MapSys::SetMapLoc(Map NewLoc)

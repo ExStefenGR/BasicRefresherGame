@@ -95,7 +95,7 @@ void CharacterSys::CreateCharacter()
 	}
 }
 
-void CharacterSys::ReceiveDamage(int monsterDamage)
+void CharacterSys::PlayerReceiveDamage(int monsterDamage)
 {
 	m_healthPoints -= monsterDamage;
 	if (m_healthPoints <= 0)

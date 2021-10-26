@@ -35,7 +35,7 @@ void CombatSys::Fight()
 	case 1:
 		//m_monster.SetDamageToMonster(m_map->GetPlayer()->GetDamage());
 
-		std::cout << m_monster.GetHealthPoints() << std::endl;
+		std::cout << m_monster.GetMonsterHealthPoints() << std::endl;
 		system("pause");
 		//auto player = m_map->GetPlayer();
 	default:
