@@ -419,6 +419,7 @@ void MapSys::LocController()
 		case Map::Beginning:
 		{
 			std::cout << "Beginning" << std::endl;
+			MonsterFight();
 			DialogueSys();
 			break;
 		}
@@ -427,16 +428,16 @@ void MapSys::LocController()
 			std::cout << "Forest" << std::endl;
 			SpeechPause();
 			DialogueSys();
-			MonsterFight();
 			SpeechPause();
+			MonsterFight();
 			SetMapLoc(Map::Port);
 			//TODO:Make the slime have high HP and low attack, def should be medium
 			break;
 		}
 		case Map::Woods:
 		{
-			MonsterFight();
 			std::cout << "Woods" << std::endl;
+			MonsterFight();
 			SpeechPause();
 			DialogueSys();
 			SetMapLoc(Map::Shore);
@@ -511,12 +512,15 @@ void MapSys::MonsterFight()
 	//GetMapLoc();
 	int combatOptions;
 	bool runAway = false;
+
 	std::cout << "In the forest, you are confronted by" << std::endl;
 	m_monster->CreateMonster(static_cast<int>(GetMapLoc()), "Rat");
 	m_monster->MonsterInfo();
 	m_player->PlayerInfo();
+
 	//std::cout << m_monster->MonsterIsAlive() << std::endl;
 	//std::cout << runAway << std::endl;
+
 	while (m_monster->MonsterIsAlive() && runAway == false)
 	{
 		std::cout << "Select an option:" << std::endl;

@@ -13,6 +13,12 @@ MonsterSys::MonsterSys()
 
 MonsterSys::~MonsterSys()
 {
+	m_isAlive = true;
+
+	m_maxMonsterHP = 10;
+	m_monsterDamage = 2;
+	m_monsterDefence = 1;
+	m_monsterHP = 10;
 }
 
 std::string MonsterSys::GetMonsterName()
@@ -57,6 +63,10 @@ void MonsterSys::MonsterReceiveDamage(int playerDamage)
 	m_monsterHP = m_monsterHP - playerDamage;
 	if (m_monsterHP < 0)
 	{
+		m_monsterHP = 0;
 		m_isAlive = false;
+		std::cout << "Congratulations!! You won the fight. " << std::endl;
+		system("pause");
+		system("cls");
 	}
 }
