@@ -427,12 +427,15 @@ void MapSys::LocController()
 			std::cout << "Forest" << std::endl;
 			SpeechPause();
 			DialogueSys();
+			MonsterFight();
+			SpeechPause();
 			SetMapLoc(Map::Port);
 			//TODO:Make the slime have high HP and low attack, def should be medium
 			break;
 		}
 		case Map::Woods:
 		{
+			MonsterFight();
 			std::cout << "Woods" << std::endl;
 			SpeechPause();
 			DialogueSys();
@@ -441,6 +444,7 @@ void MapSys::LocController()
 		}
 		case Map::Port:
 		{
+			MonsterFight();
 			std::cout << "Port" << std::endl;
 			SpeechPause();
 			DialogueSys();
@@ -504,15 +508,45 @@ void MapSys::LocController()
 }
 void MapSys::MonsterFight()
 {
-	//TODO COMBAT SYSTEM HERE
-	// 
-	//GetMapLoc() -- Get map location return number (1 to 10) to multiply by monster status and make it stronger as you go latest MAPS.
-	//m_player->GetDamage() -- Get character damage to deal damage into monster.
+	//GetMapLoc();
+	int combatOptions;
+	bool runAway = false;
+	std::cout << "In the forest, you are confronted by" << std::endl;
+	m_monster->CreateMonster(static_cast<int>(GetMapLoc()), "Rat");
+	m_monster->MonsterInfo();
+	m_player->PlayerInfo();
+	//std::cout << m_monster->MonsterIsAlive() << std::endl;
+	//std::cout << runAway << std::endl;
+	while (m_monster->MonsterIsAlive() && runAway == false)
+	{
+		std::cout << "Select an option:" << std::endl;
+		std::cout << "1: Attack" << std::endl;
+		std::cout << "2: Run" << std::endl;
+		std::cin >> combatOptions;
+		switch (combatOptions)
+		{
+		case 1:
+			//m_player->GetDamage();
+			m_monster->MonsterReceiveDamage(m_player->GetDamage());
+			m_player->PlayerReceiveDamage(m_monster->GetMonsterDamage());
+			m_monster->MonsterInfo();
+			m_player->PlayerInfo();
+			break;
+		case 2:
+			m_player->PlayerReceiveDamage(m_monster->GetMonsterDamage());
+			m_player->PlayerInfo();
+			std::cout << "You just book it" << std::endl;
+			runAway = true;
+			m_monster->~MonsterSys();
+			break;
+		default:
+			break;
+		}
+	}
+	m_monster->~MonsterSys(); //-- delete monster after monster die.
 	//m_player->ReceiveDamage(m_monster->GetMonsterDamage()) -- Deal damage to Player.
-	//m_monster->CreateMonster(static_cast<int>(GetMapLoc()), "Rat"); create monster with name and specific status acording to map location.
 	//m_monster->MonsterReceiveDamage(m_player->GetDamage()); --Deal damage to monster according to player damage.
 	//m_monster->MonsterIsAlive(); --return if monster is dead or not.
-	//m_monster->~MonsterSys(); -- delete monster after monster die.
 }
 
 void MapSys::SetMapLoc(Map NewLoc)

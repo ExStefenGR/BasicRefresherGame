@@ -1,5 +1,5 @@
 //Character System by Isaac
-
+//TO DO -- Create a function for when the player dies, set Game Over
 #include "CharacterSys.h"
 
 #include <string>

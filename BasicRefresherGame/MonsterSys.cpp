@@ -5,10 +5,10 @@ MonsterSys::MonsterSys()
 {
 	m_isAlive = true;
 
-	m_maxMonsterHP = 20;
-	m_monsterDamage = 5;
+	m_maxMonsterHP = 10;
+	m_monsterDamage = 2;
 	m_monsterDefence = 1;
-	m_monsterHP = 20;
+	m_monsterHP = 10;
 }
 
 MonsterSys::~MonsterSys()
