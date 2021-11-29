@@ -56,6 +56,7 @@ void MonsterSys::MonsterInfo()
 	std::cout << "Monster Name: " << GetMonsterName() << std::endl;
 	std::cout << "Monster Attack: " << GetMonsterDamage() << std::endl;
 	std::cout << "Monster Health points: " << GetMonsterHealthPoints() << std::endl;
+	std::cout << "\n" << std::endl;
 }
 
 void MonsterSys::MonsterReceiveDamage(int playerDamage)

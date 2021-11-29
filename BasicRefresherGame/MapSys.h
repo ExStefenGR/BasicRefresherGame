@@ -46,13 +46,16 @@ private:
 		std::string dialogue6;
 		std::string dialogue7;
 	};
-	CharacterSys* m_player;
-	MonsterSys* m_monster;
-	Map m_locations;
-	std::map<std::string, Area> dialogue;
 	bool m_choiceMade;
 	bool m_roomDone;
 	int m_getLocation;
 	int m_setLocation;
 	int m_choice;
+
+	std::map<std::string, Area> dialogue;
+	std::map<std::string, Map> m_mobs;
+
+	CharacterSys* m_player;
+	Map m_locations;
+	MonsterSys* m_monster;
 };

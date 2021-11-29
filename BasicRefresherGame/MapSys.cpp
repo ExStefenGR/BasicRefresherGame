@@ -419,6 +419,7 @@ void MapSys::LocController()
 		case Map::Beginning:
 		{
 			std::cout << "Beginning" << std::endl;
+			m_monster->CreateMonster(static_cast<int>(GetMapLoc()), "Ratta");
 			MonsterFight();
 			DialogueSys();
 			break;
@@ -426,6 +427,7 @@ void MapSys::LocController()
 		case Map::Forest:
 		{
 			std::cout << "Forest" << std::endl;
+			m_monster->CreateMonster(static_cast<int>(GetMapLoc()), "Mykites");
 			SpeechPause();
 			DialogueSys();
 			SpeechPause();
@@ -437,6 +439,7 @@ void MapSys::LocController()
 		case Map::Woods:
 		{
 			std::cout << "Woods" << std::endl;
+			m_monster->CreateMonster(static_cast<int>(GetMapLoc()), "Aracno");
 			MonsterFight();
 			SpeechPause();
 			DialogueSys();
@@ -445,6 +448,7 @@ void MapSys::LocController()
 		}
 		case Map::Port:
 		{
+			m_monster->CreateMonster(static_cast<int>(GetMapLoc()), "Nudibranch");
 			MonsterFight();
 			std::cout << "Port" << std::endl;
 			SpeechPause();
@@ -455,9 +459,11 @@ void MapSys::LocController()
 		}
 		case Map::Shore:
 		{
+			m_monster->CreateMonster(static_cast<int>(GetMapLoc()), "RedPuan");
 			//add here dialogue that shows the item being in inventory
 			//Same Item as in Town Route for Shield and Magician
 			std::cout << "Shore" << std::endl;
+			MonsterFight();
 			SpeechPause();
 			DialogueSys();
 			SetMapLoc(Map::DarkPortal);
@@ -466,6 +472,7 @@ void MapSys::LocController()
 		case Map::Town:
 		{
 			std::cout << "Town" << std::endl;
+			MonsterFight();
 			SpeechPause();
 			DialogueSys();
 			ChoiceSys();
@@ -473,26 +480,34 @@ void MapSys::LocController()
 		}
 		case Map::Colosseum:
 		{
+			m_monster->CreateMonster(static_cast<int>(GetMapLoc()), "Slaughter");
 			std::cout << "Colusseum" << std::endl;
+			MonsterFight();
 			SpeechPause();
 			break;
 		}
 		case Map::DarkPortal:
 		{
+			m_monster->CreateMonster(static_cast<int>(GetMapLoc()), "Flatworm");
 			std::cout << "DarkPortal" << std::endl;
+			MonsterFight();
 			SpeechPause();
 			DialogueSys();
 			SetMapLoc(Map::CastleOfFire);
 			break;
 		}
 		case Map::CastleOfFire:
+			m_monster->CreateMonster(static_cast<int>(GetMapLoc()), "FireElemental");
 			std::cout << "CastleOfFire" << std::endl;
+			MonsterFight();
 			SpeechPause();
 			DialogueSys();
 			//bossfight here
 			break;//BOSS
 		case Map::DarkShore:
+			m_monster->CreateMonster(static_cast<int>(GetMapLoc()), "DarkAnemones");
 			std::cout << "Dark Shore" << std::endl;
+			MonsterFight();
 			SpeechPause();
 			DialogueSys();
 			break;//Bad ending
@@ -513,8 +528,7 @@ void MapSys::MonsterFight()
 	int combatOptions;
 	bool runAway = false;
 
-	std::cout << "In the forest, you are confronted by" << std::endl;
-	m_monster->CreateMonster(static_cast<int>(GetMapLoc()), "Rat");
+	std::cout << "You are confronted by " << m_monster->GetMonsterName() << std::endl;
 	m_monster->MonsterInfo();
 	m_player->PlayerInfo();
 

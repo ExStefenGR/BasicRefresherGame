@@ -149,7 +149,7 @@ void CharacterSys::SetName()
 
 void CharacterSys::PlayerInfo()
 {
-	std::cout << "Mana can now be used for skills" << std::endl;
+	//std::cout << "Mana can now be used for skills" << std::endl;
 	std::cout << "Player Name: " << GetName() << std::endl;
 	std::cout << "Player Attack: " << GetDamage() << std::endl;
 	std::cout << "Player Health points: " << GetHealthPoints() << std::endl;
