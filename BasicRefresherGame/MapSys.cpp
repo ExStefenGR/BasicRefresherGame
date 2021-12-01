@@ -27,14 +27,20 @@ MapSys::MapSys()
 	town.dialogue4 = "???: Arrive by nine tonight..";
 	town.dialogue5 = "That approach seemed frightening, although you now come across a colluseum..";
 	colosseum.dialogue1 = "You arrive at the colluseum, Choose what you would like to do..";
-	darkPortal.dialogue1 = "???: You're here, then let us go..";
+	darkPortal.dialogue1 = "Anna: You're here, then let us go..";
 	darkPortal.dialogue2 = "You have entered the Dark portal, Monsters await..";
+	castleOfFire.dialogue1 = "???: WHO DARES!?";
+	castleOfFire.dialogue2 = "Anna: There is no going back, the dark knight is here, I should have known..";
+	castleOfFire.dialogue3 = "Dark Knight: You did not know you were in MY DOMAIN?";
+	castleOfFire.dialogue4 = "There are geysers of magma around the castle of fire's ballroom...";
 	darkShore.dialogue1 = "???: You have arrived...";
 	darkShore.dialogue2 = "???: I did not expect you so soon...";
 	darkShore.dialogue3 = "???: Welcome to my realm, enjoy your stay..Eternally that is..";
 	darkShore.dialogue4 = "You find yourself in the shore, although something seems off, everything is dark and it seems like it is night-time..";
 	darkShore.dialogue5 = "You seem not to be able to see your reflection in the water...";
 	darkShore.dialogue6 = "???: Well, You are dead, what did you expect..?";
+	beach.dialogue1 = "You have defeated the Dark Knight and have awakened at the shore..";
+	beach.dialogue2 = "Game Over..";
 
 	dialogue.insert(std::pair<std::string, Area>("GameStart", gameStart));
 	dialogue.insert(std::pair<std::string, Area>("Beginning", beginning));
@@ -148,6 +154,11 @@ void MapSys::LocController()
 		case Map::DarkShore:
 			break;//Bad ending
 		case Map::Beach:
+			std::cout << "Beach" << std::endl;
+			SpeechPause();
+			DialogueSys(m_locations);
+			SetMapLoc(Map::Beach);
+			m_roomDone = true;
 			break;//Good ending
 		default:
 			std::cout << "Location Cotroller malfunction" << std::endl;
@@ -187,7 +198,7 @@ void MapSys::DialogueSys(Map& m_locations)
 		auto i = dialogue.find("Forest");
 		if (i != dialogue.end())
 		{
-			std::cout << i->second.dialogue1 << std::endl;
+		std::cout << i->second.dialogue1 << std::endl;
 			SpeechPause();
 		}
 		break;
@@ -276,6 +287,22 @@ void MapSys::DialogueSys(Map& m_locations)
 	}
 	case (Map::CastleOfFire):
 	{
+		for (const auto& i : dialogue)
+		{
+			auto it = i.first.find("CastleOfFire");
+			if (it != std::string::npos)
+			{
+				//If label is there iterate through text
+				std::cout << i.second.dialogue1 << std::endl;
+				SpeechPause();
+				std::cout << i.second.dialogue2 << std::endl;
+				SpeechPause();
+				std::cout << i.second.dialogue3 << std::endl;
+				SpeechPause();
+				std::cout << i.second.dialogue4 << std::endl;
+				SpeechPause();
+			}
+		}
 		break;
 	}
 	case (Map::DarkShore):
@@ -305,6 +332,18 @@ void MapSys::DialogueSys(Map& m_locations)
 	}
 	case (Map::Beach):
 	{
+		for (const auto& i : dialogue)
+		{
+			auto it = i.first.find("Beach");
+			if (it != std::string::npos)
+			{
+				//If label is there iterate through text
+				std::cout << i.second.dialogue1 << std::endl;
+				SpeechPause();
+				std::cout << i.second.dialogue2 << std::endl;
+				SpeechPause();
+			}
+		}
 		break;
 	}
 	default:
@@ -434,6 +473,10 @@ void MapSys::ChoiceSys(Map& m_locations)
 			}
 			}
 		}
+		break;
+	}
+	case (Map::Beach):
+	{
 		break;
 	}
 	default:
