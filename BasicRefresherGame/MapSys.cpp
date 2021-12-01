@@ -157,8 +157,7 @@ void MapSys::LocController()
 			std::cout << "Beach" << std::endl;
 			SpeechPause();
 			DialogueSys(m_locations);
-			SetMapLoc(Map::Beach);
-			m_roomDone = true;
+			system("exit");
 			break;//Good ending
 		default:
 			std::cout << "Location Cotroller malfunction" << std::endl;
@@ -271,38 +270,34 @@ void MapSys::DialogueSys(Map& m_locations)
 	}
 	case (Map::DarkPortal):
 	{
-		for (const auto& i : dialogue)
-		{
-			auto it = i.first.find("DarkPortal");
-			if (it != std::string::npos)
+		
+			auto i = dialogue.find("DarkPortal");
+			if (i != dialogue.end())
 			{
 				//If label is there iterate through text
-				std::cout << i.second.dialogue1 << std::endl;
+				std::cout << i->second.dialogue1 << std::endl;
 				SpeechPause();
-				std::cout << i.second.dialogue2 << std::endl;
+				std::cout << i->second.dialogue2 << std::endl;
 				SpeechPause();
 			}
-		}
 		break;
 	}
 	case (Map::CastleOfFire):
 	{
-		for (const auto& i : dialogue)
-		{
-			auto it = i.first.find("CastleOfFire");
-			if (it != std::string::npos)
+		
+			auto i = dialogue.find("CastleOfFire");
+			if (i != dialogue.end())
 			{
 				//If label is there iterate through text
-				std::cout << i.second.dialogue1 << std::endl;
+				std::cout << i->second.dialogue1 << std::endl;
 				SpeechPause();
-				std::cout << i.second.dialogue2 << std::endl;
+				std::cout << i->second.dialogue2 << std::endl;
 				SpeechPause();
-				std::cout << i.second.dialogue3 << std::endl;
+				std::cout << i->second.dialogue3 << std::endl;
 				SpeechPause();
-				std::cout << i.second.dialogue4 << std::endl;
+				std::cout << i->second.dialogue4 << std::endl;
 				SpeechPause();
 			}
-		}
 		break;
 	}
 	case (Map::DarkShore):
@@ -332,18 +327,17 @@ void MapSys::DialogueSys(Map& m_locations)
 	}
 	case (Map::Beach):
 	{
-		for (const auto& i : dialogue)
-		{
-			auto it = i.first.find("Beach");
-			if (it != std::string::npos)
+		
+			auto i = dialogue.find("Beach");
+			if (i != dialogue.end())
 			{
 				//If label is there iterate through text
-				std::cout << i.second.dialogue1 << std::endl;
+				std::cout << i->second.dialogue1 << std::endl;
 				SpeechPause();
-				std::cout << i.second.dialogue2 << std::endl;
+				std::cout << i->second.dialogue2 << std::endl;
 				SpeechPause();
 			}
-		}
+		
 		break;
 	}
 	default:
@@ -388,6 +382,7 @@ void MapSys::ChoiceSys(Map& m_locations)
 			default:
 			{
 				std::cout << "Choice is not there, try again.." << std::endl;
+				m_choiceMade = true;
 				break;
 			}
 			}
@@ -414,6 +409,7 @@ void MapSys::ChoiceSys(Map& m_locations)
 			{
 				SetMapLoc(Map::Town);
 				LocController();
+				m_choiceMade = true;
 				break;
 			}
 			case 2:
@@ -423,6 +419,7 @@ void MapSys::ChoiceSys(Map& m_locations)
 				//fight here then go to town
 				SetMapLoc(Map::Town);
 				LocController();
+				m_choiceMade = true;
 				break;
 			}
 			default:
@@ -478,6 +475,7 @@ void MapSys::ChoiceSys(Map& m_locations)
 	case (Map::Beach):
 	{
 		break;
+		m_choiceMade = true;
 	}
 	default:
 	{
