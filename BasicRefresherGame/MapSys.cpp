@@ -1,5 +1,6 @@
 #include "MapSys.h"
-//Programmed by Stefanos
+//Dialogue and locations programmed by Stefanos;
+//Combat programmed by Isaac and David
 //Last edited 20/10/21
 
 MapSys::MapSys()
