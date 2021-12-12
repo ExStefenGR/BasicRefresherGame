@@ -243,7 +243,6 @@ void MapSys::DialogueSys(Map& m_locations)
 			auto it = i.first.find("Town");
 			if (it != std::string::npos)
 			{
-				//If label is there iterate through text
 				std::cout << i.second.dialogue1 << std::endl;
 				SpeechPause();
 				std::cout << i.second.dialogue2 << std::endl;
@@ -274,7 +273,6 @@ void MapSys::DialogueSys(Map& m_locations)
 			auto i = dialogue.find("DarkPortal");
 			if (i != dialogue.end())
 			{
-				//If label is there iterate through text
 				std::cout << i->second.dialogue1 << std::endl;
 				SpeechPause();
 				std::cout << i->second.dialogue2 << std::endl;
@@ -288,7 +286,6 @@ void MapSys::DialogueSys(Map& m_locations)
 			auto i = dialogue.find("CastleOfFire");
 			if (i != dialogue.end())
 			{
-				//If label is there iterate through text
 				std::cout << i->second.dialogue1 << std::endl;
 				SpeechPause();
 				std::cout << i->second.dialogue2 << std::endl;
@@ -307,7 +304,6 @@ void MapSys::DialogueSys(Map& m_locations)
 			auto it = i.first.find("DarkShore");
 			if (it != std::string::npos)
 			{
-				//If label is there iterate through text
 				std::cout << i.second.dialogue1 << std::endl;
 				SpeechPause();
 				std::cout << i.second.dialogue2 << std::endl;
@@ -327,11 +323,9 @@ void MapSys::DialogueSys(Map& m_locations)
 	}
 	case (Map::Beach):
 	{
-		
 			auto i = dialogue.find("Beach");
 			if (i != dialogue.end())
 			{
-				//If label is there iterate through text
 				std::cout << i->second.dialogue1 << std::endl;
 				SpeechPause();
 				std::cout << i->second.dialogue2 << std::endl;
