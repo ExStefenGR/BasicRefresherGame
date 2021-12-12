@@ -67,28 +67,30 @@ MapSys::Map MapSys::SetMapLoc(Map NewLoc)
 }
 void MapSys::LocController()
 {
+	auto w = dialogue;
 	while (!m_roomDone)
 	{
 		switch (m_locations)
 		{
 		case Map::GameStart:
 		{
-			std::cout << "GameStart" << std::endl;
+			std::cout << "Player location: GameStart\n" << std::endl;
 			SpeechPause();
 			DialogueSys(m_locations);
+			//DialogueSys(GetMapLoc()); Function return m_locations, but it's non-const
 			m_player->SetCharacterClass();
 			SetMapLoc(Map::Beginning);
 			break;
 		}
 		case Map::Beginning:
 		{
-			std::cout << "Beginning" << std::endl;
+			std::cout << "Player location: Beginning\n" << std::endl;
 			DialogueSys(m_locations);
 			break;
 		}
 		case Map::Forest:
 		{
-			std::cout << "Forest" << std::endl;
+			std::cout << "Player location: Forest\n" << std::endl;
 			SpeechPause();
 			DialogueSys(m_locations);
 			SetMapLoc(Map::Port);
@@ -97,7 +99,7 @@ void MapSys::LocController()
 		}
 		case Map::Woods:
 		{
-			std::cout << "Woods" << std::endl;
+			std::cout << "Player location: Woods\n" << std::endl;
 			SpeechPause();
 			DialogueSys(m_locations);
 			SetMapLoc(Map::Shore);
@@ -105,7 +107,7 @@ void MapSys::LocController()
 		}
 		case Map::Port:
 		{
-			std::cout << "Port" << std::endl;
+			std::cout << "Player location: Port\n" << std::endl;
 			SpeechPause();
 			DialogueSys(m_locations);
 			ChoiceSys(m_locations);
@@ -116,7 +118,7 @@ void MapSys::LocController()
 		{
 			//add here dialogue that shows the item being in inventory
 			//Same Item as in Town Route for Shield and Magician
-			std::cout << "Shore" << std::endl;
+			std::cout << "Player location: Shore\n" << std::endl;
 			SpeechPause();
 			DialogueSys(m_locations);
 			SetMapLoc(Map::DarkPortal);
@@ -124,7 +126,7 @@ void MapSys::LocController()
 		}
 		case Map::Town:
 		{
-			std::cout << "Town" << std::endl;
+			std::cout << "Player location: Town\n" << std::endl;
 			SpeechPause();
 			DialogueSys(m_locations);
 			ChoiceSys(m_locations);
@@ -133,20 +135,20 @@ void MapSys::LocController()
 		}
 		case Map::Colosseum:
 		{
-			std::cout << "Colusseum" << std::endl;
+			std::cout << "Player location: Colusseum\n" << std::endl;
 			SpeechPause();
 			break;
 		}
 		case Map::DarkPortal:
 		{
-			std::cout << "DarkPortal" << std::endl;
+			std::cout << "Player location: DarkPortal\n" << std::endl;
 			SpeechPause();
 			DialogueSys(m_locations);
 			SetMapLoc(Map::CastleOfFire);
 			break;
 		}
 		case Map::CastleOfFire:
-			std::cout << "CastleOfFire" << std::endl;
+			std::cout << "Player location: CastleOfFire\n" << std::endl;
 			SpeechPause();
 			DialogueSys(m_locations);
 			SetMapLoc(Map::Beach);
@@ -154,13 +156,13 @@ void MapSys::LocController()
 		case Map::DarkShore:
 			break;//Bad ending
 		case Map::Beach:
-			std::cout << "Beach" << std::endl;
+			std::cout << "Player location: Beach\n" << std::endl;
 			SpeechPause();
 			DialogueSys(m_locations);
 			system("exit");
 			break;//Good ending
 		default:
-			std::cout << "Location Cotroller malfunction" << std::endl;
+			std::cout << "Player location: Location Cotroller malfunction\n" << std::endl;
 			break;
 		}
 	}

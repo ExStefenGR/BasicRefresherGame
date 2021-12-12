@@ -31,6 +31,7 @@ void CharacterSys::CreateCharacter()
 		SetManaPoints(+5);
 		SetHealthPoints(+15);
 		std::cout << "Damage, Health and Mana Increased" << std::endl;
+		std::cout << "Mana can now be used for skills" << std::endl;
 		//m_playerLocation.LocController();
 		break;
 	case 2:
@@ -39,6 +40,7 @@ void CharacterSys::CreateCharacter()
 		SetManaPoints(+15);
 		SetHealthPoints(+5);
 		std::cout << "Damage, Health and Mana Increased" << std::endl;
+		std::cout << "Mana can now be used for skills" << std::endl;
 		//m_playerLocation.LocController();
 		break;
 	case 3:
@@ -47,6 +49,7 @@ void CharacterSys::CreateCharacter()
 		SetManaPoints(+10);
 		SetHealthPoints(+10);
 		std::cout << "Damage, Health and Mana Increased" << std::endl;
+		std::cout << "Mana can now be used for skills" << std::endl;
 		//m_playerLocation.LocController();
 		break;
 	default:
@@ -137,7 +140,6 @@ int CharacterSys::GetCharacterClass()
 
 void CharacterSys::PlayerInfo()
 {
-	std::cout << "Mana can now be used for skills" << std::endl;
 	std::cout << "Player Name: " << GetName() << std::endl;
 	std::cout << "Player Attack: " << GetDamage() << std::endl;
 	std::cout << "Player Health points: " << GetHealthPoints() << std::endl;
@@ -146,13 +148,13 @@ void CharacterSys::PlayerInfo()
 	switch (GetSkills())
 	{
 	case Skills::Berserker:
-		std::cout << "Player Skill: Berserker" << std::endl;
+		std::cout << "Player Skill: Berserker\n" << std::endl;
 		break;
 	case Skills::Fireball:
-		std::cout << "Player Skill: Fireball" << std::endl;
+		std::cout << "Player Skill: Fireball\n" << std::endl;
 		break;
 	case Skills::ArrowShower:
-		std::cout << "Player Skill: ArrowShower" << std::endl;
+		std::cout << "Player Skill: ArrowShower\n" << std::endl;
 		break;
 	default:
 		break;
