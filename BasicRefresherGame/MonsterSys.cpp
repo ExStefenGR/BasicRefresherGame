@@ -5,14 +5,20 @@ MonsterSys::MonsterSys()
 {
 	m_isAlive = true;
 
-	m_maxMonsterHP = 20;
-	m_monsterDamage = 5;
+	m_maxMonsterHP = 10;
+	m_monsterDamage = 2;
 	m_monsterDefence = 1;
-	m_monsterHP = 20;
+	m_monsterHP = 10;
 }
 
 MonsterSys::~MonsterSys()
 {
+	m_isAlive = true;
+
+	m_maxMonsterHP = 10;
+	m_monsterDamage = 2;
+	m_monsterDefence = 1;
+	m_monsterHP = 10;
 }
 
 std::string MonsterSys::GetMonsterName()
@@ -50,6 +56,7 @@ void MonsterSys::MonsterInfo()
 	std::cout << "Monster Name: " << GetMonsterName() << std::endl;
 	std::cout << "Monster Attack: " << GetMonsterDamage() << std::endl;
 	std::cout << "Monster Health points: " << GetMonsterHealthPoints() << std::endl;
+	std::cout << "\n" << std::endl;
 }
 
 void MonsterSys::MonsterReceiveDamage(int playerDamage)
@@ -57,6 +64,10 @@ void MonsterSys::MonsterReceiveDamage(int playerDamage)
 	m_monsterHP = m_monsterHP - playerDamage;
 	if (m_monsterHP < 0)
 	{
+		m_monsterHP = 0;
 		m_isAlive = false;
+		std::cout << "Congratulations!! You won the fight. " << std::endl;
+		system("pause");
+		system("cls");
 	}
 }

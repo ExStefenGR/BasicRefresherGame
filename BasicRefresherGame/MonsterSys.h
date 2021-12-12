@@ -3,20 +3,6 @@
 
 class MonsterSys
 {
-	//TODO: Cannot use Enum to Name monsters/Characters, probably we need to include this enum in Mapsys as well as character classes? 
-	//TODO: Try making functions that contain information about the monsters instead to make the process simpler since Outside this class no other class can "know" what MonsterSys enums are
-	//enum class MonsterStats
-	//{
-	//	Rat = 1,
-	//	Snake = 2,
-	//	Wolf = 3,
-	//	Bear = 4,
-	//	Troll = 5,
-	//	Orc = 6,
-	//	Fire_Elemental = 7, //BOSS
-	//	Ice_Elemental = 8, //BOSS
-
-	//};
 
 public:
 
@@ -24,7 +10,7 @@ public:
 	~MonsterSys(); // monster destructor
 
 	std::string GetMonsterName();
-	
+
 	bool MonsterIsAlive() const; // return if monster is alive or not (dead 0 false - alive 1 true).
 
 	int GetMonsterDamage() const; // return monster damage

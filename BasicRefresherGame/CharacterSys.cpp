@@ -10,38 +10,83 @@ CharacterSys::CharacterSys()
 	CharacterSys::m_job = {};
 	CharacterSys::m_class = {};
 	CharacterSys::m_skill = {};
-	m_isAlive = true;
-	m_maxHealthPoints = 150;
-	m_healthPoints = m_maxHealthPoints;
+	m_healthPoints = 150;
 	m_manaPoints = 50;
 	m_damagePoints = 10;
 }
 
 CharacterSys::~CharacterSys() {}
 
-int CharacterSys::GetCharacterClass() const
+void CharacterSys::CreateCharacter()
 {
-	return m_class;
-}
+	std::cout << "Player name? " << std::endl;
+	SetName();
+	SetCharacterClass();
 
-int CharacterSys::GetDamage() const
-{
-	return m_damagePoints;
-}
-
-int CharacterSys::GetHealthPoints() const
-{
-	return m_healthPoints;
-}
-
-int CharacterSys::GetManaPoints() const
-{
-	return m_manaPoints;
+	switch (m_class)
+	{
+	case 1:
+		std::cout << "You have unlocked the sword, you're a Knight!" << std::endl;
+		SetDamage(+8);
+		SetManaPoints(+5);
+		SetHealthPoints(+15);
+		std::cout << "Damage, Health and Mana Increased" << std::endl;
+		std::cout << "Mana can now be used for skills" << std::endl;
+		//m_playerLocation.LocController();
+		break;
+	case 2:
+		std::cout << "You have unlocked the staff, you're a Mage!" << std::endl;
+		SetDamage(+4);
+		SetManaPoints(+15);
+		SetHealthPoints(+5);
+		std::cout << "Damage, Health and Mana Increased" << std::endl;
+		std::cout << "Mana can now be used for skills" << std::endl;
+		//m_playerLocation.LocController();
+		break;
+	case 3:
+		std::cout << "You have unlocked the bow, you're a Archer" << std::endl;
+		SetDamage(+6);
+		SetManaPoints(+10);
+		SetHealthPoints(+10);
+		std::cout << "Damage, Health and Mana Increased" << std::endl;
+		std::cout << "Mana can now be used for skills" << std::endl;
+		//m_playerLocation.LocController();
+		break;
+	default:
+		break;
+	}
 }
 
 std::string CharacterSys::GetName()
 {
 	return m_name;
+}
+
+void CharacterSys::SetName()
+{
+	std::string name;
+	std::cin >> name;
+	m_name = name;
+}
+
+void CharacterSys::SetDamage(int damagePoints)
+{
+	m_damagePoints += damagePoints;
+}
+
+int CharacterSys::GetDamage()
+{
+	return m_damagePoints;
+}
+
+void CharacterSys::SetHealthPoints(int healthPoints)
+{
+	m_healthPoints += healthPoints;
+}
+
+int CharacterSys::GetHealthPoints()
+{
+	return m_healthPoints;
 }
 
 CharacterSys::Skills CharacterSys::GetSkills()
@@ -58,50 +103,14 @@ CharacterSys::Skills CharacterSys::GetSkills()
 	}
 }
 
-void CharacterSys::CreateCharacter()
+void CharacterSys::SetManaPoints(int manaPoints)
 {
-	std::cout << "Player name? " << std::endl;
-	SetName();
-	SetCharacterClass();
-
-	switch (m_class)
-	{
-	case 1:
-		std::cout << "You have unlocked the sword, you're a Knight!" << std::endl;
-		SetDamage(+8);
-		SetManaPoints(+5);
-		SetHealthPoints(+15);
-		std::cout << "Damage, Health and Mana Increased" << std::endl;
-		//m_playerLocation.LocController();
-		break;
-	case 2:
-		std::cout << "You have unlocked the staff, you're a Mage!" << std::endl;
-		SetDamage(+4);
-		SetManaPoints(+15);
-		SetHealthPoints(+5);
-		std::cout << "Damage, Health and Mana Increased" << std::endl;
-		//m_playerLocation.LocController();
-		break;
-	case 3:
-		std::cout << "You have unlocked the bow, you're a Archer" << std::endl;
-		SetDamage(+6);
-		SetManaPoints(+10);
-		SetHealthPoints(+10);
-		std::cout << "Damage, Health and Mana Increased" << std::endl;
-		//m_playerLocation.LocController();
-		break;
-	default:
-		break;
-	}
+	m_manaPoints += manaPoints;
 }
 
-void CharacterSys::PlayerReceiveDamage(int monsterDamage)
+int CharacterSys::GetManaPoints()
 {
-	m_healthPoints -= monsterDamage;
-	if (m_healthPoints <= 0)
-	{
-		m_isAlive = false;
-	}
+	return m_manaPoints;
 }
 
 void CharacterSys::SetCharacterClass()
@@ -117,39 +126,20 @@ void CharacterSys::SetCharacterClass()
 		{
 			std::cin.clear();
 			while (std::cin.get() != '\n');
-			{
-				std::cout << "Invalid Input. Please type number." << std::endl;
-			}
+			std::cout << "Invalid Input!" << std::endl << std::endl;
+			continue;
+			std::cin >> m_class;
 		}
 	}
 }
 
-void CharacterSys::SetDamage(int damagePoints)
+int CharacterSys::GetCharacterClass()
 {
-	m_damagePoints += damagePoints;
-}
-
-void CharacterSys::SetHealthPoints(int healthPoints)
-{
-	m_maxHealthPoints += healthPoints;
-	m_healthPoints += healthPoints;
-}
-
-void CharacterSys::SetManaPoints(int manaPoints)
-{
-	m_manaPoints += manaPoints;
-}
-
-void CharacterSys::SetName()
-{
-	std::string name;
-	std::cin >> name;
-	m_name = name;
+	return m_class;
 }
 
 void CharacterSys::PlayerInfo()
 {
-	std::cout << "Mana can now be used for skills" << std::endl;
 	std::cout << "Player Name: " << GetName() << std::endl;
 	std::cout << "Player Attack: " << GetDamage() << std::endl;
 	std::cout << "Player Health points: " << GetHealthPoints() << std::endl;
@@ -158,13 +148,13 @@ void CharacterSys::PlayerInfo()
 	switch (GetSkills())
 	{
 	case Skills::Berserker:
-		std::cout << "Player Skill: Berserker" << std::endl;
+		std::cout << "Player Skill: Berserker\n" << std::endl;
 		break;
 	case Skills::Fireball:
-		std::cout << "Player Skill: Fireball" << std::endl;
+		std::cout << "Player Skill: Fireball\n" << std::endl;
 		break;
 	case Skills::ArrowShower:
-		std::cout << "Player Skill: ArrowShower" << std::endl;
+		std::cout << "Player Skill: ArrowShower\n" << std::endl;
 		break;
 	default:
 		break;

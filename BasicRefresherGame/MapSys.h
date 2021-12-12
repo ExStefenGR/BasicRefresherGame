@@ -3,7 +3,7 @@
 #include <map>
 #include <string>
 #include "CharacterSys.h"
-#include "MonsterSys.h"
+
 //Programmed by Stefanos
 //Last edited 20/10/21
 
@@ -25,16 +25,15 @@ public:
 		DarkShore,	//Bad ending
 		Beach //Good ending
 	};
+	Map m_locations;
 	MapSys();
 	~MapSys();
 	MapSys::Map GetMapLoc() const;
-	void ChoiceSys();
-	void CreateDialog();
-	void DialogueSys();
+	MapSys::Map SetMapLoc(Map NewLoc);
+	void DialogueSys(Map& m_locations);
+	void ChoiceSys(Map& m_locations);
 	void LocController();
-	void MonsterFight();
-	void SetMapLoc(Map newLocation);
-	void SpeechPause() const;
+	void MonsterFight(Map& m_locations);
 private:
 	struct Area
 	{
@@ -46,13 +45,13 @@ private:
 		std::string dialogue6;
 		std::string dialogue7;
 	};
-	CharacterSys *m_player;
-	MonsterSys* m_monster;
-	Map m_locations;
+
 	std::map<std::string, Area> dialogue;
+	CharacterSys* m_player;
 	bool m_choiceMade;
 	bool m_roomDone;
 	int m_getLocation;
 	int m_setLocation;
 	int m_choice;
+	void SpeechPause() const;
 };
