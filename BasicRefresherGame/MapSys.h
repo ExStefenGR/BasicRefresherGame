@@ -8,8 +8,7 @@
 //Last edited 20/10/21
 
 class MapSys
-{
-	
+{	
 public:
 	enum class Map
 	{
@@ -35,9 +34,7 @@ public:
 	void ChoiceSys(Map& m_locations);
 	void LocController();
 	void MonsterFight(Map& m_locations);
-
 private:
-
 	struct Area
 	{
 		std::string dialogue1;
@@ -50,11 +47,11 @@ private:
 	};
 
 	std::map<std::string, Area> dialogue;
+	CharacterSys* m_player;
 	bool m_choiceMade;
 	bool m_roomDone;
 	int m_getLocation;
 	int m_setLocation;
 	int m_choice;
-	CharacterSys* m_player;
 	void SpeechPause() const;
 };

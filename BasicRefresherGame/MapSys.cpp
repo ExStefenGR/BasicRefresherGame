@@ -1,6 +1,6 @@
 #include "MapSys.h"
-//Programmed by Stefanos
-//Last edited 20/10/21
+//Section fully Programmed by Stefanos
+//Last edited 12/12/21
 
 MapSys::MapSys()
 {
@@ -318,7 +318,6 @@ void MapSys::DialogueSys(Map& m_locations)
 				SpeechPause();
 			}
 		}
-
 		break;
 	}
 	case (Map::Beach):
@@ -331,7 +330,6 @@ void MapSys::DialogueSys(Map& m_locations)
 				std::cout << i->second.dialogue2 << std::endl;
 				SpeechPause();
 			}
-		
 		break;
 	}
 	default:

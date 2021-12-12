@@ -119,7 +119,14 @@ void CharacterSys::SetCharacterClass()
 		std::cout << "2. Staff" << std::endl;
 		std::cout << "3. Bow" << std::endl;
 
-		std::cin >> m_class;
+		if (!(std::cin >> m_class))
+		{
+			std::cin.clear();
+			while (std::cin.get() != '\n');
+			std::cout << "Invalid Input!" << std::endl << std::endl;
+			continue;
+			std::cin >> m_class;
+		}
 	}
 }
 
