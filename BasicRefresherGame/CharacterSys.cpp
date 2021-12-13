@@ -1,7 +1,6 @@
 //Character System by Isaac
 
 #include "CharacterSys.h"
-
 #include <string>
 #include <iostream>
 
@@ -10,13 +9,48 @@ CharacterSys::CharacterSys()
 	CharacterSys::m_job = {};
 	CharacterSys::m_class = {};
 	CharacterSys::m_skill = {};
-	m_healthPoints = 150;
+	m_isAlive = true;
+	m_maxHealthPoints = 150;
+	m_healthPoints = m_maxHealthPoints;
 	m_manaPoints = 50;
 	m_damagePoints = 10;
 }
-
-CharacterSys::~CharacterSys() {}
-
+CharacterSys::~CharacterSys() 
+{
+}
+int CharacterSys::GetCharacterClass() const
+{
+	return m_class;
+}
+int CharacterSys::GetDamage() const
+{
+	return m_damagePoints;
+}
+int CharacterSys::GetHealthPoints() const
+{
+	return m_healthPoints;
+}
+int CharacterSys::GetManaPoints() const
+{
+	return m_manaPoints;
+}
+std::string CharacterSys::GetName()
+{
+	return m_name;
+}
+CharacterSys::Skills CharacterSys::GetSkills()
+{
+	if (GetCharacterClass() == static_cast<int>(Job::Sword))
+	{
+		return Skills(Skills::Berserker);
+	}
+	else if (GetCharacterClass() == static_cast<int>(Job::Staff)) {
+		return Skills(Skills::Fireball);
+	}
+	else if (GetCharacterClass() == static_cast<int>(Job::Bow)) {
+		return Skills(Skills::ArrowShower);
+	}
+}
 void CharacterSys::CreateCharacter()
 {
 	std::cout << "Player name? " << std::endl;
@@ -31,7 +65,7 @@ void CharacterSys::CreateCharacter()
 		SetManaPoints(+5);
 		SetHealthPoints(+15);
 		std::cout << "Damage, Health and Mana Increased" << std::endl;
-		std::cout << "Mana can now be used for skills" << std::endl;
+		std::cout << "Mana can now be used for skills\n" << std::endl;
 		//m_playerLocation.LocController();
 		break;
 	case 2:
@@ -40,7 +74,7 @@ void CharacterSys::CreateCharacter()
 		SetManaPoints(+15);
 		SetHealthPoints(+5);
 		std::cout << "Damage, Health and Mana Increased" << std::endl;
-		std::cout << "Mana can now be used for skills" << std::endl;
+		std::cout << "Mana can now be used for skills\n" << std::endl;
 		//m_playerLocation.LocController();
 		break;
 	case 3:
@@ -49,70 +83,13 @@ void CharacterSys::CreateCharacter()
 		SetManaPoints(+10);
 		SetHealthPoints(+10);
 		std::cout << "Damage, Health and Mana Increased" << std::endl;
-		std::cout << "Mana can now be used for skills" << std::endl;
+		std::cout << "Mana can now be used for skills\n" << std::endl;
 		//m_playerLocation.LocController();
 		break;
 	default:
 		break;
 	}
 }
-
-std::string CharacterSys::GetName()
-{
-	return m_name;
-}
-
-void CharacterSys::SetName()
-{
-	std::string name;
-	std::cin >> name;
-	m_name = name;
-}
-
-void CharacterSys::SetDamage(int damagePoints)
-{
-	m_damagePoints += damagePoints;
-}
-
-int CharacterSys::GetDamage()
-{
-	return m_damagePoints;
-}
-
-void CharacterSys::SetHealthPoints(int healthPoints)
-{
-	m_healthPoints += healthPoints;
-}
-
-int CharacterSys::GetHealthPoints()
-{
-	return m_healthPoints;
-}
-
-CharacterSys::Skills CharacterSys::GetSkills()
-{
-	if (GetCharacterClass() == static_cast<int>(Job::Sword))
-	{
-		return Skills(Skills::Berserker);
-	}
-	else if (GetCharacterClass() == static_cast<int>(Job::Staff)) {
-		return Skills(Skills::Fireball);
-	}
-	else if (GetCharacterClass() == static_cast<int>(Job::Bow)) {
-		return Skills(Skills::ArrowShower);
-	}
-}
-
-void CharacterSys::SetManaPoints(int manaPoints)
-{
-	m_manaPoints += manaPoints;
-}
-
-int CharacterSys::GetManaPoints()
-{
-	return m_manaPoints;
-}
-
 void CharacterSys::SetCharacterClass()
 {
 	while (m_class < 1 || m_class > 3)
@@ -132,12 +109,24 @@ void CharacterSys::SetCharacterClass()
 		}
 	}
 }
-
-int CharacterSys::GetCharacterClass()
+void CharacterSys::SetDamage(int damagePoints)
 {
-	return m_class;
+	m_damagePoints += damagePoints;
 }
-
+void CharacterSys::SetHealthPoints(int healthPoints)
+{
+	m_healthPoints += healthPoints;
+}
+void CharacterSys::SetManaPoints(int manaPoints)
+{
+	m_manaPoints += manaPoints;
+}
+void CharacterSys::SetName()
+{
+	std::string name;
+	std::cin >> name;
+	m_name = name;
+}
 void CharacterSys::PlayerInfo()
 {
 	std::cout << "Player Name: " << GetName() << std::endl;
@@ -158,5 +147,13 @@ void CharacterSys::PlayerInfo()
 		break;
 	default:
 		break;
+	}
+}
+void CharacterSys::PlayerReceiveDamage(int monsterDamage)
+{
+	m_healthPoints -= monsterDamage;
+	if (m_healthPoints <= 0)
+	{
+		m_isAlive = false;
 	}
 }

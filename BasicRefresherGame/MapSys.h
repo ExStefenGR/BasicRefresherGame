@@ -3,9 +3,11 @@
 #include <map>
 #include <string>
 #include "CharacterSys.h"
+#include "MonsterSys.h"
 
 //Programmed by Stefanos
 //Last edited 20/10/21
+//MonsterFight() by David 
 
 class MapSys
 {
@@ -25,15 +27,17 @@ public:
 		DarkShore,	//Bad ending
 		Beach //Good ending
 	};
-	Map m_locations;
 	MapSys();
 	~MapSys();
 	MapSys::Map GetMapLoc() const;
 	MapSys::Map SetMapLoc(Map NewLoc);
-	void DialogueSys(Map& m_locations);
 	void ChoiceSys(Map& m_locations);
+	void CreateDialog();
+	void DialogueSys(Map& m_locations);
 	void LocController();
-	void MonsterFight(Map& m_locations);
+	void MonsterFight();
+	void SpeechPause() const;
+
 private:
 	struct Area
 	{
@@ -46,12 +50,15 @@ private:
 		std::string dialogue7;
 	};
 
-	std::map<std::string, Area> dialogue;
-	CharacterSys* m_player;
 	bool m_choiceMade;
 	bool m_roomDone;
 	int m_getLocation;
 	int m_setLocation;
 	int m_choice;
-	void SpeechPause() const;
+
+	std::map<std::string, Area> dialogue;
+
+	CharacterSys* m_player;
+	Map m_locations;
+	MonsterSys* m_monster;
 };
