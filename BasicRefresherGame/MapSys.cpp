@@ -9,6 +9,7 @@ MapSys::MapSys()
 	m_choiceMade = false;
 	m_getLocation = 0;
 	m_locations = Map::GameStart;
+	m_lastLocation = Map::GameStart;
 	m_roomDone = false;
 	m_setLocation = 0;
 	
@@ -22,6 +23,8 @@ MapSys::MapSys()
 
 	//Dialogue
 	CreateDialog();
+
+	SpeechPause();
 	
 }
 MapSys::~MapSys() 
@@ -29,11 +32,6 @@ MapSys::~MapSys()
 }
 MapSys::Map MapSys::GetMapLoc() const
 {
-	return m_locations;
-}
-MapSys::Map MapSys::SetMapLoc(Map NewLoc)
-{
-	m_locations = NewLoc;
 	return m_locations;
 }
 void MapSys::ChoiceSys(Map& m_locations)
@@ -401,12 +399,13 @@ void MapSys::LocController()
 		{
 		case Map::GameStart:
 		{
+			system("cls");
 			std::cout << "Player location: GameStart\n" << std::endl;
-			SpeechPause();
 			DialogueSys(m_locations);
 			//DialogueSys(GetMapLoc()); Function return m_locations, but it's non-const
 			m_player->SetCharacterClass();
 			SetMapLoc(Map::Beginning);
+			SpeechPause();
 			break;
 		}
 		case Map::Beginning:
@@ -415,13 +414,14 @@ void MapSys::LocController()
 			m_monster->CreateMonster(static_cast<int>(GetMapLoc()), "Ratta");
 			MonsterFight();
 			DialogueSys(m_locations);
+			SpeechPause();
 			break;
 		}
 		case Map::Forest:
 		{
+			system("cls");
 			std::cout << "Player location: Forest\n" << std::endl;
-			m_monster->CreateMonster(static_cast<int>(GetMapLoc()), "Mykites");
-			SpeechPause();
+			m_monster->CreateMonster(static_cast<int>(GetMapLoc()), "Slime");
 			DialogueSys(m_locations);
 			SpeechPause();
 			MonsterFight();
@@ -430,20 +430,20 @@ void MapSys::LocController()
 		}
 		case Map::Woods:
 		{
+			system("cls");
 			std::cout << "Player location: Woods\n" << std::endl;
 			m_monster->CreateMonster(static_cast<int>(GetMapLoc()), "Aracno");
 			MonsterFight();
-			SpeechPause();
 			DialogueSys(m_locations);
 			SetMapLoc(Map::Shore);
 			break;
 		}
 		case Map::Port:
 		{
+			SpeechPause();
 			std::cout << "Player location: Port\n" << std::endl;
 			m_monster->CreateMonster(static_cast<int>(GetMapLoc()), "Nudibranch");
 			MonsterFight();
-			SpeechPause();
 			DialogueSys(m_locations);
 			ChoiceSys(m_locations);
 			SetMapLoc(Map::Town);
@@ -521,35 +521,45 @@ void MapSys::MonsterFight()
 	bool runAway = false;
 
 	std::cout << "You are confronted by " << m_monster->GetMonsterName() << std::endl;
-	m_monster->MonsterInfo();
-	m_player->PlayerInfo();
 
 	//std::cout << m_monster->MonsterIsAlive() << std::endl;
 	//std::cout << runAway << std::endl;
 
 	while (m_monster->MonsterIsAlive() && runAway == false)
 	{
+		m_monster->MonsterInfo();
+
 		std::cout << "Select an option:" << std::endl;
 		std::cout << "1: Attack" << std::endl;
 		std::cout << "2: Run" << std::endl;
+		std::cout << "3: Player Stats" << std::endl;
 		std::cin >> combatOptions;
 		switch (combatOptions)
 		{
 		case 1:
 			//m_player->GetDamage();
 			m_monster->MonsterReceiveDamage(m_player->GetDamage());
-			m_player->PlayerReceiveDamage(m_monster->GetMonsterDamage());
-			m_monster->MonsterInfo();
-			m_player->PlayerInfo();
+			if(m_monster->MonsterIsAlive())
+			{
+				m_player->PlayerReceiveDamage(m_monster->GetMonsterDamage(), runAway);
+			}
+			//m_player->PlayerInfo();
 			break;
 		case 2:
-			m_player->PlayerReceiveDamage(m_monster->GetMonsterDamage());
-			m_player->PlayerInfo();
-			std::cout << "You just book it" << std::endl;
 			runAway = true;
+			m_player->PlayerReceiveDamage(m_monster->GetMonsterDamage(), runAway);
+			//m_player->PlayerInfo();
+			std::cout << "You just book it" << std::endl;
+			SetMapLoc(m_lastLocation);
 			m_monster->~MonsterSys();
 			break;
+		case 3:
+			system("cls");
+			m_player->PlayerInfo();
+			SpeechPause();
+			break;
 		default:
+			std::cout << "Unespected case in fight." << std::endl;
 			break;
 		}
 	}
@@ -558,7 +568,11 @@ void MapSys::MonsterFight()
 	//m_monster->MonsterReceiveDamage(m_player->GetDamage()); --Deal damage to monster according to player damage.
 	//m_monster->MonsterIsAlive(); --return if monster is dead or not.
 }
-
+void MapSys::SetMapLoc(Map NewLoc)
+{
+	m_lastLocation = m_locations;
+	m_locations = NewLoc;
+}
 void MapSys::SpeechPause() const
 {
 	system("pause");

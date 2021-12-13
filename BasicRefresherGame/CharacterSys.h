@@ -34,7 +34,7 @@ public:
 	void SetManaPoints(int manaPoints);
 	void SetName();
 	void PlayerInfo();
-	void PlayerReceiveDamage(int monsterDamage);
+	void PlayerReceiveDamage(int monsterDamage, bool runAway);
 
 private:
 	bool m_isAlive;
@@ -43,6 +43,7 @@ private:
 	int m_healthPoints;
 	int m_manaPoints;
 	int m_maxHealthPoints;
+	int m_maxManaPoints;
 	Job m_job;
 	Skills m_skill;
 	std::string m_name;

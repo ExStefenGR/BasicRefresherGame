@@ -11,8 +11,9 @@ CharacterSys::CharacterSys()
 	CharacterSys::m_skill = {};
 	m_isAlive = true;
 	m_maxHealthPoints = 150;
+	m_maxManaPoints = 50;
 	m_healthPoints = m_maxHealthPoints;
-	m_manaPoints = 50;
+	m_manaPoints = m_maxManaPoints;
 	m_damagePoints = 10;
 }
 CharacterSys::~CharacterSys() 
@@ -115,10 +116,12 @@ void CharacterSys::SetDamage(int damagePoints)
 }
 void CharacterSys::SetHealthPoints(int healthPoints)
 {
+	m_maxHealthPoints += healthPoints;
 	m_healthPoints += healthPoints;
 }
 void CharacterSys::SetManaPoints(int manaPoints)
 {
+	m_maxManaPoints += manaPoints;
 	m_manaPoints += manaPoints;
 }
 void CharacterSys::SetName()
@@ -129,31 +132,43 @@ void CharacterSys::SetName()
 }
 void CharacterSys::PlayerInfo()
 {
-	std::cout << "Player Name: " << GetName() << std::endl;
-	std::cout << "Player Attack: " << GetDamage() << std::endl;
-	std::cout << "Player Health points: " << GetHealthPoints() << std::endl;
-	std::cout << "Player Mana points: " << GetManaPoints() << std::endl;
-
+	std::cout << "#========================PLAYER STATS========================#" << std::endl;
+	std::cout << "# Name   # " << GetName() << std::endl;
+	std::cout << "# Attack # " << GetDamage() << std::endl;
+	std::cout << "# Health # " << GetHealthPoints() << "/" << m_maxHealthPoints << std::endl;
+	std::cout << "# Mana   # " << GetManaPoints() << "/" << m_maxManaPoints  << std::endl;
+	
 	switch (GetSkills())
 	{
 	case Skills::Berserker:
-		std::cout << "Player Skill: Berserker\n" << std::endl;
+		std::cout << "# Skill  # Berserker" << std::endl;
 		break;
 	case Skills::Fireball:
-		std::cout << "Player Skill: Fireball\n" << std::endl;
+		std::cout << "# Skill  # Fireball" << std::endl;
 		break;
 	case Skills::ArrowShower:
-		std::cout << "Player Skill: ArrowShower\n" << std::endl;
+		std::cout << "# Skill  # ArrowShower" << std::endl;
 		break;
 	default:
 		break;
 	}
+	std::cout << "#============================================================#\n" << std::endl;
 }
-void CharacterSys::PlayerReceiveDamage(int monsterDamage)
+void CharacterSys::PlayerReceiveDamage(int monsterDamage, bool runAway)
 {
-	m_healthPoints -= monsterDamage;
-	if (m_healthPoints <= 0)
+	if (runAway)
 	{
-		m_isAlive = false;
+		std::cout << "You tried to run but took " << monsterDamage << " damage." << std::endl;
+	}
+	else
+	{
+		std::cout << "Monster deal " << monsterDamage << " damage." << std::endl;
+		m_healthPoints -= monsterDamage;
+		if (m_healthPoints <= 0)
+		{
+			m_isAlive = false;
+		}
+		system("pause");
+		system("cls");
 	}
 }

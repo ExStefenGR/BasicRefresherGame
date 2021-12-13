@@ -30,12 +30,12 @@ public:
 	MapSys();
 	~MapSys();
 	MapSys::Map GetMapLoc() const;
-	MapSys::Map SetMapLoc(Map NewLoc);
 	void ChoiceSys(Map& m_locations);
 	void CreateDialog();
 	void DialogueSys(Map& m_locations);
 	void LocController();
 	void MonsterFight();
+	void SetMapLoc(Map NewLoc);
 	void SpeechPause() const;
 
 private:
@@ -59,6 +59,7 @@ private:
 	std::map<std::string, Area> dialogue;
 
 	CharacterSys* m_player;
+	Map m_lastLocation;
 	Map m_locations;
 	MonsterSys* m_monster;
 };
