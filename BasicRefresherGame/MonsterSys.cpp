@@ -62,7 +62,7 @@ void MonsterSys::MonsterInfo()
 void MonsterSys::MonsterReceiveDamage(int playerDamage)
 {
 	m_monsterHP = m_monsterHP - playerDamage;
-	if (m_monsterHP < 0)
+	if (m_monsterHP <= 0)
 	{
 		m_monsterHP = 0;
 		m_isAlive = false;

@@ -19,6 +19,10 @@ CharacterSys::CharacterSys()
 CharacterSys::~CharacterSys() 
 {
 }
+bool CharacterSys::IsAlive()
+{
+	return m_isAlive;
+}
 int CharacterSys::GetCharacterClass() const
 {
 	return m_class;
@@ -166,8 +170,13 @@ void CharacterSys::PlayerReceiveDamage(int monsterDamage, bool runAway)
 		m_healthPoints -= monsterDamage;
 		if (m_healthPoints <= 0)
 		{
+			m_healthPoints = 0;
 			m_isAlive = false;
+			
+			std::cout << "YOU ARE DEAD.\n" << std::endl;
 		}
+		
+		
 		system("pause");
 		system("cls");
 	}

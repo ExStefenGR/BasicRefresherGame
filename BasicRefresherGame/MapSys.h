@@ -25,7 +25,8 @@ public:
 		DarkPortal,
 		CastleOfFire, //BOSS
 		DarkShore,	//Bad ending
-		Beach //Good ending
+		Beach, //Good ending
+		Win // Player win the game
 	};
 	MapSys();
 	~MapSys();

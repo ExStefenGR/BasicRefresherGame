@@ -504,9 +504,14 @@ void MapSys::LocController()
 			break;//Bad ending
 		case Map::Beach:
 			std::cout << "Player location: Beach\n" << std::endl;
-			SpeechPause();
 			DialogueSys(m_locations);
-			system("exit");
+			SpeechPause();
+			SetMapLoc(Map::Win);
+			break;//Good ending
+		case Map::Win:
+			std::cout << "WINNER WINNER CHICKEN DINNER!!\n" << std::endl;
+			SpeechPause();
+			m_roomDone = true;
 			break;//Good ending
 		default:
 			std::cout << "Player location: Location Cotroller malfunction\n" << std::endl;
@@ -525,7 +530,7 @@ void MapSys::MonsterFight()
 	//std::cout << m_monster->MonsterIsAlive() << std::endl;
 	//std::cout << runAway << std::endl;
 
-	while (m_monster->MonsterIsAlive() && runAway == false)
+	while (m_monster->MonsterIsAlive() && runAway == false && m_player->IsAlive())
 	{
 		m_monster->MonsterInfo();
 

@@ -21,6 +21,7 @@ public:
 	CharacterSys();
 	~CharacterSys();
 
+	bool IsAlive();
 	int GetCharacterClass() const;
 	int GetDamage() const; // return the damage points of a character
 	int GetHealthPoints() const; // return the actual health of the character
