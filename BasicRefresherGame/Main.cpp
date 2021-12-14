@@ -6,6 +6,8 @@
   -multiple paths, some harder and more rewarding, others easier with less rewards
   */
 
+//TODO PUT names on whatever we made
+
 #include <iostream>
 #include <string>
 #include "CharacterSys.h"

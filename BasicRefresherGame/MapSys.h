@@ -31,12 +31,12 @@ public:
 	MapSys();
 	~MapSys();
 	MapSys::Map GetMapLoc() const;
-	void ChoiceSys(Map& m_locations);
-	void CreateDialog();
-	void DialogueSys(Map& m_locations);
+	void ChoiceSys(Map& locations); // TODO Make it const
+	void CreateDialog(); // TODO Make it const
+	void DialogueSys(Map& locations); // TODO Make it const
 	void LocController();
 	void MonsterFight();
-	void SetMapLoc(Map NewLoc);
+	void SetMapLoc(const Map& NewLoc);
 	void SpeechPause() const;
 
 private:

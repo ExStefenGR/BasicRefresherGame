@@ -34,7 +34,7 @@ MapSys::Map MapSys::GetMapLoc() const
 {
 	return m_locations;
 }
-void MapSys::ChoiceSys(Map& m_locations)
+void MapSys::ChoiceSys(Map& locations)
 {
 	switch (m_locations)
 	{
@@ -219,7 +219,7 @@ void MapSys::CreateDialog()
 	dialogue.insert(std::pair<std::string, Area>("DarkShore", darkShore));
 	dialogue.insert(std::pair<std::string, Area>("Beach", beach));
 }
-void MapSys::DialogueSys(Map& m_locations)
+void MapSys::DialogueSys(Map& locations)
 {
 	switch (GetMapLoc())
 	{
@@ -573,8 +573,9 @@ void MapSys::MonsterFight()
 	//m_monster->MonsterReceiveDamage(m_player->GetDamage()); --Deal damage to monster according to player damage.
 	//m_monster->MonsterIsAlive(); --return if monster is dead or not.
 }
-void MapSys::SetMapLoc(Map NewLoc)
+void MapSys::SetMapLoc(const Map& NewLoc)
 {
+	//TODO const and reference to Map
 	m_lastLocation = m_locations;
 	m_locations = NewLoc;
 }

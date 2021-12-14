@@ -21,20 +21,20 @@ public:
 	CharacterSys();
 	~CharacterSys();
 
-	bool IsAlive();
+	bool IsAlive(); // make it const
 	int GetCharacterClass() const;
 	int GetDamage() const; // return the damage points of a character
 	int GetHealthPoints() const; // return the actual health of the character
 	int GetManaPoints() const;
-	std::string GetName();
-	Skills GetSkills();
-	void CreateCharacter();
+	std::string GetName(); // make it const
+	Skills GetSkills(); // make it const
+	void CreateCharacter(); 
 	void SetCharacterClass();
 	void SetDamage(int damagePoints);
 	void SetHealthPoints(int healthPoints);
 	void SetManaPoints(int manaPoints);
 	void SetName();
-	void PlayerInfo();
+	void PlayerInfo(); // make it const
 	void PlayerReceiveDamage(int monsterDamage, bool runAway);
 
 private:
