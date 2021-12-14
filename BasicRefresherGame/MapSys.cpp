@@ -537,7 +537,7 @@ void MapSys::MonsterFight()
 		std::cout << "Select an option:" << std::endl;
 		std::cout << "1: Attack" << std::endl;
 		std::cout << "2: Run" << std::endl;
-		std::cout << "3: Player Stats" << std::endl;
+		//std::cout << "3: Player Stats" << std::endl;
 		std::cin >> combatOptions;
 		switch (combatOptions)
 		{
@@ -548,21 +548,21 @@ void MapSys::MonsterFight()
 			{
 				m_player->PlayerReceiveDamage(m_monster->GetMonsterDamage(), runAway);
 			}
-			//m_player->PlayerInfo();
+			m_player->PlayerInfo();
 			break;
 		case 2:
 			runAway = true;
 			m_player->PlayerReceiveDamage(m_monster->GetMonsterDamage(), runAway);
-			//m_player->PlayerInfo();
+			m_player->PlayerInfo();
 			std::cout << "You just book it" << std::endl;
 			SetMapLoc(m_lastLocation);
 			m_monster->~MonsterSys();
 			break;
-		case 3:
+		/*case 3:
 			system("cls");
 			m_player->PlayerInfo();
 			SpeechPause();
-			break;
+			break;*/
 		default:
 			std::cout << "Unespected case in fight." << std::endl;
 			break;
