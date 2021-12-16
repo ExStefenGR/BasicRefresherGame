@@ -1,6 +1,7 @@
 #include "MapSys.h"
-//Section fully Programmed by Stefanos
-//Last edited 16/12/21
+//Locations and dialogue fully Programmed by Stefanos
+//Combat programmed by David and Isaac
+//Last edited 12/12/21
 
 MapSys::MapSys()
 {
@@ -542,7 +543,6 @@ void MapSys::MonsterFight()
 		switch (combatOptions)
 		{
 		case 1:
-			//m_player->GetDamage();
 			m_monster->MonsterReceiveDamage(m_player->GetDamage());
 			if(m_monster->MonsterIsAlive())
 			{
