@@ -59,7 +59,7 @@ void MonsterSys::MonsterInfo() const
 	std::cout << "\n" << std::endl;
 }
 
-void MonsterSys::MonsterReceiveDamage(int playerDamage)
+void MonsterSys::MonsterReceiveDamage(const int playerDamage)
 {
 	m_monsterHP = m_monsterHP - playerDamage;
 	if (m_monsterHP <= 0)

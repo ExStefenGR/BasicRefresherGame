@@ -19,7 +19,7 @@ CharacterSys::CharacterSys()
 CharacterSys::~CharacterSys() 
 {
 }
-bool CharacterSys::IsAlive()
+bool CharacterSys::IsAlive() const
 {
 	return m_isAlive;
 }
@@ -155,7 +155,7 @@ void CharacterSys::PlayerInfo() const
 	}
 	std::cout << "#============================================================#\n" << std::endl;
 }
-void CharacterSys::PlayerReceiveDamage(int monsterDamage, bool runAway)
+void CharacterSys::PlayerReceiveDamage(const int monsterDamage, const bool runAway)
 {
 	if (runAway)
 	{

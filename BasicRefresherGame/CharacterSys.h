@@ -21,7 +21,7 @@ public:
 	CharacterSys();
 	~CharacterSys();
 
-	bool IsAlive(); // make it const
+	bool IsAlive() const; // make it const
 	int GetCharacterClass() const;
 	int GetDamage() const; // return the damage points of a character
 	int GetHealthPoints() const; // return the actual health of the character
@@ -35,7 +35,7 @@ public:
 	void SetManaPoints(int manaPoints);
 	void SetName();
 	void PlayerInfo() const; // make it const
-	void PlayerReceiveDamage(int monsterDamage, bool runAway);
+	void PlayerReceiveDamage(const int monsterDamage, const bool runAway);
 
 private:
 	bool m_isAlive;

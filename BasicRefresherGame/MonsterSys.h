@@ -16,7 +16,7 @@ public:
 	int GetMonsterHealthPoints() const; //return monster health points
 	void CreateMonster(const int monsterStats, const std::string& monsterName); //TODO make paramenters const
 	void MonsterInfo() const;
-	void MonsterReceiveDamage(int playerDamage); // deal damage to monster
+	void MonsterReceiveDamage(const int playerDamage); // deal damage to monster
 
 private:
 	bool m_isAlive;
