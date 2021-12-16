@@ -1,6 +1,6 @@
 #include "MapSys.h"
 //Section fully Programmed by Stefanos
-//Last edited 12/12/21
+//Last edited 16/12/21
 
 MapSys::MapSys()
 {
@@ -34,7 +34,7 @@ MapSys::Map MapSys::GetMapLoc() const
 {
 	return m_locations;
 }
-void MapSys::ChoiceSys(Map& locations)
+void MapSys::ChoiceSys(const Map& locations)
 {
 	switch (m_locations)
 	{
@@ -219,7 +219,7 @@ void MapSys::CreateDialog()
 	dialogue.insert(std::pair<std::string, Area>("DarkShore", darkShore));
 	dialogue.insert(std::pair<std::string, Area>("Beach", beach));
 }
-void MapSys::DialogueSys(Map& locations)
+void MapSys::DialogueSys(const Map& locations)
 {
 	switch (GetMapLoc())
 	{

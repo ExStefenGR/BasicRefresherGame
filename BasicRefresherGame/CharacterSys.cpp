@@ -39,11 +39,11 @@ int CharacterSys::GetManaPoints() const
 {
 	return m_manaPoints;
 }
-std::string CharacterSys::GetName()
+std::string CharacterSys::GetName() const
 {
 	return m_name;
 }
-CharacterSys::Skills CharacterSys::GetSkills()
+CharacterSys::Skills CharacterSys::GetSkills() const
 {
 	if (GetCharacterClass() == static_cast<int>(Job::Sword))
 	{
@@ -71,7 +71,6 @@ void CharacterSys::CreateCharacter()
 		SetHealthPoints(+15);
 		std::cout << "Damage, Health and Mana Increased" << std::endl;
 		std::cout << "Mana can now be used for skills\n" << std::endl;
-		//m_playerLocation.LocController();
 		break;
 	case 2:
 		std::cout << "You have unlocked the staff, you're a Mage!" << std::endl;
@@ -80,7 +79,6 @@ void CharacterSys::CreateCharacter()
 		SetHealthPoints(+5);
 		std::cout << "Damage, Health and Mana Increased" << std::endl;
 		std::cout << "Mana can now be used for skills\n" << std::endl;
-		//m_playerLocation.LocController();
 		break;
 	case 3:
 		std::cout << "You have unlocked the bow, you're a Archer" << std::endl;
@@ -89,7 +87,6 @@ void CharacterSys::CreateCharacter()
 		SetHealthPoints(+10);
 		std::cout << "Damage, Health and Mana Increased" << std::endl;
 		std::cout << "Mana can now be used for skills\n" << std::endl;
-		//m_playerLocation.LocController();
 		break;
 	default:
 		break;
@@ -134,7 +131,7 @@ void CharacterSys::SetName()
 	std::cin >> name;
 	m_name = name;
 }
-void CharacterSys::PlayerInfo()
+void CharacterSys::PlayerInfo() const
 {
 	std::cout << "#========================PLAYER STATS========================#" << std::endl;
 	std::cout << "# Name   # " << GetName() << std::endl;

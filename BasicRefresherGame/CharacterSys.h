@@ -26,15 +26,15 @@ public:
 	int GetDamage() const; // return the damage points of a character
 	int GetHealthPoints() const; // return the actual health of the character
 	int GetManaPoints() const;
-	std::string GetName(); // make it const
-	Skills GetSkills(); // make it const
+	std::string GetName() const; // make it const
+	Skills GetSkills() const; // make it const
 	void CreateCharacter(); 
 	void SetCharacterClass();
 	void SetDamage(int damagePoints);
 	void SetHealthPoints(int healthPoints);
 	void SetManaPoints(int manaPoints);
 	void SetName();
-	void PlayerInfo(); // make it const
+	void PlayerInfo() const; // make it const
 	void PlayerReceiveDamage(int monsterDamage, bool runAway);
 
 private:

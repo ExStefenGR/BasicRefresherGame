@@ -6,7 +6,7 @@
 #include "MonsterSys.h"
 
 //Programmed by Stefanos
-//Last edited 20/10/21
+//Last edited 16/12/21
 //MonsterFight() by David 
 
 class MapSys
@@ -31,9 +31,9 @@ public:
 	MapSys();
 	~MapSys();
 	MapSys::Map GetMapLoc() const;
-	void ChoiceSys(Map& locations); // TODO Make it const
-	void CreateDialog(); // TODO Make it const
-	void DialogueSys(Map& locations); // TODO Make it const
+	void ChoiceSys(const Map& locations);
+	void CreateDialog(); 
+	void DialogueSys(const Map& locations);
 	void LocController();
 	void MonsterFight();
 	void SetMapLoc(const Map& NewLoc);

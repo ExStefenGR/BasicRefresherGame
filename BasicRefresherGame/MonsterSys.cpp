@@ -21,7 +21,7 @@ MonsterSys::~MonsterSys()
 	m_monsterHP = 10;
 }
 
-std::string MonsterSys::GetMonsterName()
+std::string MonsterSys::GetMonsterName() const
 {
 	return m_monsterName;
 }
@@ -41,7 +41,7 @@ int MonsterSys::GetMonsterHealthPoints() const
 	return m_monsterHP;
 }
 
-void MonsterSys::CreateMonster(int monsterStats, const std::string& monsterName)
+void MonsterSys::CreateMonster(const int monsterStats, const std::string& monsterName)
 {
 	m_monsterName = monsterName;
 
@@ -51,7 +51,7 @@ void MonsterSys::CreateMonster(int monsterStats, const std::string& monsterName)
 	m_monsterHP = m_monsterHP * monsterStats;
 }
 
-void MonsterSys::MonsterInfo()
+void MonsterSys::MonsterInfo() const
 {
 	std::cout << "Monster Name: " << GetMonsterName() << std::endl;
 	std::cout << "Monster Attack: " << GetMonsterDamage() << std::endl;
