@@ -235,6 +235,7 @@ void MapSys::DialogueSys(const Map& locations)
 			SpeechPause();
 		}
 		ChoiceSys(m_locations);
+		break;
 	}
 	case (Map::Forest):
 	{
@@ -307,6 +308,7 @@ void MapSys::DialogueSys(const Map& locations)
 			SpeechPause();
 		}
 		ChoiceSys(m_locations);
+		break;
 	}
 	case (Map::DarkPortal):
 	{
