@@ -8,6 +8,7 @@
 //Programmed by Stefanos
 //Last edited 16/12/21
 //MonsterFight() by David 
+//CharacterSys() by Isaac
 
 class MapSys
 {
@@ -17,16 +18,16 @@ public:
 		GameStart,
 		Beginning,
 		Forest,
-		Woods, //Bad choice but rewarding fight if won?
+		Woods,
 		Port,
-		Shore, //Secret item?
-		Town,	//SafeArea
-		Colosseum, //Training Area for XP
+		Shore,
+		Town,
+		Colosseum,
 		DarkPortal,
-		CastleOfFire, //BOSS
-		DarkShore,	//Bad ending
-		Beach, //Good ending
-		Win // Player win the game
+		CastleOfFire,
+		DarkShore,
+		Beach,
+		Win
 	};
 	MapSys();
 	~MapSys();
@@ -38,7 +39,6 @@ public:
 	void MonsterFight();
 	void SetMapLoc(const Map& NewLoc);
 	void SpeechPause() const;
-
 private:
 	struct Area
 	{

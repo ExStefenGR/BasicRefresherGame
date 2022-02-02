@@ -24,9 +24,7 @@ MapSys::MapSys()
 
 	//Dialogue
 	CreateDialog();
-
 	SpeechPause();
-	
 }
 MapSys::~MapSys() 
 {
@@ -179,7 +177,6 @@ void MapSys::CreateDialog()
 	gameStart.dialogue1 = "Welcome to <DungeonTexter>, A text RPG made by Stefanos, Isaac and David!";
 	beginning.dialogue1 = "You find yourself in the middle of nowhere, You have 2 Paths, choose wisely..";
 	forest.dialogue1 = "Slime has ambushed you!";
-	woods.dialogue1 = "???:(Grizly bear sounds)";
 	port.dialogue1 = "You arrive at the port and spot a human ready to depart but he stops and waves at you..";
 	shore.dialogue1 = "You are now at the shore after fighting that weird monster, You look beneath youand find an item in the sand";
 	town.dialogue1 = "You have arrived at the Local Town with the help of the Boat-Man";
@@ -262,9 +259,6 @@ void MapSys::DialogueSys(const Map& locations)
 			std::cout << i->second.dialogue1 << std::endl;
 			SpeechPause();
 		}
-		//TODO:Big bear Fight here
-		//TODO:Make him have High def and low HP but higher Attack than slime
-		//std::cout << "Your strength has increased!" << std::endl;
 		break;
 	}
 	case (Map::Port):
@@ -321,7 +315,6 @@ void MapSys::DialogueSys(const Map& locations)
 	}
 	case (Map::DarkPortal):
 	{
-
 		auto i = dialogue.find("DarkPortal");
 		if (i != dialogue.end())
 		{
@@ -403,7 +396,6 @@ void MapSys::LocController()
 			system("cls");
 			std::cout << "Player location: GameStart\n" << std::endl;
 			DialogueSys(m_locations);
-			//DialogueSys(GetMapLoc()); Function return m_locations, but it's non-const
 			m_player->SetCharacterClass();
 			SetMapLoc(Map::Beginning);
 			SpeechPause();
@@ -527,9 +519,6 @@ void MapSys::MonsterFight()
 	bool runAway = false;
 
 	std::cout << "You are confronted by " << m_monster->GetMonsterName() << std::endl;
-
-	//std::cout << m_monster->MonsterIsAlive() << std::endl;
-	//std::cout << runAway << std::endl;
 
 	while (m_monster->MonsterIsAlive() && runAway == false && m_player->IsAlive())
 	{

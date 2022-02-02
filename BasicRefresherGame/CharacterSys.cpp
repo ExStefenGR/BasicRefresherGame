@@ -172,8 +172,6 @@ void CharacterSys::PlayerReceiveDamage(const int monsterDamage, const bool runAw
 			
 			std::cout << "YOU ARE DEAD.\n" << std::endl;
 		}
-		
-		
 		system("pause");
 		system("cls");
 	}
