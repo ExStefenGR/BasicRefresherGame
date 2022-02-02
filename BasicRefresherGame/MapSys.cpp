@@ -13,7 +13,7 @@ MapSys::MapSys()
 	m_lastLocation = Map::GameStart;
 	m_roomDone = false;
 	m_setLocation = 0;
-	
+
 	//Monster
 	m_monster = new MonsterSys();
 
@@ -26,7 +26,7 @@ MapSys::MapSys()
 	CreateDialog();
 	SpeechPause();
 }
-MapSys::~MapSys() 
+MapSys::~MapSys()
 {
 }
 MapSys::Map MapSys::GetMapLoc() const
@@ -161,11 +161,9 @@ void MapSys::ChoiceSys(const Map& locations)
 	case (Map::Beach):
 	{
 		break;
-		m_choiceMade = true;
 	}
 	default:
 	{
-		std::cout << "Function ChoiceSys called outside normal operation" << std::endl;
 		break;
 	}
 	}
@@ -193,9 +191,6 @@ void MapSys::CreateDialog()
 	darkShore.dialogue4 = "You find yourself in the shore, although something seems off, everything is dark and it seems like it is night-time..";
 	darkShore.dialogue5 = "You seem not to be able to see your reflection in the water...";
 	darkShore.dialogue6 = "???: Well, You are dead, what did you expect..?";
-	castleOfFire.dialogue1 = "???: WHO DARES ENTER MY CASTLE?";
-	castleOfFire.dialogue2 = "Rose: I didn't expect the Dark Knight would be already here! Be careful traveler!";
-	castleOfFire.dialogue3 = "Dark Knight: Fighter of the Light... I will show you why entering my castle was a terrible idea...";
 	beach.dialogue1 = "Rose: Good Job Traveler, looks like we will live another day";
 	beach.dialogue2 = "Rose: Perhaps you would like to join our guild, It is not near town, we tend to travel a lot just like you";
 	beach.dialogue3 = "Rose: I'll give you lots of time to think about it...";
@@ -325,23 +320,6 @@ void MapSys::DialogueSys(const Map& locations)
 		}
 		break;
 	}
-	case (Map::CastleOfFire):
-	{
-
-		auto i = dialogue.find("CastleOfFire");
-		if (i != dialogue.end())
-		{
-			std::cout << i->second.dialogue1 << std::endl;
-			SpeechPause();
-			std::cout << i->second.dialogue2 << std::endl;
-			SpeechPause();
-			std::cout << i->second.dialogue3 << std::endl;
-			SpeechPause();
-			std::cout << i->second.dialogue4 << std::endl;
-			SpeechPause();
-		}
-		break;
-	}
 	case (Map::DarkShore):
 	{
 		for (const auto& i : dialogue)
@@ -374,12 +352,21 @@ void MapSys::DialogueSys(const Map& locations)
 			SpeechPause();
 			std::cout << i->second.dialogue2 << std::endl;
 			SpeechPause();
+			std::cout << i->second.dialogue3 << std::endl;
+			SpeechPause();
+			std::cout << i->second.dialogue4 << std::endl;
+			SpeechPause();
+			std::cout << i->second.dialogue5 << std::endl;
+			SpeechPause();
+			std::cout << i->second.dialogue6 << std::endl;
+			SpeechPause();
+			std::cout << i->second.dialogue7 << std::endl;
+			SpeechPause();
 		}
 		break;
 	}
 	default:
 	{
-		std::cout << "DialogueSystem Malfunction: Beyond Range" << std::endl;
 		break;
 	}
 	}
@@ -460,7 +447,6 @@ void MapSys::LocController()
 			SpeechPause();
 			DialogueSys(m_locations);
 			ChoiceSys(m_locations);
-
 			break;
 		}
 		case Map::Colosseum:
@@ -507,7 +493,7 @@ void MapSys::LocController()
 			m_roomDone = true;
 			break;//Good ending
 		default:
-			std::cout << "Player location: Location Cotroller malfunction\n" << std::endl;
+			m_roomDone = true;
 			break;
 		}
 	}
@@ -533,7 +519,7 @@ void MapSys::MonsterFight()
 		{
 		case 1:
 			m_monster->MonsterReceiveDamage(m_player->GetDamage());
-			if(m_monster->MonsterIsAlive())
+			if (m_monster->MonsterIsAlive())
 			{
 				m_player->PlayerReceiveDamage(m_monster->GetMonsterDamage(), runAway);
 			}
@@ -547,24 +533,14 @@ void MapSys::MonsterFight()
 			SetMapLoc(m_lastLocation);
 			m_monster->~MonsterSys();
 			break;
-		/*case 3:
-			system("cls");
-			m_player->PlayerInfo();
-			SpeechPause();
-			break;*/
 		default:
-			std::cout << "Unespected case in fight." << std::endl;
 			break;
 		}
 	}
-	m_monster->~MonsterSys(); //-- delete monster after monster die.
-	//m_player->ReceiveDamage(m_monster->GetMonsterDamage()) -- Deal damage to Player.
-	//m_monster->MonsterReceiveDamage(m_player->GetDamage()); --Deal damage to monster according to player damage.
-	//m_monster->MonsterIsAlive(); --return if monster is dead or not.
+	m_monster->~MonsterSys();
 }
 void MapSys::SetMapLoc(const Map& NewLoc)
 {
-	//TODO const and reference to Map
 	m_lastLocation = m_locations;
 	m_locations = NewLoc;
 }
