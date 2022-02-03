@@ -8,7 +8,6 @@ CharacterSys::CharacterSys()
 {
 	CharacterSys::m_job = {};
 	CharacterSys::m_class = {};
-	CharacterSys::m_skill = {};
 	m_isAlive = true;
 	m_maxHealthPoints = 150;
 	m_maxManaPoints = 50;
@@ -42,19 +41,6 @@ int CharacterSys::GetManaPoints() const
 std::string CharacterSys::GetName() const
 {
 	return m_name;
-}
-CharacterSys::Skills CharacterSys::GetSkills() const
-{
-	if (GetCharacterClass() == static_cast<int>(Job::Sword))
-	{
-		return Skills(Skills::Berserker);
-	}
-	else if (GetCharacterClass() == static_cast<int>(Job::Staff)) {
-		return Skills(Skills::Fireball);
-	}
-	else if (GetCharacterClass() == static_cast<int>(Job::Bow)) {
-		return Skills(Skills::ArrowShower);
-	}
 }
 void CharacterSys::CreateCharacter()
 {
@@ -138,21 +124,6 @@ void CharacterSys::PlayerInfo() const
 	std::cout << "# Attack # " << GetDamage() << std::endl;
 	std::cout << "# Health # " << GetHealthPoints() << "/" << m_maxHealthPoints << std::endl;
 	std::cout << "# Mana   # " << GetManaPoints() << "/" << m_maxManaPoints  << std::endl;
-	
-	switch (GetSkills())
-	{
-	case Skills::Berserker:
-		std::cout << "# Skill  # Berserker" << std::endl;
-		break;
-	case Skills::Fireball:
-		std::cout << "# Skill  # Fireball" << std::endl;
-		break;
-	case Skills::ArrowShower:
-		std::cout << "# Skill  # ArrowShower" << std::endl;
-		break;
-	default:
-		break;
-	}
 	std::cout << "#============================================================#\n" << std::endl;
 }
 void CharacterSys::PlayerReceiveDamage(const int monsterDamage, const bool runAway)

@@ -11,12 +11,6 @@ public:
 		Staff,
 		Bow
 	};
-	enum class Skills
-	{
-		Berserker = 1,
-		Fireball,
-		ArrowShower
-	};
 
 	CharacterSys();
 	~CharacterSys();
@@ -27,7 +21,6 @@ public:
 	int GetHealthPoints() const;
 	int GetManaPoints() const;
 	std::string GetName() const;
-	Skills GetSkills() const;
 	void CreateCharacter();
 	void SetCharacterClass();
 	void SetDamage(int damagePoints);
@@ -46,6 +39,5 @@ private:
 	int m_maxHealthPoints;
 	int m_maxManaPoints;
 	Job m_job;
-	Skills m_skill;
 	std::string m_name;
 };
