@@ -458,7 +458,7 @@ void MapSys::LocController()
 			std::cout << "Dark Shore" << std::endl;
 			MonsterFight();
 			SpeechPause();
-			DialogueSys(m_locations);
+			m_roomDone = true;
 			break;//Bad ending
 		case Map::Beach:
 			std::cout << "Player location: Beach\n" << std::endl;
@@ -485,7 +485,7 @@ void MapSys::MonsterFight()
 
 	std::cout << "You are confronted by " << m_monster->GetMonsterName() << std::endl;
 
-	while (m_monster->MonsterIsAlive() && runAway == false && m_player->IsAlive())
+	if (m_monster->MonsterIsAlive() && runAway == false && m_player->IsAlive())
 	{
 		m_monster->MonsterInfo();
 
@@ -524,6 +524,10 @@ void MapSys::MonsterFight()
 		default:
 			break;
 		}
+	}
+	else if (m_monster->MonsterIsAlive() && runAway == false)
+	{
+		SetMapLoc(Map::DarkShore);
 	}
 	m_monster->~MonsterSys();
 }
