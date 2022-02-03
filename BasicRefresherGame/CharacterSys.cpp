@@ -160,6 +160,7 @@ void CharacterSys::PlayerReceiveDamage(const int monsterDamage, const bool runAw
 	if (runAway)
 	{
 		std::cout << "You tried to run but took " << monsterDamage << " damage." << std::endl;
+		m_healthPoints -= monsterDamage;
 	}
 	else
 	{

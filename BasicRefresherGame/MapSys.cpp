@@ -434,8 +434,6 @@ void MapSys::LocController()
 		case Map::Shore:
 		{
 			m_monster->CreateMonster(static_cast<int>(GetMapLoc()), "RedPuan");
-			//add here dialogue that shows the item being in inventory
-			//Same Item as in Town Route for Shield and Magician
 			std::cout << "Player location: Shore\n" << std::endl;
 			MonsterFight();
 			SpeechPause();
@@ -515,7 +513,7 @@ void MapSys::MonsterFight()
 		std::cout << "Select an option:" << std::endl;
 		std::cout << "1: Attack" << std::endl;
 		std::cout << "2: Run" << std::endl;
-		//std::cout << "3: Player Stats" << std::endl;
+		//std::cout << "3: Spells" << std::endl;
 		std::cin >> combatOptions;
 		switch (combatOptions)
 		{
@@ -535,6 +533,15 @@ void MapSys::MonsterFight()
 			SetMapLoc(m_lastLocation);
 			m_monster->~MonsterSys();
 			break;
+		/*case 3:
+			m_monster->MonsterReceiveDamage(m_player->GetDamage());
+			if (m_monster->MonsterIsAlive())
+			{
+				m_player->PlayerReceiveDamage(m_monster->GetMonsterDamage(), runAway);
+			}
+			m_player->PlayerInfo();
+			break;
+		*/
 		default:
 			break;
 		}
