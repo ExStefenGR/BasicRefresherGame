@@ -161,6 +161,15 @@ void CharacterSys::PlayerReceiveDamage(const int monsterDamage, const bool runAw
 	{
 		std::cout << "You tried to run but took " << monsterDamage << " damage." << std::endl;
 		m_healthPoints -= monsterDamage;
+		if (m_healthPoints <= 0)
+		{
+			m_healthPoints = 0;
+			m_isAlive = false;
+
+			std::cout << "YOU ARE DEAD.\n" << std::endl;
+		}
+		system("pause");
+		system("cls");
 	}
 	else
 	{
