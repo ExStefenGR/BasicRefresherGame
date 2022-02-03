@@ -170,13 +170,12 @@ void MapSys::ChoiceSys(const Map& locations)
 }
 void MapSys::CreateDialog()
 {
-	Area gameStart, beginning, forest, woods, port, shore, town, colosseum, darkPortal, castleOfFire, darkShore, beach;
+	Area gameStart, beginning, forest, woods, port, town, colosseum, darkPortal, castleOfFire, darkShore, beach;
 
 	gameStart.dialogue1 = "Welcome to <DungeonTexter>, A text RPG made by Stefanos, Isaac and David!";
 	beginning.dialogue1 = "You find yourself in the middle of nowhere, You have 2 Paths, choose wisely..";
 	forest.dialogue1 = "Slime has ambushed you!";
 	port.dialogue1 = "You arrive at the port and spot a human ready to depart but he stops and waves at you..";
-	shore.dialogue1 = "You are now at the shore after fighting that weird monster, You look beneath youand find an item in the sand";
 	town.dialogue1 = "You have arrived at the Local Town with the help of the Boat-Man";
 	town.dialogue2 = "The Town seems quiet big for it to be called a 'Town'";
 	town.dialogue3 = "A masked lady approaches you and hands you a necklace as she whispers";
@@ -204,7 +203,6 @@ void MapSys::CreateDialog()
 	dialogue.insert(std::pair<std::string, Area>("Forest", forest));
 	dialogue.insert(std::pair<std::string, Area>("Woods", woods));
 	dialogue.insert(std::pair<std::string, Area>("Port", port));
-	dialogue.insert(std::pair<std::string, Area>("Shore", shore));
 	dialogue.insert(std::pair<std::string, Area>("Town", town));
 	dialogue.insert(std::pair<std::string, Area>("Colosseum", colosseum));
 	dialogue.insert(std::pair<std::string, Area>("DarkPortal", darkPortal));
@@ -266,16 +264,6 @@ void MapSys::DialogueSys(const Map& locations)
 			SpeechPause();
 		}
 		ChoiceSys(m_locations);
-		break;
-	}
-	case (Map::Shore):
-	{
-		auto i = dialogue.find("Shore");
-		if (i != dialogue.end())
-		{
-			std::cout << i->second.dialogue1 << std::endl;
-			SpeechPause();
-		}
 		break;
 	}
 	case (Map::Town):
@@ -415,9 +403,10 @@ void MapSys::LocController()
 			system("cls");
 			std::cout << "Player location: Woods\n" << std::endl;
 			m_monster->CreateMonster(static_cast<int>(GetMapLoc()), "Aracno");
-			MonsterFight();
 			DialogueSys(m_locations);
-			SetMapLoc(Map::Shore);
+			SpeechPause();
+			MonsterFight();
+			SetMapLoc(Map::Port);
 			break;
 		}
 		case Map::Port:
@@ -429,18 +418,6 @@ void MapSys::LocController()
 			DialogueSys(m_locations);
 			ChoiceSys(m_locations);
 			SetMapLoc(Map::Town);
-			break;
-		}
-		case Map::Shore:
-		{
-			m_monster->CreateMonster(static_cast<int>(GetMapLoc()), "RedPuan");
-			//add here dialogue that shows the item being in inventory
-			//Same Item as in Town Route for Shield and Magician
-			std::cout << "Player location: Shore\n" << std::endl;
-			MonsterFight();
-			SpeechPause();
-			DialogueSys(m_locations);
-			SetMapLoc(Map::DarkPortal);
 			break;
 		}
 		case Map::Town:

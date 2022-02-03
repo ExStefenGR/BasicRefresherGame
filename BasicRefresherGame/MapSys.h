@@ -20,7 +20,6 @@ public:
 		Forest,
 		Woods,
 		Port,
-		Shore,
 		Town,
 		Colosseum,
 		DarkPortal,
