@@ -52,9 +52,11 @@ private:
 
 	bool m_choiceMade;
 	bool m_roomDone;
+	bool m_optionPicked;
 	int m_getLocation;
 	int m_setLocation;
 	int m_choice;
+	int m_option;
 
 	std::map<std::string, Area> dialogue;
 

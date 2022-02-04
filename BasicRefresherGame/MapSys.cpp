@@ -480,7 +480,6 @@ void MapSys::LocController()
 void MapSys::MonsterFight()
 {
 	//GetMapLoc();
-	int combatOptions;
 	bool runAway = false;
 
 	std::cout << "You are confronted by " << m_monster->GetMonsterName() << std::endl;
@@ -492,27 +491,37 @@ void MapSys::MonsterFight()
 		std::cout << "Select an option:" << std::endl;
 		std::cout << "1: Attack" << std::endl;
 		std::cout << "2: Run" << std::endl;
-		std::cin >> combatOptions;
-		switch (combatOptions)
+		m_optionPicked = false;
+		while (!m_optionPicked && m_monster->MonsterIsAlive())
 		{
-		case 1:
-			m_monster->MonsterReceiveDamage(m_player->GetDamage());
-			if (m_monster->MonsterIsAlive())
+			if (!(std::cin >> m_option))
 			{
-				m_player->PlayerReceiveDamage(m_monster->GetMonsterDamage(), runAway);
+				std::cin.clear();
+				while (std::cin.get() != '\n');
+				std::cout << "Invalid Input!" << std::endl << std::endl;
+				continue;
 			}
-			m_player->PlayerInfo();
-			break;
-		case 2:
-			runAway = true;
-			m_player->PlayerReceiveDamage(m_monster->GetMonsterDamage(), runAway);
-			m_player->PlayerInfo();
-			std::cout << "You just book it" << std::endl;
-			SetMapLoc(m_lastLocation);
-			m_monster->~MonsterSys();
-			break;
-		default:
-			break;
+			switch (m_option)
+			{
+			case 1:
+				m_monster->MonsterReceiveDamage(m_player->GetDamage());
+				if (m_monster->MonsterIsAlive())
+				{
+					m_player->PlayerReceiveDamage(m_monster->GetMonsterDamage(), runAway);
+				}
+				m_player->PlayerInfo();
+				break;
+			case 2:
+				runAway = true;
+				m_player->PlayerReceiveDamage(m_monster->GetMonsterDamage(), runAway);
+				m_player->PlayerInfo();
+				std::cout << "You just book it" << std::endl;
+				SetMapLoc(m_lastLocation);
+				m_monster->~MonsterSys();
+				break;
+			default:
+				break;
+			}
 		}
 	}
 	else if (m_monster->MonsterIsAlive() && runAway == false)
