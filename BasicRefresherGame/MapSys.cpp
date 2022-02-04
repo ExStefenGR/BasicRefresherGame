@@ -508,6 +508,9 @@ void MapSys::MonsterFight()
 				if (m_monster->MonsterIsAlive())
 				{
 					m_player->PlayerReceiveDamage(m_monster->GetMonsterDamage(), runAway);
+					std::cout << "Select an option:" << std::endl;
+					std::cout << "1: Attack" << std::endl;
+					std::cout << "2: Run" << std::endl;
 				}
 				m_player->PlayerInfo();
 				break;
