@@ -16,7 +16,7 @@ int main()
 		std::cout << "1 - Play again\n 0 - Exit" << std::endl;
 		std::cin >> playAgain;
 
-		while (playAgain >= 0 || playAgain <= 1)
+		while (playAgain < 0 || playAgain > 1)
 		{
 			std::cout << "Incorrect input, please type again." << std::endl;
 			std::cout << "1 - Play again\n0 - Exit" << std::endl;
