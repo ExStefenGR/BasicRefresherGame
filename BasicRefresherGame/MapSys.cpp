@@ -33,6 +33,20 @@ MapSys::Map MapSys::GetMapLoc() const
 {
 	return m_locations;
 }
+int MapSys::ValidateInput(int playerInput)
+{
+	std::cin >> playerInput;
+
+	while (playerInput != 1 && playerInput != 2)
+	{
+		std::cin.clear();
+		std::cin.ignore(INT_MAX, '\n');
+		std::cout << "Invalid Input!" << std::endl;
+		std::cin >> playerInput;
+	}
+
+	return playerInput;
+}
 void MapSys::ChoiceSys(const Map& locations)
 {
 	switch (m_locations)
@@ -41,37 +55,18 @@ void MapSys::ChoiceSys(const Map& locations)
 	{
 		std::cout << "1. Towards Forest" << std::endl;
 		std::cout << "2. Towards Woods" << std::endl;
-		m_choiceMade = false;
-		while (!m_choiceMade)
+
+		m_choice = ValidateInput(m_choice);
+
+		if (m_choice == 1)
 		{
-			if (!(std::cin >> m_choice))
-			{
-				std::cin.clear();
-				while (std::cin.get() != '\n');
-				std::cout << "Invalid Input!" << std::endl << std::endl;
-				continue;
-			}
-			switch (m_choice)
-			{
-			case 1:
-			{
-				SetMapLoc(Map::Forest);
-				LocController();
-				break;
-			}
-			case 2:
-			{
-				SetMapLoc(Map::Woods);
-				LocController();
-				break;
-			}
-			default:
-			{
-				std::cout << "Choice is not there, try again.." << std::endl;
-				m_choiceMade = true;
-				break;
-			}
-			}
+			SetMapLoc(Map::Forest);
+			LocController();
+		}
+		if (m_choice == 2)
+		{
+			SetMapLoc(Map::Woods);
+			LocController();
 		}
 		break;
 	}
@@ -79,82 +74,38 @@ void MapSys::ChoiceSys(const Map& locations)
 	{
 		std::cout << "1. Ask the Man for help" << std::endl;
 		std::cout << "2. Try and Sabotage him (Will start a fight)" << std::endl;
-		m_choiceMade = false;
-		while (!m_choiceMade)
+
+		m_choice = ValidateInput(m_choice);
+
+		if (m_choice == 1)
 		{
-			if (!(std::cin >> m_choice))
-			{
-				std::cin.clear();
-				while (std::cin.get() != '\n');
-				std::cout << "Invalid Input!" << std::endl << std::endl;
-				continue;
-			}
-			switch (m_choice)
-			{
-			case 1:
-			{
-				SetMapLoc(Map::Town);
-				LocController();
-				m_choiceMade = true;
-				break;
-			}
-			case 2:
-			{
-				std::cout << "You attack the Boat owner" << std::endl;
-				SpeechPause();
-				//fight here then go to town
-				SetMapLoc(Map::Town);
-				LocController();
-				m_choiceMade = true;
-				break;
-			}
-			default:
-			{
-				std::cout << "Choice is not there, try again.." << std::endl;
-				m_choiceMade = true;
-				break;
-			}
-			}
+			SetMapLoc(Map::Town);
+			LocController();
 		}
-		break;
+		if (m_choice == 2)
+		{
+			std::cout << "You attack the Boat owner" << std::endl;
+			SpeechPause();
+			//fight here then go to town
+			SetMapLoc(Map::Town);
+			LocController();
+		}
 	}
 	case (Map::Town):
 	{
 		std::cout << "1. Visit the Lady during the night" << std::endl;
 		std::cout << "2. Visit the Colosseum" << std::endl;
-		m_choiceMade = false;
-		while (!m_choiceMade)
+
+		m_choice = ValidateInput(m_choice);
+
+		if (m_choice == 1)
 		{
-			if (!(std::cin >> m_choice))
-			{
-				std::cin.clear();
-				while (std::cin.get() != '\n');
-				std::cout << "Invalid Input!" << std::endl << std::endl;
-				continue;
-			}
-			switch (m_choice)
-			{
-			case 1:
-			{
-				SetMapLoc(Map::DarkPortal);
-				m_choiceMade = true;
-				break;
-			}
-			case 2:
-			{
-				SetMapLoc(Map::Colosseum);
-				SpeechPause();
-				//colluseum will have its own ChoiceSystem where the player can fight different monsters of their choice
-				m_choiceMade = true;
-				break;
-			}
-			default:
-			{
-				std::cout << "Choice is not there, try again.." << std::endl;
-				m_choiceMade = true;
-				break;
-			}
-			}
+			SetMapLoc(Map::DarkPortal);
+		}
+		if (m_choice == 2)
+		{
+			SetMapLoc(Map::Colosseum);
+			SpeechPause();
 		}
 		break;
 	}
@@ -479,57 +430,39 @@ void MapSys::LocController()
 }
 void MapSys::MonsterFight()
 {
-	//GetMapLoc();
 	bool runAway = false;
 
 	std::cout << "You are confronted by " << m_monster->GetMonsterName() << std::endl;
 
-	if (m_monster->MonsterIsAlive() && runAway == false && m_player->IsAlive())
+	while (m_monster->MonsterIsAlive() && runAway == false && m_player->IsAlive())
 	{
 		m_monster->MonsterInfo();
 
 		std::cout << "Select an option:" << std::endl;
 		std::cout << "1: Attack" << std::endl;
 		std::cout << "2: Run" << std::endl;
-		m_optionPicked = false;
-		while (!m_optionPicked && m_monster->MonsterIsAlive())
+
+		m_choice = ValidateInput(m_choice);
+
+		if (m_choice == 1)
 		{
-			if (!(std::cin >> m_option))
+			m_monster->MonsterReceiveDamage(m_player->GetDamage());
+			if (m_monster->MonsterIsAlive())
 			{
-				std::cin.clear();
-				while (std::cin.get() != '\n');
-				std::cout << "Invalid Input!" << std::endl << std::endl;
-				continue;
-			}
-			switch (m_option)
-			{
-			case 1:
-				m_monster->MonsterReceiveDamage(m_player->GetDamage());
-				if (m_monster->MonsterIsAlive())
-				{
-					m_player->PlayerReceiveDamage(m_monster->GetMonsterDamage(), runAway);
-					std::cout << "Select an option:" << std::endl;
-					std::cout << "1: Attack" << std::endl;
-					std::cout << "2: Run" << std::endl;
-				}
-				m_player->PlayerInfo();
-				break;
-			case 2:
-				runAway = true;
 				m_player->PlayerReceiveDamage(m_monster->GetMonsterDamage(), runAway);
-				m_player->PlayerInfo();
-				std::cout << "You just book it" << std::endl;
-				SetMapLoc(m_lastLocation);
-				m_monster->~MonsterSys();
-				break;
-			default:
-				break;
 			}
+			m_player->PlayerInfo();
 		}
-	}
-	else if (m_monster->MonsterIsAlive() && runAway == false)
-	{
-		SetMapLoc(Map::DarkShore);
+		if (m_choice == 2)
+		{
+			runAway = true;
+			m_player->PlayerReceiveDamage(m_monster->GetMonsterDamage(), runAway);
+			m_player->PlayerInfo();
+			std::cout << "You just book it" << std::endl;
+			SetMapLoc(m_lastLocation);
+			m_monster->~MonsterSys();
+		}
+
 	}
 	m_monster->~MonsterSys();
 }
