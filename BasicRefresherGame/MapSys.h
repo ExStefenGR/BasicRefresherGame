@@ -32,7 +32,6 @@ public:
 	~MapSys();
 	MapSys::Map GetMapLoc() const;
 	int ValidateInput(int playerInput);
-	void ChoiceSys(const Map& locations);
 	void CreateDialog(); 
 	void DialogueSys(const Map& locations);
 	void LocController();

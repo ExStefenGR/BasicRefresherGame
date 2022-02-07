@@ -47,78 +47,6 @@ int MapSys::ValidateInput(int playerInput)
 
 	return playerInput;
 }
-void MapSys::ChoiceSys(const Map& locations)
-{
-	switch (m_locations)
-	{
-	case (Map::Beginning):
-	{
-		std::cout << "1. Towards Forest" << std::endl;
-		std::cout << "2. Towards Woods" << std::endl;
-
-		m_choice = ValidateInput(m_choice);
-
-		if (m_choice == 1)
-		{
-			SetMapLoc(Map::Forest);
-			LocController();
-		}
-		if (m_choice == 2)
-		{
-			SetMapLoc(Map::Woods);
-			LocController();
-		}
-		break;
-	}
-	case (Map::Port):
-	{
-		std::cout << "1. Ask the Man for help" << std::endl;
-		std::cout << "2. Try and Sabotage him (Will start a fight)" << std::endl;
-
-		m_choice = ValidateInput(m_choice);
-
-		if (m_choice == 1)
-		{
-			SetMapLoc(Map::Town);
-			LocController();
-		}
-		if (m_choice == 2)
-		{
-			std::cout << "You attack the Boat owner" << std::endl;
-			SpeechPause();
-			//fight here then go to town
-			SetMapLoc(Map::Town);
-			LocController();
-		}
-	}
-	case (Map::Town):
-	{
-		std::cout << "1. Visit the Lady during the night" << std::endl;
-		std::cout << "2. Visit the Colosseum" << std::endl;
-
-		m_choice = ValidateInput(m_choice);
-
-		if (m_choice == 1)
-		{
-			SetMapLoc(Map::DarkPortal);
-		}
-		if (m_choice == 2)
-		{
-			SetMapLoc(Map::Colosseum);
-			SpeechPause();
-		}
-		break;
-	}
-	case (Map::Beach):
-	{
-		break;
-	}
-	default:
-	{
-		break;
-	}
-	}
-}
 void MapSys::CreateDialog()
 {
 	Area gameStart, beginning, forest, woods, port, town, colosseum, darkPortal, castleOfFire, darkShore, beach;
@@ -183,7 +111,6 @@ void MapSys::DialogueSys(const Map& locations)
 			std::cout << i->second.dialogue1 << std::endl;
 			SpeechPause();
 		}
-		ChoiceSys(m_locations);
 		break;
 	}
 	case (Map::Forest):
@@ -214,7 +141,6 @@ void MapSys::DialogueSys(const Map& locations)
 			std::cout << i->second.dialogue1 << std::endl;
 			SpeechPause();
 		}
-		ChoiceSys(m_locations);
 		break;
 	}
 	case (Map::Town):
@@ -246,7 +172,6 @@ void MapSys::DialogueSys(const Map& locations)
 			std::cout << i->second.dialogue1 << std::endl;
 			SpeechPause();
 		}
-		ChoiceSys(m_locations);
 		break;
 	}
 	case (Map::DarkPortal):
@@ -324,9 +249,9 @@ void MapSys::LocController()
 			system("cls");
 			std::cout << "Player location: GameStart\n" << std::endl;
 			DialogueSys(m_locations);
+			SpeechPause();
 			m_player->SetCharacterClass();
 			SetMapLoc(Map::Beginning);
-			SpeechPause();
 			break;
 		}
 		case Map::Beginning:
@@ -336,6 +261,20 @@ void MapSys::LocController()
 			MonsterFight();
 			DialogueSys(m_locations);
 			SpeechPause();
+
+			std::cout << "1. Towards Forest" << std::endl;
+			std::cout << "2. Towards Woods" << std::endl;
+
+			m_choice = ValidateInput(m_choice);
+
+			if (m_choice == 1)
+			{
+				SetMapLoc(Map::Forest);
+			}
+			if (m_choice == 2)
+			{
+				SetMapLoc(Map::Woods);
+			}
 			break;
 		}
 		case Map::Forest:
@@ -362,21 +301,49 @@ void MapSys::LocController()
 		}
 		case Map::Port:
 		{
-			SpeechPause();
 			std::cout << "Player location: Port\n" << std::endl;
 			m_monster->CreateMonster(static_cast<int>(GetMapLoc()), "Nudibranch");
 			MonsterFight();
 			DialogueSys(m_locations);
-			ChoiceSys(m_locations);
-			SetMapLoc(Map::Town);
+			SpeechPause();
+
+			std::cout << "1. Ask the Man for help" << std::endl;
+			std::cout << "2. Try and Sabotage him (Will start a fight)" << std::endl;
+
+			m_choice = ValidateInput(m_choice);
+
+			if (m_choice == 1)
+			{
+				SetMapLoc(Map::Town);
+			}
+			if (m_choice == 2)
+			{
+				std::cout << "You attack the Boat owner" << std::endl;
+				SpeechPause();
+				//fight here then go to town
+				SetMapLoc(Map::Town);
+			}
 			break;
 		}
 		case Map::Town:
 		{
 			std::cout << "Player location: Town\n" << std::endl;
-			SpeechPause();
 			DialogueSys(m_locations);
-			ChoiceSys(m_locations);
+			SpeechPause();
+			
+			std::cout << "1. Visit the Lady during the night" << std::endl;
+			std::cout << "2. Visit the Colosseum" << std::endl;
+
+			m_choice = ValidateInput(m_choice);
+
+			if (m_choice == 1)
+			{
+				SetMapLoc(Map::DarkPortal);
+			}
+			if (m_choice == 2)
+			{
+				SetMapLoc(Map::Colosseum);
+			}
 			break;
 		}
 		case Map::Colosseum:
@@ -385,24 +352,24 @@ void MapSys::LocController()
 			m_monster->CreateMonster(static_cast<int>(GetMapLoc()), "Slaughter");
 			MonsterFight();
 			SpeechPause();
+			SetMapLoc(Map::CastleOfFire);
 			break;
 		}
 		case Map::DarkPortal:
 		{
 			std::cout << "Player location: DarkPortal\n" << std::endl;
-			m_monster->CreateMonster(static_cast<int>(GetMapLoc()), "Flatworm");
-			MonsterFight();
-			SpeechPause();
 			DialogueSys(m_locations);
-			SetMapLoc(Map::CastleOfFire);
+			SpeechPause();
+			
+			m_player->PlayerReceiveDamage(m_player->GetHealthPoints());
 			break;
 		}
 		case Map::CastleOfFire:
 			m_monster->CreateMonster(static_cast<int>(GetMapLoc()), "BOSS: FireElemental");
 			std::cout << "Player location: CastleOfFire\n" << std::endl;
 			MonsterFight();
-			SpeechPause();
 			DialogueSys(m_locations);
+			SpeechPause();
 			SetMapLoc(Map::Beach);
 			break;//BOSS
 		case Map::DarkShore:

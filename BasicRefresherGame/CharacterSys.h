@@ -29,6 +29,7 @@ public:
 	void SetName();
 	void PlayerInfo() const;
 	void PlayerReceiveDamage(const int monsterDamage, const bool runAway);
+	void PlayerReceiveDamage(const int monsterDamage);
 
 private:
 	bool m_isAlive;
