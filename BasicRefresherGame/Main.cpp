@@ -8,6 +8,7 @@ int main()
 	bool playAgain = false;
 
 	do {
+		system("cls");
 		MapSys playerLoc;
 		playerLoc.LocController();
 

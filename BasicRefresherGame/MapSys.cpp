@@ -315,7 +315,7 @@ void MapSys::DialogueSys(const Map& locations)
 void MapSys::LocController()
 {
 	auto w = dialogue;
-	while (!m_roomDone)
+	while (!m_roomDone && m_player->IsAlive())
 	{
 		switch (m_locations)
 		{
@@ -407,7 +407,6 @@ void MapSys::LocController()
 			break;//BOSS
 		case Map::DarkShore:
 			std::cout << "Dark Shore" << std::endl;
-			MonsterFight();
 			SpeechPause();
 			m_roomDone = true;
 			break;//Bad ending
@@ -450,6 +449,11 @@ void MapSys::MonsterFight()
 			if (m_monster->MonsterIsAlive())
 			{
 				m_player->PlayerReceiveDamage(m_monster->GetMonsterDamage(), runAway);
+				if (m_player->IsAlive() == false)
+				{
+					SetMapLoc(Map::DarkShore);
+					LocController();
+				}
 			}
 			m_player->PlayerInfo();
 		}
@@ -457,9 +461,15 @@ void MapSys::MonsterFight()
 		{
 			runAway = true;
 			m_player->PlayerReceiveDamage(m_monster->GetMonsterDamage(), runAway);
+			if (m_player->IsAlive() == false)
+			{
+				SetMapLoc(Map::DarkShore);
+				LocController();
+			}
 			m_player->PlayerInfo();
 			std::cout << "You just book it" << std::endl;
 			SetMapLoc(m_lastLocation);
+			LocController();
 			m_monster->~MonsterSys();
 		}
 
@@ -470,6 +480,7 @@ void MapSys::SetMapLoc(const Map& NewLoc)
 {
 	m_lastLocation = m_locations;
 	m_locations = NewLoc;
+	LocController();
 }
 void MapSys::SpeechPause() const
 {
