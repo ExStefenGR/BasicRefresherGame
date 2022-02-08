@@ -349,9 +349,10 @@ void MapSys::LocController()
 		case Map::Colosseum:
 		{
 			std::cout << "Player location: Colusseum\n" << std::endl;
+			DialogueSys(m_locations);
+			SpeechPause();
 			m_monster->CreateMonster(static_cast<int>(GetMapLoc()), "Slaughter");
 			MonsterFight();
-			SpeechPause();
 			SetMapLoc(Map::CastleOfFire);
 			break;
 		}
@@ -360,8 +361,8 @@ void MapSys::LocController()
 			std::cout << "Player location: DarkPortal\n" << std::endl;
 			DialogueSys(m_locations);
 			SpeechPause();
-			
-			m_player->PlayerReceiveDamage(m_player->GetHealthPoints());
+			MonsterFight();	
+			SetMapLoc(Map::CastleOfFire);
 			break;
 		}
 		case Map::CastleOfFire:
@@ -375,6 +376,7 @@ void MapSys::LocController()
 		case Map::DarkShore:
 			std::cout << "Dark Shore" << std::endl;
 			SpeechPause();
+			m_player->PlayerReceiveDamage(m_player->GetHealthPoints());
 			m_roomDone = true;
 			break;//Bad ending
 		case Map::Beach:
