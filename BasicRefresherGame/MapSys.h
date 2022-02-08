@@ -53,6 +53,7 @@ private:
 	bool m_choiceMade;
 	bool m_roomDone;
 	bool m_optionPicked;
+	bool m_runAway;
 	int m_getLocation;
 	int m_setLocation;
 	int m_choice;

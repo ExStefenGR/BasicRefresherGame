@@ -13,6 +13,7 @@ MapSys::MapSys()
 	m_lastLocation = Map::GameStart;
 	m_roomDone = false;
 	m_setLocation = 0;
+	m_runAway = false;
 
 	//Monster
 	m_monster = new MonsterSys();
@@ -285,7 +286,10 @@ void MapSys::LocController()
 			DialogueSys(m_locations);
 			SpeechPause();
 			MonsterFight();
-			SetMapLoc(Map::Port);
+			if (!m_runAway)
+			{
+				SetMapLoc(Map::Port);
+			}
 			break;
 		}
 		case Map::Woods:
@@ -296,7 +300,10 @@ void MapSys::LocController()
 			DialogueSys(m_locations);
 			SpeechPause();
 			MonsterFight();
-			SetMapLoc(Map::Port);
+			if (!m_runAway)
+			{
+				SetMapLoc(Map::Port);
+			}
 			break;
 		}
 		case Map::Port:
@@ -312,11 +319,11 @@ void MapSys::LocController()
 
 			m_choice = ValidateInput(m_choice);
 
-			if (m_choice == 1)
+			if (m_choice == 1 && !m_runAway)
 			{
 				SetMapLoc(Map::Town);
 			}
-			if (m_choice == 2)
+			if (m_choice == 2 && !m_runAway)
 			{
 				std::cout << "You attack the Boat owner" << std::endl;
 				SpeechPause();
@@ -336,11 +343,11 @@ void MapSys::LocController()
 
 			m_choice = ValidateInput(m_choice);
 
-			if (m_choice == 1)
+			if (m_choice == 1 && !m_runAway)
 			{
 				SetMapLoc(Map::DarkPortal);
 			}
-			if (m_choice == 2)
+			if (m_choice == 2 && !m_runAway)
 			{
 				SetMapLoc(Map::Colosseum);
 			}
@@ -353,7 +360,10 @@ void MapSys::LocController()
 			SpeechPause();
 			m_monster->CreateMonster(static_cast<int>(GetMapLoc()), "Slaughter");
 			MonsterFight();
-			SetMapLoc(Map::CastleOfFire);
+			if (!m_runAway)
+			{
+				SetMapLoc(Map::CastleOfFire);
+			}
 			break;
 		}
 		case Map::DarkPortal:
@@ -362,7 +372,10 @@ void MapSys::LocController()
 			DialogueSys(m_locations);
 			SpeechPause();
 			MonsterFight();	
-			SetMapLoc(Map::CastleOfFire);
+			if (!m_runAway)
+			{
+				SetMapLoc(Map::CastleOfFire);
+			}
 			break;
 		}
 		case Map::CastleOfFire:
@@ -371,7 +384,10 @@ void MapSys::LocController()
 			MonsterFight();
 			DialogueSys(m_locations);
 			SpeechPause();
-			SetMapLoc(Map::Beach);
+			if (!m_runAway)
+			{
+				SetMapLoc(Map::Beach);
+			}
 			break;//BOSS
 		case Map::DarkShore:
 			std::cout << "Dark Shore" << std::endl;
@@ -398,11 +414,10 @@ void MapSys::LocController()
 }
 void MapSys::MonsterFight()
 {
-	bool runAway = false;
-
+	m_runAway = false;
 	std::cout << "You are confronted by " << m_monster->GetMonsterName() << std::endl;
 
-	while (m_monster->MonsterIsAlive() && runAway == false && m_player->IsAlive())
+	while (m_monster->MonsterIsAlive() && m_runAway == false && m_player->IsAlive())
 	{
 		m_monster->MonsterInfo();
 
@@ -417,29 +432,33 @@ void MapSys::MonsterFight()
 			m_monster->MonsterReceiveDamage(m_player->GetDamage());
 			if (m_monster->MonsterIsAlive())
 			{
-				m_player->PlayerReceiveDamage(m_monster->GetMonsterDamage(), runAway);
+				m_player->PlayerReceiveDamage(m_monster->GetMonsterDamage(), m_runAway);
 				if (m_player->IsAlive() == false)
 				{
 					SetMapLoc(Map::DarkShore);
-					LocController();
 				}
 			}
 			m_player->PlayerInfo();
 		}
 		if (m_choice == 2)
 		{
-			runAway = true;
-			m_player->PlayerReceiveDamage(m_monster->GetMonsterDamage(), runAway);
-			if (m_player->IsAlive() == false)
+			if (m_lastLocation == m_locations)
 			{
-				SetMapLoc(Map::DarkShore);
-				LocController();
+				std::cout << "You can`t run twice." << std::endl;
 			}
-			m_player->PlayerInfo();
-			std::cout << "You just book it" << std::endl;
-			SetMapLoc(m_lastLocation);
-			LocController();
-			m_monster->~MonsterSys();
+			else 
+			{
+				m_runAway = true;
+				m_player->PlayerReceiveDamage(m_monster->GetMonsterDamage(), m_runAway);
+				if (m_player->IsAlive() == false)
+				{
+					SetMapLoc(Map::DarkShore);
+				}
+				m_monster->~MonsterSys();
+				m_player->PlayerInfo();
+				std::cout << "You just book it\n" << std::endl;
+				SetMapLoc(m_lastLocation);
+			}
 		}
 
 	}
@@ -447,9 +466,16 @@ void MapSys::MonsterFight()
 }
 void MapSys::SetMapLoc(const Map& NewLoc)
 {
-	m_lastLocation = m_locations;
-	m_locations = NewLoc;
-	LocController();
+	if(m_runAway)
+	{
+		m_locations = NewLoc;
+		m_lastLocation = m_locations;
+	}
+	else 
+	{
+		m_lastLocation = m_locations;
+		m_locations = NewLoc;
+	}
 }
 void MapSys::SpeechPause() const
 {
