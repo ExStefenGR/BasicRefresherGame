@@ -460,7 +460,6 @@ void MapSys::MonsterFight()
 				SetMapLoc(m_lastLocation);
 			}
 		}
-
 	}
 	m_monster->~MonsterSys();
 }
