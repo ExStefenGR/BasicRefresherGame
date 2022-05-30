@@ -32,13 +32,13 @@ public:
 	void PlayerReceiveDamage(const int monsterDamage);
 
 private:
-	bool m_isAlive;
-	int m_class;
-	int m_damagePoints;
-	int m_healthPoints;
-	int m_manaPoints;
-	int m_maxHealthPoints;
-	int m_maxManaPoints;
-	Job m_job;
-	std::string m_name;
+	bool m_isAlive{ true };
+	int m_class{ 0 };
+	int m_maxHealthPoints{ 150 };
+	int m_maxManaPoints{ 50 };
+	int m_healthPoints{ m_maxHealthPoints };
+	int m_manaPoints{ m_maxManaPoints };
+	int m_damagePoints{ 10 };
+	Job m_job{};
+	std::string m_name{ 0 };
 };

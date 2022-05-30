@@ -3,18 +3,17 @@
 
 class MonsterSys
 {
-
 public:
 	MonsterSys();
 	~MonsterSys();
 
 	std::string GetMonsterName() const;
 
-	bool MonsterIsAlive() const; 
+	bool MonsterIsAlive() const;
 
-	int GetMonsterDamage() const; 
+	int GetMonsterDamage() const;
 	int GetMonsterHealthPoints() const;
-	void CreateMonster(const int monsterStats, const std::string& monsterName);
+	void CreateMonster(const int monsterStats, const std::string_view& monsterName);
 	void MonsterInfo() const;
 	void MonsterReceiveDamage(const int playerDamage);
 

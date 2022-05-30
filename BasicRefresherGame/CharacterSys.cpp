@@ -8,16 +8,8 @@ CharacterSys::CharacterSys()
 {
 	CharacterSys::m_job = {};
 	CharacterSys::m_class = {};
-	m_isAlive = true;
-	m_maxHealthPoints = 150;
-	m_maxManaPoints = 50;
-	m_healthPoints = m_maxHealthPoints;
-	m_manaPoints = m_maxManaPoints;
-	m_damagePoints = 10;
 }
-CharacterSys::~CharacterSys() 
-{
-}
+CharacterSys::~CharacterSys() = default;
 bool CharacterSys::IsAlive() const
 {
 	return m_isAlive;
@@ -123,7 +115,7 @@ void CharacterSys::PlayerInfo() const
 	std::cout << "# Name   # " << GetName() << std::endl;
 	std::cout << "# Attack # " << GetDamage() << std::endl;
 	std::cout << "# Health # " << GetHealthPoints() << "/" << m_maxHealthPoints << std::endl;
-	std::cout << "# Mana   # " << GetManaPoints() << "/" << m_maxManaPoints  << std::endl;
+	std::cout << "# Mana   # " << GetManaPoints() << "/" << m_maxManaPoints << std::endl;
 	std::cout << "#============================================================#\n" << std::endl;
 }
 void CharacterSys::PlayerReceiveDamage(const int monsterDamage, const bool runAway)
@@ -150,7 +142,7 @@ void CharacterSys::PlayerReceiveDamage(const int monsterDamage, const bool runAw
 		{
 			m_healthPoints = 0;
 			m_isAlive = false;
-			
+
 			std::cout << "YOU ARE DEAD.\n" << std::endl;
 		}
 		system("pause");

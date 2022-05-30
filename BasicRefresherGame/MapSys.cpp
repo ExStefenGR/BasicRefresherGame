@@ -5,21 +5,6 @@
 
 MapSys::MapSys()
 {
-	//Map
-	m_choice = 0;
-	m_choiceMade = false;
-	m_getLocation = 0;
-	m_locations = Map::GameStart;
-	m_lastLocation = Map::GameStart;
-	m_roomDone = false;
-	m_setLocation = 0;
-	m_runAway = false;
-
-	//Monster
-	m_monster = new MonsterSys();
-
-	//Player
-	m_player = new CharacterSys();
 	m_player->CreateCharacter();
 	m_player->PlayerInfo();
 
@@ -27,14 +12,12 @@ MapSys::MapSys()
 	CreateDialog();
 	SpeechPause();
 }
-MapSys::~MapSys()
-{
-}
+MapSys::~MapSys() = default;
 MapSys::Map MapSys::GetMapLoc() const
 {
 	return m_locations;
 }
-int MapSys::ValidateInput(int playerInput)
+int MapSys::ValidateInput(int playerInput)const
 {
 	std::cin >> playerInput;
 
@@ -78,107 +61,87 @@ void MapSys::CreateDialog()
 	beach.dialogue6 = "The end...";
 	beach.dialogue7 = "You have reached the end of the game, thanks a lot for playing!";
 
-	dialogue.insert(std::pair<std::string, Area>("GameStart", gameStart));
-	dialogue.insert(std::pair<std::string, Area>("Beginning", beginning));
-	dialogue.insert(std::pair<std::string, Area>("Forest", forest));
-	dialogue.insert(std::pair<std::string, Area>("Woods", woods));
-	dialogue.insert(std::pair<std::string, Area>("Port", port));
-	dialogue.insert(std::pair<std::string, Area>("Town", town));
-	dialogue.insert(std::pair<std::string, Area>("Colosseum", colosseum));
-	dialogue.insert(std::pair<std::string, Area>("DarkPortal", darkPortal));
-	dialogue.insert(std::pair<std::string, Area>("CastleOfFire", castleOfFire));
-	dialogue.insert(std::pair<std::string, Area>("DarkShore", darkShore));
-	dialogue.insert(std::pair<std::string, Area>("Beach", beach));
+	dialogue.try_emplace("GameStart", gameStart);
+	dialogue.try_emplace("Beginning", beginning);
+	dialogue.try_emplace("Forest", forest);
+	dialogue.try_emplace("Woods", woods);
+	dialogue.try_emplace("Port", port);
+	dialogue.try_emplace("Town", town);
+	dialogue.try_emplace("Colosseum", colosseum);
+	dialogue.try_emplace("DarkPortal", darkPortal);
+	dialogue.try_emplace("CastleOfFire", castleOfFire);
+	dialogue.try_emplace("DarkShore", darkShore);
+	dialogue.try_emplace("Beach", beach);
 }
 void MapSys::DialogueSys(const Map& locations)
 {
 	switch (GetMapLoc())
 	{
-	case (Map::GameStart):
-	{
-		auto i = dialogue.find("GameStart");
-		if (i != dialogue.end())
+	case Map::GameStart:
+		if (auto i = dialogue.find("GameStart"); i != dialogue.end())
 		{
 			std::cout << i->second.dialogue1 << std::endl;
 			SpeechPause();
 		}
 		break;
-	}
-	case (Map::Beginning):
-	{
-		auto i = dialogue.find("Beginning");
-		if (i != dialogue.end())
+	case Map::Beginning:
+		if (auto i = dialogue.find("Beginning"); i != dialogue.end())
 		{
 			std::cout << i->second.dialogue1 << std::endl;
 			SpeechPause();
 		}
 		break;
-	}
-	case (Map::Forest):
-	{
-		auto i = dialogue.find("Forest");
-		if (i != dialogue.end())
+	case Map::Forest:
+		if (auto i = dialogue.find("Forest"); i != dialogue.end())
 		{
 			std::cout << i->second.dialogue1 << std::endl;
 			SpeechPause();
 		}
 		break;
-	}
-	case (Map::Woods):
-	{
-		auto i = dialogue.find("Woods");
-		if (i != dialogue.end())
+
+	case Map::Woods:
+		if (auto i = dialogue.find("Woods"); i != dialogue.end())
 		{
 			std::cout << i->second.dialogue1 << std::endl;
 			SpeechPause();
 		}
 		break;
-	}
-	case (Map::Port):
-	{
-		auto i = dialogue.find("Port");
-		if (i != dialogue.end())
+	case Map::Port:
+		if (auto i = dialogue.find("Port"); i != dialogue.end())
 		{
 			std::cout << i->second.dialogue1 << std::endl;
 			SpeechPause();
 		}
 		break;
-	}
-	case (Map::Town):
-	{
-		for (const auto& i : dialogue)
+	case Map::Town:
+		for (const auto& [i, it] : dialogue)
 		{
-			auto it = i.first.find("Town");
-			if (it != std::string::npos)
+			auto ite = i.find("Town");
+			if (ite != std::string::npos)
 			{
-				std::cout << i.second.dialogue1 << std::endl;
+				std::cout << it.dialogue1 << std::endl;
 				SpeechPause();
-				std::cout << i.second.dialogue2 << std::endl;
+				std::cout << it.dialogue2 << std::endl;
 				SpeechPause();
-				std::cout << i.second.dialogue3 << std::endl;
+				std::cout << it.dialogue3 << std::endl;
 				SpeechPause();
-				std::cout << i.second.dialogue4 << std::endl;
+				std::cout << it.dialogue4 << std::endl;
 				SpeechPause();
-				std::cout << i.second.dialogue5 << std::endl;
+				std::cout << it.dialogue5 << std::endl;
 				SpeechPause();
 			}
 		}
 		break;
-	}
-	case (Map::Colosseum):
-	{
-		auto i = dialogue.find("Colosseum");
-		if (i != dialogue.end())
+	case Map::Colosseum:
+		if (auto i = dialogue.find("Colosseum"); i != dialogue.end())
 		{
 			std::cout << i->second.dialogue1 << std::endl;
 			SpeechPause();
 		}
 		break;
-	}
-	case (Map::DarkPortal):
-	{
-		auto i = dialogue.find("DarkPortal");
-		if (i != dialogue.end())
+	case Map::DarkPortal:
+
+		if (auto i = dialogue.find("DarkPortal"); i != dialogue.end())
 		{
 			std::cout << i->second.dialogue1 << std::endl;
 			SpeechPause();
@@ -186,34 +149,30 @@ void MapSys::DialogueSys(const Map& locations)
 			SpeechPause();
 		}
 		break;
-	}
-	case (Map::DarkShore):
-	{
-		for (const auto& i : dialogue)
+
+	case Map::DarkShore:
+		for (const auto& [i, it] : dialogue)
 		{
-			auto it = i.first.find("DarkShore");
-			if (it != std::string::npos)
+			auto ite = i.find("DarkShore");
+			if (ite != std::string::npos)
 			{
-				std::cout << i.second.dialogue1 << std::endl;
+				std::cout << it.dialogue1 << std::endl;
 				SpeechPause();
-				std::cout << i.second.dialogue2 << std::endl;
+				std::cout << it.dialogue2 << std::endl;
 				SpeechPause();
-				std::cout << i.second.dialogue3 << std::endl;
+				std::cout << it.dialogue3 << std::endl;
 				SpeechPause();
-				std::cout << i.second.dialogue4 << std::endl;
+				std::cout << it.dialogue4 << std::endl;
 				SpeechPause();
-				std::cout << i.second.dialogue5 << std::endl;
+				std::cout << it.dialogue5 << std::endl;
 				SpeechPause();
-				std::cout << i.second.dialogue6 << std::endl;
+				std::cout << it.dialogue6 << std::endl;
 				SpeechPause();
 			}
 		}
 		break;
-	}
-	case (Map::Beach):
-	{
-		auto i = dialogue.find("Beach");
-		if (i != dialogue.end())
+	case Map::Beach:
+		if (auto i = dialogue.find("Beach"); i != dialogue.end())
 		{
 			std::cout << i->second.dialogue1 << std::endl;
 			SpeechPause();
@@ -231,22 +190,17 @@ void MapSys::DialogueSys(const Map& locations)
 			SpeechPause();
 		}
 		break;
-	}
 	default:
-	{
 		break;
-	}
 	}
 }
 void MapSys::LocController()
 {
-	auto w = dialogue;
 	while (!m_roomDone && m_player->IsAlive())
 	{
 		switch (m_locations)
 		{
 		case Map::GameStart:
-		{
 			system("cls");
 			std::cout << "Player location: GameStart\n" << std::endl;
 			DialogueSys(m_locations);
@@ -254,9 +208,7 @@ void MapSys::LocController()
 			m_player->SetCharacterClass();
 			SetMapLoc(Map::Beginning);
 			break;
-		}
 		case Map::Beginning:
-		{
 			std::cout << "Player location: Beginning\n" << std::endl;
 			m_monster->CreateMonster(static_cast<int>(GetMapLoc()), "Ratta");
 			MonsterFight();
@@ -277,9 +229,7 @@ void MapSys::LocController()
 				SetMapLoc(Map::Woods);
 			}
 			break;
-		}
 		case Map::Forest:
-		{
 			system("cls");
 			std::cout << "Player location: Forest\n" << std::endl;
 			m_monster->CreateMonster(static_cast<int>(GetMapLoc()), "Slime");
@@ -291,9 +241,7 @@ void MapSys::LocController()
 				SetMapLoc(Map::Port);
 			}
 			break;
-		}
 		case Map::Woods:
-		{
 			system("cls");
 			std::cout << "Player location: Woods\n" << std::endl;
 			m_monster->CreateMonster(static_cast<int>(GetMapLoc()), "Aracno");
@@ -305,9 +253,7 @@ void MapSys::LocController()
 				SetMapLoc(Map::Port);
 			}
 			break;
-		}
 		case Map::Port:
-		{
 			std::cout << "Player location: Port\n" << std::endl;
 			m_monster->CreateMonster(static_cast<int>(GetMapLoc()), "Nudibranch");
 			MonsterFight();
@@ -331,13 +277,11 @@ void MapSys::LocController()
 				SetMapLoc(Map::Town);
 			}
 			break;
-		}
 		case Map::Town:
-		{
 			std::cout << "Player location: Town\n" << std::endl;
 			DialogueSys(m_locations);
 			SpeechPause();
-			
+
 			std::cout << "1. Visit the Lady during the night" << std::endl;
 			std::cout << "2. Visit the Colosseum" << std::endl;
 
@@ -352,9 +296,7 @@ void MapSys::LocController()
 				SetMapLoc(Map::Colosseum);
 			}
 			break;
-		}
 		case Map::Colosseum:
-		{
 			std::cout << "Player location: Colusseum\n" << std::endl;
 			DialogueSys(m_locations);
 			SpeechPause();
@@ -365,19 +307,16 @@ void MapSys::LocController()
 				SetMapLoc(Map::CastleOfFire);
 			}
 			break;
-		}
 		case Map::DarkPortal:
-		{
 			std::cout << "Player location: DarkPortal\n" << std::endl;
 			DialogueSys(m_locations);
 			SpeechPause();
-			MonsterFight();	
+			MonsterFight();
 			if (!m_runAway)
 			{
 				SetMapLoc(Map::CastleOfFire);
 			}
 			break;
-		}
 		case Map::CastleOfFire:
 			m_monster->CreateMonster(static_cast<int>(GetMapLoc()), "BOSS: FireElemental");
 			std::cout << "Player location: CastleOfFire\n" << std::endl;
@@ -430,47 +369,42 @@ void MapSys::MonsterFight()
 		if (m_choice == 1)
 		{
 			m_monster->MonsterReceiveDamage(m_player->GetDamage());
-			if (m_monster->MonsterIsAlive())
+			if (m_monster->MonsterIsAlive() && m_player->IsAlive())
 			{
 				m_player->PlayerReceiveDamage(m_monster->GetMonsterDamage(), m_runAway);
-				if (m_player->IsAlive() == false)
-				{
-					SetMapLoc(Map::DarkShore);
-				}
+			}
+			if (!m_player->IsAlive())
+			{
+				SetMapLoc(Map::DarkShore);
 			}
 			m_player->PlayerInfo();
 		}
-		if (m_choice == 2)
+		if (m_choice == 2 && !(m_lastLocation == m_locations))
 		{
-			if (m_lastLocation == m_locations)
+			m_runAway = true;
+			m_player->PlayerReceiveDamage(m_monster->GetMonsterDamage(), m_runAway);
+			if (m_player->IsAlive() == false)
 			{
-				std::cout << "You can`t run twice." << std::endl;
+				SetMapLoc(Map::DarkShore);
 			}
-			else 
-			{
-				m_runAway = true;
-				m_player->PlayerReceiveDamage(m_monster->GetMonsterDamage(), m_runAway);
-				if (m_player->IsAlive() == false)
-				{
-					SetMapLoc(Map::DarkShore);
-				}
-				m_monster->~MonsterSys();
-				m_player->PlayerInfo();
-				std::cout << "You just book it\n" << std::endl;
-				SetMapLoc(m_lastLocation);
-			}
+			m_player->PlayerInfo();
+			std::cout << "You just book it\n" << std::endl;
+			SetMapLoc(m_lastLocation);
+		}
+		else
+		{
+			std::cout << "You can`t run twice." << std::endl;
 		}
 	}
-	m_monster->~MonsterSys();
 }
 void MapSys::SetMapLoc(const Map& NewLoc)
 {
-	if(m_runAway)
+	if (m_runAway)
 	{
 		m_locations = NewLoc;
 		m_lastLocation = m_locations;
 	}
-	else 
+	else
 	{
 		m_lastLocation = m_locations;
 		m_locations = NewLoc;

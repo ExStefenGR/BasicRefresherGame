@@ -41,7 +41,7 @@ int MonsterSys::GetMonsterHealthPoints() const
 	return m_monsterHP;
 }
 
-void MonsterSys::CreateMonster(const int monsterStats, const std::string& monsterName)
+void MonsterSys::CreateMonster(const int monsterStats, const std::string_view& monsterName)
 {
 	m_monsterName = monsterName;
 

@@ -1,13 +1,14 @@
 #pragma once
 #include <iostream>
 #include <map>
+#include <memory>
 #include <string>
 #include "CharacterSys.h"
 #include "MonsterSys.h"
 
 //Programmed by Stefanos
 //Last edited 06/02/22
-//MonsterFight() by David 
+//MonsterFight() by David
 //CharacterSys() by Isaac
 
 class MapSys
@@ -31,8 +32,8 @@ public:
 	MapSys();
 	~MapSys();
 	MapSys::Map GetMapLoc() const;
-	int ValidateInput(int playerInput);
-	void CreateDialog(); 
+	int ValidateInput(int playerInput)const;
+	void CreateDialog();
 	void DialogueSys(const Map& locations);
 	void LocController();
 	void MonsterFight();
@@ -50,19 +51,19 @@ private:
 		std::string dialogue7;
 	};
 
-	bool m_choiceMade;
-	bool m_roomDone;
-	bool m_optionPicked;
-	bool m_runAway;
-	int m_getLocation;
-	int m_setLocation;
-	int m_choice;
-	int m_option;
+	bool m_choiceMade{ false };
+	bool m_roomDone{ false };
+	bool m_optionPicked{ false };
+	bool m_runAway{ false };
+	int m_getLocation{ 0 };
+	int m_setLocation{ 0 };
+	int m_choice{ 0 };
+	int m_option{ 0 };
 
-	std::map<std::string, Area> dialogue;
+	std::map<std::string, const Area> dialogue;
 
-	CharacterSys* m_player;
 	Map m_lastLocation;
 	Map m_locations;
-	MonsterSys* m_monster;
+	std::unique_ptr<MonsterSys> m_monster = std::make_unique<MonsterSys>();
+	std::unique_ptr<CharacterSys> m_player = std::make_unique<CharacterSys>();
 };
